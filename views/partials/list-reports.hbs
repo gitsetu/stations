@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each playlist.tracks}}
+    {{#each station.reports}}
     <tr>
       <td>
         {{title}}
@@ -21,12 +21,12 @@
         {{duration}}
       </td>
       <td>
-        <a href="/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="button">
+        <a href="/station/{{../station._id}}/deletereport/{{_id}}" class="button">
           {{>icons/delete}}
         </a>
       </td>
       <td>
-        <a href="/playlist/{{../playlist._id}}/edittrack/{{_id}}" class="button">
+        <a href="/station/{{../station._id}}/editreport/{{_id}}" class="button">
           {{>icons/edit}}
         </a>
       </td>

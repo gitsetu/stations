@@ -1,32 +1,32 @@
-import { playlistStore } from "../models/playlist-store.js";
+import { stationStore } from "../models/station-store.js";
 import { accountsController } from "./accounts-controller.js";
 
 export const dashboardController = {
   async index(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
     const viewData = {
-      title: "Playlist Dashboard",
-      playlists: await playlistStore.getPlaylistsByUserId(loggedInUser._id),
+      title: "Station Dashboard",
+      stations: await stationStore.getStationsByUserId(loggedInUser._id),
     };
     console.log("dashboard rendering");
     response.render("dashboard-view", viewData);
   },
 
-  async addPlaylist(request, response) {
+  async addStation(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
     const newPlayList = {
       title: request.body.title,
       userid: loggedInUser._id,
     };
-    console.log(`adding playlist ${newPlayList.title}`);
-    await playlistStore.addPlaylist(newPlayList);
+    console.log(`adding station ${newPlayList.title}`);
+    await stationStore.addStation(newPlayList);
     response.redirect("/dashboard");
   },
 
-  async deletePlaylist(request, response) {
-    const playlistId = request.params.id;
-    console.log(`Deleting Playlist ${playlistId}`);
-    await playlistStore.deletePlaylistById(playlistId);
+  async deleteStation(request, response) {
+    const stationId = request.params.id;
+    console.log(`Deleting Station ${stationId}`);
+    await stationStore.deleteStationById(stationId);
     response.redirect("/dashboard");
   },
 };
