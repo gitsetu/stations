@@ -9,7 +9,7 @@ export const reportController = {
     const viewData = {
       title: "Edit Song",
       station: await stationStore.getStationById(stationId),
-      report: await reportStore.getTrackById(reportId),
+      report: await reportStore.getReportById(reportId),
     };
     response.render("report-view", viewData);
   },
@@ -17,13 +17,13 @@ export const reportController = {
   async update(request, response) {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
-    const updatedTrack = {
+    const updatedReport = {
       title: request.body.title,
       artist: request.body.artist,
       duration: Number(request.body.duration),
     };
-    console.log(`Updating Track ${reportId} from Station ${stationId}`);
-    await reportStore.updateTrack(reportId, updatedTrack);
+    console.log(`Updating Report ${reportId} from Station ${stationId}`);
+    await reportStore.updateReport(reportId, updatedReport);
     response.redirect("/station/" + stationId);
   },
 };

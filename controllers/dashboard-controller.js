@@ -14,12 +14,12 @@ export const dashboardController = {
 
   async addStation(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
-    const newPlayList = {
+    const newStation = {
       title: request.body.title,
       userid: loggedInUser._id,
     };
-    console.log(`adding station ${newPlayList.title}`);
-    await stationStore.addStation(newPlayList);
+    console.log(`adding station ${newStation.title}`);
+    await stationStore.addStation(newStation);
     response.redirect("/dashboard");
   },
 

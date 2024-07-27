@@ -1,1 +1,10 @@
-{"file":"./models/stations.json","stations":[]}
+{
+  "file": "./models/stations.json",
+  "stations": [
+    {
+      "title": "wexford",
+      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
+      "_id": "0120aded-13b8-4f27-bdf7-8a029dc7831e"
+    }
+  ]
+}
