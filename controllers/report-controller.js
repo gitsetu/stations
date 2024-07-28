@@ -5,7 +5,7 @@ export const reportController = {
   async index(request, response) {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
-    console.log(`Editing Track ${reportId} from Station ${stationId}`);
+    console.log(`Editing Report ${reportId} from Station ${stationId}`);
     const viewData = {
       title: "Edit Song",
       station: await stationStore.getStationById(stationId),

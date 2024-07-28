@@ -9,7 +9,7 @@ export const stationController = {
     const viewData = {
       title: "Station",
       station: station,
-      shortestTrack: shortestReport,
+      shortestReport: shortestReport,
     };
     response.render("station-view", viewData);
   },
@@ -26,11 +26,13 @@ export const stationController = {
     response.redirect("/station/" + station._id);
   },
 
-  async deleteTrack(request, response) {
+  async deleteReport(request, response) {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
     console.log(`Deleting Report ${reportId} from Station ${stationId}`);
-    await reportStore.deleteReport(request.params.reportId);
+    // await reportStore.deleteReport(request.params.reportId); // Original code in template with bub on delete track.
+    // Michael O'Driscoll provided a fix on Slack to delete the selected report.
+    await reportStore.deleteReport(reportId);
     response.redirect("/station/" + stationId);
   },
 };

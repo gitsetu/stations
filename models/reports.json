@@ -1,1 +1,40 @@
-{"file":"./models/reports.json","reports":[]}
+{
+  "file": "./models/reports.json",
+  "reports": [
+    {
+      "title": "title1",
+      "artist": "artist1",
+      "duration": 5.6,
+      "_id": "4c83c442-a680-4b28-b795-09fbe1158de2",
+      "stationid": "0120aded-13b8-4f27-bdf7-8a029dc7831e"
+    },
+    {
+      "title": "title2",
+      "artist": "artist2",
+      "duration": 2.33,
+      "_id": "acbea575-a607-46ef-ae05-769f2081fda2",
+      "stationid": "0120aded-13b8-4f27-bdf7-8a029dc7831e"
+    },
+    {
+      "title": "title3",
+      "artist": "artist3",
+      "duration": 3.33,
+      "_id": "272f035f-7d5e-40eb-8cb8-75dd59ece746",
+      "stationid": "0120aded-13b8-4f27-bdf7-8a029dc7831e"
+    },
+    {
+      "title": "report1",
+      "artist": "artist1",
+      "duration": 221,
+      "_id": "ba06ebea-6878-456e-8ec1-2249c3c8d7c0",
+      "stationid": "a97a69a4-7938-4191-9b83-5388d346c3a5"
+    },
+    {
+      "title": "new",
+      "artist": "new ",
+      "duration": 3,
+      "_id": "8f91bfb7-7f77-42ba-ad55-9cfe3f928873",
+      "stationid": "a97a69a4-7938-4191-9b83-5388d346c3a5"
+    }
+  ]
+}
