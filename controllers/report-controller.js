@@ -7,7 +7,7 @@ export const reportController = {
     const reportId = request.params.reportid;
     console.log(`Editing Report ${reportId} from Station ${stationId}`);
     const viewData = {
-      title: "Edit Song",
+      title: "Edit Report",
       station: await stationStore.getStationById(stationId),
       report: await reportStore.getReportById(reportId),
     };
@@ -18,9 +18,12 @@ export const reportController = {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
     const updatedReport = {
-      title: request.body.title,
-      artist: request.body.artist,
-      duration: Number(request.body.duration),
+      datetime: request.body.datetime,
+      weathercode: Number(request.body.weathercode),
+      temperature: Number(request.body.temperature),
+      windspeed: Number(request.body.windspeed),
+      winddirection: Number(request.body.winddirection),
+      pressure: Number(request.body.pressure),
     };
     console.log(`Updating Report ${reportId} from Station ${stationId}`);
     await reportStore.updateReport(reportId, updatedReport);

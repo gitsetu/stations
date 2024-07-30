@@ -1,17 +1,26 @@
 <form class="box" action="/station/{{station._id}}/updatereport/{{report._id}}" method="POST">
-  <label>Track Details:</label>
+  <label>Report Details:</label>
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
-        <input class="input" type="text" placeholder="Enter Title" name="title" value="{{report.title}}">
+        <input class="input" type="text" placeholder="Enter date/time" name="datetime" value="{{report.datetime}}">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter Artist" name="artist" value="{{report.artist}}">
+        <input class="input" type="text" placeholder="Enter weather code" name="weathercode" value="{{report.weathercode}}">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter duration" name="duration" value="{{report.duration}}">
+        <input class="input" type="text" placeholder="Enter temperature" name="temperature" value="{{report.temperature}}">
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="Enter wind speed" name="windspeed" value="{{report.windspeed}}">
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="Enter wind direction" name="winddirection" value="{{report.winddirection}}">
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="Enter pressure" name="pressure" value="{{report.pressure}}">
       </div>
     </div>
   </div>
-  <button class="button is-primary">Update Track</button>
+  <button class="button is-primary">Update Report</button>
 </form>

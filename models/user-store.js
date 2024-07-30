@@ -38,4 +38,12 @@ export const userStore = {
     db.data.users = [];
     await db.write();
   },
+
+  async editUser(user) {
+    await db.read();
+    // user._id = v4();
+    db.data.users.push(user);
+    await db.write();
+    return user;
+  },
 };

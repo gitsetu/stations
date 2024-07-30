@@ -40,11 +40,19 @@ export const reportStore = {
     await db.write();
   },
 
+  async deleteAllReportsFromStation(stationId) {
+    db.data.reports = [];
+    await db.write();
+  },
+
   async updateReport(reportId, updatedReport) {
     const report = await this.getReportById(reportId);
-    report.title = updatedReport.title;
-    report.artist = updatedReport.artist;
-    report.duration = updatedReport.duration;
+    report.weathercode = updatedReport.weathercode;
+    report.temperature = updatedReport.temperature;
+    report.windspeed = updatedReport.windspeed;
+    report.winddirection = updatedReport.winddirection;
+    report.pressure = updatedReport.pressure;
+    report.datetime = updatedReport.datetime;
     await db.write();
   },
 };

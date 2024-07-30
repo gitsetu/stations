@@ -1,24 +1,34 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Track</th>
-      <th>Artist</th>
-      <th>Duration</th>
-      <th></th>
-      <th></th>
+      <th>Date/Time</th>
+      <th>Code</th>
+      <th>Temperature</th>
+      <th>Wind Speed</th>
+      <th>Wind Direction</th>
+      <th>Pressure</th>
     </tr>
   </thead>
   <tbody>
     {{#each station.reports}}
     <tr>
       <td>
-        {{title}}
+        {{datetime}}
       </td>
       <td>
-        {{artist}}
+        {{weathercode}}
       </td>
       <td>
-        {{duration}}
+        {{temperature}}
+      </td>
+      <td>
+        {{windspeed}}
+      </td>
+      <td>
+        {{winddirection}}
+      </td>
+      <td>
+        {{pressure}}
       </td>
       <td>
         <a href="/station/{{../station._id}}/deletereport/{{_id}}" class="button">

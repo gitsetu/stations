@@ -2,10 +2,10 @@
   "file": "./models/users.json",
   "users": [
     {
-      "firstName": "name1",
+      "firstName": "x",
       "lastName": "",
-      "email": "email1",
-      "password": "pass1",
+      "email": "x",
+      "password": "x",
       "_id": "ddf12e79-3b3b-4c97-a247-e388d34ecdad"
     }
   ]

@@ -2,24 +2,25 @@
   "file": "./models/stations.json",
   "stations": [
     {
-      "title": "wexford",
+      "stationname": "cork",
+      "latitude": "123",
+      "longitude": "456",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "0120aded-13b8-4f27-bdf7-8a029dc7831e"
+      "_id": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     },
     {
-      "title": "waterford",
+      "stationname": "wexford",
+      "latitude": "234",
+      "longitude": "122",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "a97a69a4-7938-4191-9b83-5388d346c3a5"
+      "_id": "2917d6d4-d631-4575-a0ed-0618ed5751ab"
     },
     {
-      "title": "dublin",
+      "stationname": "waterford",
+      "latitude": "222",
+      "longitude": "333.334",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "64ae7e2d-48ba-4da6-b7bd-708b99231421"
-    },
-    {
-      "title": "galway",
-      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "83abc21f-a02e-44b2-a19f-a164eccb2734"
+      "_id": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
     }
   ]
 }

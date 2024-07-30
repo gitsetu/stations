@@ -1,39 +1,33 @@
 <form class="box" action="/station/{{station._id}}/addreport" method="POST">
-  <label>Enter Weather Report Details:</label>
+  <label>Enter Weather Report Details: </label>
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
-        <input class="input" type="text" placeholder="Enter weather code" name="weather-code">
+        <label class="label">Weather Code</label>
+        <input class="input" type="text" placeholder="Enter weather code" name="weathercode">
       </div>
       <div class="field">
+        <label class="label">Temperature</label>
         <input class="input" type="text" placeholder="Enter temperature" name="temperature">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter wind speed" name="wind-speed">
+        <label class="label">Wind Speed</label>
+        <input class="input" type="text" placeholder="Enter wind speed" name="windspeed">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter wind direction" name="wind-direction">
+        <label class="label">Wind Direction</label>
+        <input class="input" type="text" placeholder="Enter wind direction" name="winddirection">
       </div>
       <div class="field">
+        <label class="label">Pressure</label>
         <input class="input" type="text" placeholder="Enter pressure" name="pressure">
       </div>
-      <div class="field">
-        <input class="input" type="text" placeholder="Enter date and time" name="date-time">
+      <div class="field -is-hidden">
+        <label class="label">Date/Time</label>
+        <input class="input" type="text" placeholder="Enter date and time" name="datetime">
       </div>
-
-<!--      -->
-<!--      <div class="field">-->
-<!--        <input class="input" type="text" placeholder="Enter Title" name="title">-->
-<!--      </div>-->
-<!--      <div class="field">-->
-<!--        <input class="input" type="text" placeholder="Enter Artist" name="artist">-->
-<!--      </div>-->
-<!--      <div class="field">-->
-<!--        <input class="input" type="text" placeholder="Enter duration" name="duration">-->
-<!--      </div>-->
-
 
     </div>
   </div>
-  <button class="button is-primary">Add Track</button>
+  <button class="button is-primary">Add Report</button>
 </form>

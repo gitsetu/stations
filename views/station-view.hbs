@@ -2,10 +2,25 @@
 
 <section class="section">
   <div class="title">
-    {{station.title}}
+    {{station.stationname}}
   </div>
   <div class="subtitle">
-    Shortest Report: {{shortestReport.title}}
+    Latest Report: {{latestReport.datetime}}
+    <br>
+    Most recent reading temperature: {{latestReport.temperature}}
+    <br>
+    Max temperature: {{maxTemperatureReport.temperature}}
+    <br>
+    Min temperature: {{minTemperatureReport.temperature}}
+    <br>
+    Max wind speed: {{maxWindSpeedReport.windspeed}}
+    <br>
+    Max pressure: {{maxPressureReport.pressure}}
+    <br>
+    Min pressure: {{minPressureReport.pressure}}
+
+    <br>
+<!--    Max wind speed (extreme): {{extremeReport.windspeed}}-->
   </div>
   {{> list-reports}}
   {{> add-report}}
