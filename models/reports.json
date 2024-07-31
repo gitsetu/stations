@@ -13,13 +13,14 @@
       "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     },
     {
-      "weathercode": 5,
-      "temperature": 5,
-      "windspeed": 5,
-      "winddirection": 5,
-      "pressure": 5,
-      "timestamp": 1722418759588,
-      "_id": "30a6c9d8-6c5f-40fd-a6f1-24d5a2d9fbac",
+      "weathercode": 44,
+      "temperature": 44,
+      "windspeed": 1,
+      "winddirection": 4,
+      "pressure": 4,
+      "datetime": "Wed Jul 31 2024 11:14:22",
+      "timestamp": 1722420862388,
+      "_id": "39f75478-48ca-4b90-a45b-7e48b14dd32d",
       "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     }
   ]

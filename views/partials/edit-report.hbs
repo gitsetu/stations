@@ -4,9 +4,10 @@
   <br><br>
   <div class="field is-horizontal">
     <div class="field-body">
-<!--      <div class="field">-->
-<!--        <input class="input" type="text" placeholder="Enter date/time" name="datetime" value="{{report.datetime}}">-->
-<!--      </div>-->
+      <div class="field">
+        <!--        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/hidden -->
+        <input class="input" type="hidden" placeholder="Enter date/time" name="datetime" value="{{report.datetime}}">
+      </div>
       <div class="field">
         <label>Weather Code</label>
         <input class="input" type="text" placeholder="Enter weather code" name="weathercode" value="{{report.weathercode}}">
