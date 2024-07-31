@@ -29,6 +29,7 @@ export const stationStore = {
     await db.read();
     const userStations = db.data.stations.filter((station) => station.userid === userid);
     // TODO: sort alphabetically
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
     // https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
     const sortedStations = userStations.sort((a, b) => a.stationname.localeCompare(b.stationname));
     console.log("stations sorted alphabetically"); // sorted! :)
