@@ -30,6 +30,7 @@ export const stationController = {
       // weatherfield: weatherfield,
       // extreme: extreme,
     };
+    console.log(`showing reports for ${station.stationname} station`);
     response.render("station-view", viewData);
   },
 

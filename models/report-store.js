@@ -20,6 +20,15 @@ export const reportStore = {
 
   async getReportsByStationId(id) {
     await db.read();
+    const stationReports = db.data.reports.filter((report) => report.stationid === id);
+    // sort reports in descending order (most recent first)
+    const sortedReports = stationReports.sort((a, b) => b.timestamp - a.timestamp);
+    console.log("reports sorted by most recent first");
+    return sortedReports;
+  },
+
+  async _getReportsByStationId(id) {
+    await db.read();
     return db.data.reports.filter((report) => report.stationid === id);
   },
 
