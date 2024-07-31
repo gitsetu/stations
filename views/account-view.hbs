@@ -1,9 +1,9 @@
 {{> welcome-menu active="account"}}
 
 <section class="section">
-  <h1 class="title">Account details</h1>
-  <form class="box" action="/account/{{user._id}}" method="POST">
-    <label>Report Details:</label>
+  <h1 class="title">Account: {{db.data.user.email}}</h1>
+  <form class="box" action="/account/{{db.data.user._id}}" method="POST">
+    <label>Account Details:</label>
     <label class="label">Name</label>
     <div class="field is-horizontal">
       <div class="field-body">

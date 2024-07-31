@@ -2,33 +2,24 @@
   "file": "./models/reports.json",
   "reports": [
     {
-      "weathercode": null,
-      "temperature": 21,
-      "windspeed": 3,
-      "winddirection": 22,
-      "pressure": 344,
-      "datetime": "Sun 12 20:29",
-      "_id": "34f5ad69-1f44-4eb1-8739-4e38ee6477bc",
+      "weathercode": 44,
+      "temperature": 44,
+      "windspeed": 44,
+      "winddirection": 44,
+      "pressure": 44,
+      "datetime": "Tue Jul 30 2024 21:03:50",
+      "timestamp": 1722369830724,
+      "_id": "bc9d54aa-8b14-4dca-bd8f-22816f9f0f84",
       "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     },
     {
-      "weathercode": 23,
-      "temperature": 23,
-      "windspeed": 23,
-      "winddirection": 23,
-      "pressure": 23,
-      "datetime": "23 August",
-      "_id": "708372a7-0f94-4872-974e-029b0eb04b0a",
-      "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
-    },
-    {
-      "weathercode": 34,
-      "temperature": 99,
-      "windspeed": 34,
-      "winddirection": 4,
-      "pressure": 322,
-      "datetime": "April 3",
-      "_id": "cce3b8f4-e244-4dba-a8d3-11bd19303dd2",
+      "weathercode": 5,
+      "temperature": 5,
+      "windspeed": 5,
+      "winddirection": 5,
+      "pressure": 5,
+      "timestamp": 1722418759588,
+      "_id": "30a6c9d8-6c5f-40fd-a6f1-24d5a2d9fbac",
       "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     }
   ]

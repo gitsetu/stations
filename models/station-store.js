@@ -27,6 +27,16 @@ export const stationStore = {
 
   async getStationsByUserId(userid) {
     await db.read();
+    const userStations = db.data.stations.filter((station) => station.userid === userid);
+    // TODO: sort alphabetically
+    // https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
+    const sortedStations = userStations.sort((a, b) => a.stationname.localeCompare(b.stationname));
+    console.log("stations sorted alphabetically"); // sorted! :)
+    return sortedStations;
+  },
+
+  async _getStationsByUserId(userid) {
+    await db.read();
     return db.data.stations.filter((station) => station.userid === userid);
   },
 

@@ -1,23 +1,22 @@
-<form class="section box columns" action="/dashboard/addstation" method="POST">
-  <div class="columns">
-  <div class="field column is-one-third">
-    <label class="label">Station Name</label>
-    <input class="input" type="text" placeholder="Station's name" name="stationname">
-  </div>
-  <div class="field column">
-    <label class="label">Latitude</label>
-    <input class="input" type="text" placeholder="Station latitude" name="latitude">
-  </div>
-  <div class="field column">
-    <label class="label">Longitude</label>
-    <input class="input" type="text" placeholder="Station longitude" name="longitude">
-  </div>
-
-    <div class="field column">
-      <label class="label">...</label>
-      <button class="button is-link">Add Station</button>
+<form class="section box" action="/dashboard/addstation" method="POST">
+  <div class="field is-horizontal">
+    <div class="field-body">
+    <div class="field">
+      <label class="label">Station Name</label>
+      <input class="input" type="text" placeholder="Name of the station" name="stationname">
     </div>
-
+    <div class="field">
+      <label class="label">Latitude</label>
+      <input class="input" type="text" placeholder="Station latitude" name="latitude">
+    </div>
+    <div class="field">
+      <label class="label">Longitude</label>
+      <input class="input" type="text" placeholder="Station longitude" name="longitude">
+    </div>
   </div>
-
+  </div>
+<!--  <br>-->
+  <div class="field is-grouped">
+  <button class="button is-link">Add Station</button>
+  </div>
 </form>

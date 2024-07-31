@@ -21,6 +21,13 @@
       "longitude": "333.334",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
       "_id": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+    },
+    {
+      "stationname": "dublin",
+      "latitude": "334",
+      "longitude": "2.221",
+      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
+      "_id": "be826b8c-68cf-49ba-8e4a-d6944800d7d9"
     }
   ]
 }

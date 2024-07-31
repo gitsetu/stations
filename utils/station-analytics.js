@@ -4,7 +4,7 @@ export const stationAnalytics = {
     if (station.reports.length > 0) {
       latestReport = station.reports[0];
       for (let i = 1; i < station.reports.length; i++) {
-        if (station.reports[i].datetime > latestReport.datetime) {
+        if (station.reports[i].timestamp > latestReport.timestamp) {
           latestReport = station.reports[i];
         }
       }

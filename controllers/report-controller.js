@@ -18,6 +18,7 @@ export const reportController = {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
     const updatedReport = {
+      // datetime: dayjs().format('YYYY-MM-DD HH:mm:ss.SSS'),
       datetime: request.body.datetime,
       weathercode: Number(request.body.weathercode),
       temperature: Number(request.body.temperature),

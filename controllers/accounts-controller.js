@@ -17,6 +17,7 @@ export const accountsController = {
 
   logout(request, response) {
     response.cookie("station", "");
+    console.log(`login out ${user.email}`);
     response.redirect("/");
   },
 
@@ -51,8 +52,10 @@ export const accountsController = {
   },
 
   async update(request, response) {
+    const userid = request.cookies.station;
     const viewData = {
-      title: "Login to the Service",
+      title: "Update account details",
+      user: await userStore.getUserById(userid),
     };
     response.render("account-view", viewData);
   },

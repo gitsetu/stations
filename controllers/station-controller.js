@@ -35,15 +35,16 @@ export const stationController = {
 
   async addReport(request, response) {
     const station = await stationStore.getStationById(request.params.id);
-    // const dayRightNow = dayjs();
-    // const dateNow = dayjs().format('dddd, h:mma');
     const newReport = {
       weathercode: Number(request.body.weathercode),
       temperature: Number(request.body.temperature),
       windspeed: Number(request.body.windspeed),
       winddirection: Number(request.body.winddirection),
       pressure: Number(request.body.pressure),
-      datetime: request.body.datetime,
+      // datetime: request.body.datetime,
+      // datetime: dayjs().format('YYYY-MM-DD HH:mm:ss.SSS'),
+      datetime: Date().toString().substring(0,24),
+      timestamp: Date.now(),
     };
     console.log(`adding report ${newReport._id}`);
     await reportStore.addReport(station._id, newReport);
