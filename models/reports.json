@@ -22,6 +22,17 @@
       "timestamp": 1722420862388,
       "_id": "39f75478-48ca-4b90-a45b-7e48b14dd32d",
       "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
+    },
+    {
+      "weathercode": 444,
+      "temperature": 44,
+      "windspeed": 44,
+      "winddirection": 180,
+      "pressure": 4444,
+      "datetime": "Thu Aug 01 2024 05:14:52",
+      "timestamp": 1722485692448,
+      "_id": "4e08eaa2-8a92-41de-8c82-42aede2533a0",
+      "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     }
   ]
 }

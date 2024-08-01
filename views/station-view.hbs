@@ -5,19 +5,10 @@
     {{station.stationname}}
   </div>
   <div class="subtitle">
-    Latest Report: {{latestReport.datetime}}
+    Latest Report: {{latestReport.datetime}}, {{elapsed}}
     <br>
-    Most recent reading temperature: {{latestReport.temperature}}
-    <br>
-    Max temperature: {{maxTemperatureReport.temperature}}
-    <br>
-    Min temperature: {{minTemperatureReport.temperature}}
-    <br>
-    Max wind speed: {{maxWindSpeedReport.windspeed}}
-    <br>
-    Max pressure: {{maxPressureReport.pressure}}
-    <br>
-    Min pressure: {{minPressureReport.pressure}}
+
+    {{> summary-station}}
 
     <br>
 <!--    Max wind speed (extreme): {{extremeReport.windspeed}}-->

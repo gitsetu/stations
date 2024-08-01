@@ -4,8 +4,11 @@
     {{stationname}}
   </h2>
   <h6 class="subtitle">
-    Lat: {{latitude}}, Lon: {{longitude}}
+    Elapsed: {{elapsed}}, Lat: {{latitude}}, Lon: {{longitude}}
   </h6>
+
+  {{> summary-station}}
+
   <a href="/station/{{_id}}" class="button">
     {{>icons/open}}
   </a>
