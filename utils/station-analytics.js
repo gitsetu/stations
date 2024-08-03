@@ -97,7 +97,7 @@ export const stationAnalytics = {
     if (station.reports.length > 0) {
       maxPressureReport = station.reports[0];
       for (let i = 1; i < station.reports.length; i++) {
-        if (station.reports[i].temperature < maxPressureReport.temperature) {
+        if (station.reports[i].temperature > maxPressureReport.temperature) {
           maxPressureReport = station.reports[i];
         }
       }
@@ -110,7 +110,7 @@ export const stationAnalytics = {
     if (station.reports.length > 0) {
       minPressureReport = station.reports[0];
       for (let i = 1; i < station.reports.length; i++) {
-        if (station.reports[i].temperature > minPressureReport.temperature) {
+        if (station.reports[i].temperature < minPressureReport.temperature) {
           minPressureReport = station.reports[i];
         }
       }

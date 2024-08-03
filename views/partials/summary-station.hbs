@@ -1,20 +1,62 @@
-
+<!-- TODO dashboard summary -->
 
 <div class="subtitle">
   Latest Report: {{latestReport.datetime}}, {{elapsed}}
+</div>
+
   <br>
-  Most recent reading temperature: {{latestReport.temperature}}
+  Most recent reading temperature: {{latestReport.temperature}} ºC
   <br>
-  Max temperature: {{maxTemperatureReport.temperature}}
+  Max temperature: {{maxTemperatureReport.temperature}} ºC
   <br>
-  Min temperature: {{minTemperatureReport.temperature}}
+  Min temperature: {{minTemperatureReport.temperature}} ºC
   <br>
-  Max wind speed: {{maxWindSpeedReport.windspeed}}
+  Max wind speed: {{maxWindSpeedReport.windspeed}} m/s
   <br>
-  Max pressure: {{maxPressureReport.pressure}}
+  Max pressure: {{maxPressureReport.pressure}} hPa
   <br>
-  Min pressure: {{minPressureReport.pressure}}
+  Min pressure: {{minPressureReport.pressure}} hPa
 
   <br>
   <!--    Max wind speed (extreme): {{extremeReport.windspeed}}-->
+
+
+<div class="column is-4">
+  <section class="card has-text-centered">
+    <header class="card-header">
+      <p class="card-header-title is-size-4 is-centered is-capitalized">
+        {{station.stationname}}
+      </p>
+    </header>
+    <div>
+      <div>
+        <button class="button is-white m-1 has-text-grey is-size-3" aria-haspopup="true" aria-controls="dropdown-menu2">
+        </button>
+      </div>
+
+    </div>
+
+    <div class="card-image px-6">
+      <figure class="image">
+        <img class="px-6 mb-1" src="/icons/edit.hbs"
+             alt="image">
+      </figure>
+    </div>
+    <article class="card-content">
+
+
+      <p class="content is-size-4">
+        {{latestReport.weathercode}}
+      </p>
+    </article>
+
+    <footer class="card-footer">
+      <p class="card-footer-item">
+        Lat {{station.latitude}}
+      </p>
+      <p class="card-footer-item">
+        <span>Lon {{station.longitude}}</span>
+      </p>
+    </footer>
+  </section>
 </div>

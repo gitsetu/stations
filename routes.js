@@ -14,8 +14,8 @@ router.get("/signup", accountsController.signup);
 router.get("/logout", accountsController.logout);
 router.post("/register", accountsController.register);
 router.post("/authenticate", accountsController.authenticate);
-router.get("/account", accountsController.update);
-router.post("/account/:userid", accountsController.update);
+router.get("/account", accountsController.account);
+router.post("/editaccount/:userid", accountsController.update);
 
 router.get("/dashboard", dashboardController.index);
 router.post("/dashboard/addstation", dashboardController.addStation);

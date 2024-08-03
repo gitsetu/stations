@@ -8,31 +8,20 @@
           <input class="input" type="text" placeholder="000" maxlength="3" name="weathercode">
         </div>
         <div class="field column">
-          <label>Temperature [ ºCelsius ]</label>
-          <input class="input" type="text" placeholder="00" maxlength="2" name="temperature">
+          <label>Temperature [ ºC ]</label>
+          <input class="input" type="text" placeholder="-10.1" maxlength="5" name="temperature">
         </div>
         <div class="field column">
           <label>Wind Speed [ m/s ]</label>
           <input class="input" type="text" placeholder="00" maxlength="2" name="windspeed">
         </div>
 
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-body columns">
-
-
-
-
-
         <div class="field column">
+          <label>Wind Direction</label>
           <!--          TODO: wind direction dropdown-->
-          <label>Wind Direction [ º ]</label>
-
           <div class="select">
             <select class="input" name="winddirection">
-              <option>Select wind direction</option>
+              <option>Select</option>
               <option value="0">North</option>
               <option value="45">North East</option>
               <option value="90">East</option>
@@ -43,19 +32,29 @@
               <option value="315">North West</option>
             </select>
           </div>
+          <!--          <label class="label">Date/Time</label>-->
+          <!--          <input class="input" type="text" placeholder="Enter date and time" name="datetime">-->
+        </div>
+
+        <div class="field column">
+          <label>Pressure</label>
+          <input class="input" type="text" placeholder="0000" maxlength="4" name="pressure">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body columns">
+
+        <div class="field column">
 
 <!--          <input class="input" type="text" placeholder="000" maxlength="3" name="winddirectiontyped">-->
         </div>
 
-        <div class="field column">
-          <label>Pressure [ hPa ]</label>
-          <input class="input" type="text" placeholder="0000" maxlength="4" name="pressure">
-        </div>
 
-        <div class="field column">
-<!--          <label class="label">Date/Time</label>-->
-<!--          <input class="input" type="text" placeholder="Enter date and time" name="datetime">-->
-        </div>
+
+
 
       </div>
     </div>

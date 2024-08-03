@@ -13,10 +13,6 @@ export const reportStore = {
     await db.read();
     report._id = v4();
     report.stationid = stationId;
-
-    // if (winddirection === "") {
-    //   report.winddirection = winddirectiondrop;
-    // }
     db.data.reports.push(report);
     await db.write();
     return report;

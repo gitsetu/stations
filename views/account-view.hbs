@@ -1,28 +1,8 @@
-{{> welcome-menu active="account"}}
+{{> menu active="account"}}
 
 <section class="section">
-  <h1 class="title">Account: {{db.data.user.email}}</h1>
-  <form class="box" action="/account/{{db.data.user._id}}" method="POST">
-    <label>Account Details:</label>
-    <label class="label">Name</label>
-    <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="field">
-          <input class="input" type="text" placeholder="Enter first name" name="firstName" value="{{user.firstname}}">
-        </div>
-        <div class="field">
-          <input class="input" type="text" placeholder="Enter last name" name="lastName" value="{{user.lastname}}">
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Email</label> <input class="input" type="text" placeholder="Enter email" name="email" value="{{user.email}}">
-    </div>
-    <div class="field">
-      <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" name="password" value="{{user.password}}">
-    </div>
-    <div class="field is-grouped">
-      <button class="button is-link">Update Account</button>
-    </div>
-  </form>
+  <div class="title">
+    User: {{user._id}}
+  </div>
+  {{> edit-account}}
 </section>

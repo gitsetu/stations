@@ -7,12 +7,9 @@
   <div class="subtitle">
     Latest Report: {{latestReport.datetime}}, {{elapsed}}
     <br>
-
-    {{> summary-station}}
-
-    <br>
-<!--    Max wind speed (extreme): {{extremeReport.windspeed}}-->
   </div>
+
+  {{> summary-station}}
   {{> list-reports}}
   {{> add-report}}
 </section>

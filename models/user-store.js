@@ -46,4 +46,15 @@ export const userStore = {
     await db.write();
     return user;
   },
+
+  async updateAccount(userId, updatedAccount) {
+    const user = await this.getUserById(userId);
+    user.firstname = updatedAccount.firstname;
+    user.lastname = updatedAccount.lastname;
+    user.email = updatedAccount.email;
+    user.password = updatedAccount.password;
+    await db.write();
+  },
+
+
 };
