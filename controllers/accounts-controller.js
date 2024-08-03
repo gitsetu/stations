@@ -36,7 +36,7 @@ export const accountsController = {
     const userexist = await userStore.getUserByEmail(request.body.email);
     if (userexist) {
       console.log(`user ${userexist.email} already exist`);
-      response.redirect("/login");
+      response.redirect("/");
     } else {
       await userStore.addUser(newuser);
       console.log(`registering new user ${newuser.email}`);
