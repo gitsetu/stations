@@ -72,5 +72,6 @@ export const reportStore = {
     report.pressure = updatedReport.pressure;
     report.datetime = updatedReport.datetime;
     await db.write();
+
   },
 };

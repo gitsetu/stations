@@ -1,21 +1,25 @@
-<form class="box" action="/editaccount/{{user._id}}" method="POST">
-  <label>Account Details:</label>
-  <label class="label">Name</label>
+<form class="box" action="/updateaccount/{{user._id}}" method="POST">
+  <label class="label">Account Details:</label>
+<!--  <label class="label">Name</label>-->
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
+        <label>First Name</label>
         <input class="input" type="text" placeholder="Enter first name" name="firstName" value="{{user.firstname}}">
       </div>
       <div class="field">
+        <label>Last Name</label>
         <input class="input" type="text" placeholder="Enter last name" name="lastName" value="{{user.lastname}}">
       </div>
     </div>
   </div>
   <div class="field">
-    <label class="label">Email</label> <input class="input" type="text" placeholder="Enter email" name="email" value="{{user.email}}">
+    <label>Email</label>
+    <input class="input" type="text" placeholder="Enter email" name="email" value="{{user.email}}">
   </div>
   <div class="field">
-    <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" name="password" value="{{user.password}}">
+    <label>Password</label>
+    <input class="input" type="password" placeholder="Enter Password" name="password" value="{{user.password}}">
   </div>
   <div class="field is-grouped">
     <button class="button is-link">Update Account</button>

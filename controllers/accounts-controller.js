@@ -32,6 +32,19 @@ export const accountsController = {
   },
 
   async register(request, response) {
+    const newuser = request.body;
+    const userexist = await userStore.getUserByEmail(request.body.email);
+    if (userexist) {
+      console.log(`user ${userexist.email} already exist`);
+      response.redirect("/login");
+    } else {
+      await userStore.addUser(newuser);
+      console.log(`registering new user ${newuser.email}`);
+      response.redirect("/");
+    }
+  },
+
+  async _register(request, response) {
     const user = request.body;
     await userStore.addUser(user);
     console.log(`registering ${user.email}`);
@@ -74,36 +87,38 @@ export const accountsController = {
   },
 
   async account(request, response) {
-    const stationId = request.params.stationid;
     // await db.read();
     const userEmail = request.cookies.station;
     const user = await userStore.getUserByEmail(userEmail);
 
-    console.log(`Editing Account ${user._id}`);
+    console.log(`editing account ${user._id}`);
     const viewData = {
       title: "Edit Account",
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-      userid: user._id,
+      user: await userStore.getUserByEmail(userEmail),
+      // passes id, email and password to account-view
+      // firstname: user.firstname,
+      // lastname: user.lastname,
+      // email: user.email,
+      // userid: user._id,
       // email: await userStore.getUserById(userId),
     };
     response.render("account-view", viewData);
   },
 
   async update(request, response) {
-    const stationId = request.params.stationid;
-    const userEmail = request.cookies.station;
-    const user = await userStore.getUserByEmail(userEmail);
+    const userId = request.params.userid;
+    // const userId = request.cookies.station;
+    const user = await userStore.getUserById(userId);
     const updatedAccount = {
       firstname: request.body.firstname,
       lastname: request.body.lastname,
       email: request.body.email,
       password: request.body.password,
     };
-    console.log(`Updating Account ${user._id}`);
-    await userStore.updateAccount(userEmail, updatedAccount);
-    response.redirect("/account/" + user._id);
+    console.log(`accountsController: updating account ${user._id}`);
+    await userStore.updateAccount(userId, updatedAccount);
+    // response.redirect("/account/" + user._id);
+    response.redirect("/account/");
 
     // response.render("account-view", viewData);
   },
