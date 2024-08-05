@@ -18,7 +18,7 @@ export const stationController = {
       title: "Station",
       station: station,
       latestReport: latestReport,
-      temperature: latestReport.temperature,
+      // temperature: latestReport.temperature,
       maxTemperatureReport: maxTemperatureReport,
       minTemperatureReport: minTemperatureReport,
       maxWindSpeedReport: maxWindSpeedReport,
@@ -26,7 +26,7 @@ export const stationController = {
       maxPressureReport: maxPressureReport,
       minPressureReport: minPressureReport,
       // temperature: temperature,
-      elapsed: (Date.now() - latestReport.timestamp) / 1000,
+      // elapsed: (Date.now() - latestReport.timestamp) / 1000,
 
     };
     console.log(`showing reports for ${station.stationname} station`);

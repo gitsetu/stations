@@ -43,6 +43,17 @@ export const stationStore = {
 
   async deleteStationById(id) {
     await db.read();
+    // delete all reports from station
+    await reportStore.deleteAllReportsFromStation(id);
+    //delete station
+    const index = db.data.stations.findIndex((station) => station._id === id);
+    db.data.stations.splice(index, 1);
+    await db.write();
+    console.log(`deleting station ${id}`)
+  },
+
+  async _deleteStationById(id) {
+    await db.read();
     const index = db.data.stations.findIndex((station) => station._id === id);
     db.data.stations.splice(index, 1);
     await db.write();

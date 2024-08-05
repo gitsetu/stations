@@ -6,7 +6,7 @@ export const dashboardController = {
     const loggedInUser = await accountsController.getLoggedInUser(request);
     const viewData = {
       // title: "Station Dashboard",
-      title: loggedInUser.firstName +"'s Weather Stations:",
+      title: loggedInUser.firstname +"'s Weather Stations:",
       stations: await stationStore.getStationsByUserId(loggedInUser._id),
     };
     console.log("dashboard rendering");
@@ -28,7 +28,7 @@ export const dashboardController = {
 
   async deleteStation(request, response) {
     const stationId = request.params.id;
-    console.log(`Deleting Station ${stationId}`);
+    // console.log(`Deleting Station ${stationId}`);
     await stationStore.deleteStationById(stationId);
     response.redirect("/dashboard");
   },

@@ -13,7 +13,7 @@ export const stationAnalytics = {
   },
 
   // refactored
-  // weatherfield: temperature, wind speed, pressure
+  // weatherfield: temperature, windspeed, pressure
   // extreme: min, max, latest
   getExtremeReport(station, weatherfield, extreme) {
     let extremeReport = null;
@@ -117,4 +117,19 @@ export const stationAnalytics = {
     }
     return minPressureReport;
   },
+
+  // TODO summary report
+  getSummaryReport(station) {
+    let summaryReport = null;
+    if (station.reports.length > 0) {
+      summaryReport = station.reports[0];
+      for (let i = 1; i < station.reports.length; i++) {
+        if (station.reports[i].temperature > summaryReport.temperature) {
+          summaryReport[temperature] = station.reports[i];
+        }
+      }
+    }
+    return summaryReport;
+  },
+
 };
