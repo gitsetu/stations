@@ -58,7 +58,7 @@ export const reportStore = {
     await db.write();
   },
 
-  // TODO delete all reports from station
+  // TODO DONE delete all reports from station
   async deleteAllReportsFromStation(stationId) {
     let index = db.data.reports.stationid;
     index = [];
@@ -77,4 +77,5 @@ export const reportStore = {
     await db.write();
 
   },
+
 };

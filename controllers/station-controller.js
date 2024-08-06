@@ -5,26 +5,30 @@ import { stationAnalytics } from "../utils/station-analytics.js";
 export const stationController = {
   async index(request, response) {
     const station = await stationStore.getStationById(request.params.id);
-    const latestReport = stationAnalytics.getLatestReport(station);
-    const maxTemperatureReport = stationAnalytics.getMaxTemperatureReport(station);
-    const minTemperatureReport = stationAnalytics.getMinTemperatureReport(station);
-    const maxWindSpeedReport = stationAnalytics.getMaxWindSpeedReport(station);
-    const minWindSpeedReport = stationAnalytics.getMinWindSpeedReport(station);
-    const maxPressureReport = stationAnalytics.getMaxPressureReport(station);
-    const minPressureReport = stationAnalytics.getMinPressureReport(station);
-    const temperature = await station.temperature;
+    const latestReport = await stationAnalytics.getLatestReport(station);
+    const summary = await stationAnalytics.getSummary(station);
+    const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station);
+    // const maxTemperatureReport = stationAnalytics.getMaxTemperatureReport(station);
+    // const minTemperatureReport = stationAnalytics.getMinTemperatureReport(station);
+    // const maxWindSpeedReport = stationAnalytics.getMaxWindSpeedReport(station);
+    // const minWindSpeedReport = stationAnalytics.getMinWindSpeedReport(station);
+    // const maxPressureReport = stationAnalytics.getMaxPressureReport(station);
+    // const minPressureReport = stationAnalytics.getMinPressureReport(station);
+    // const temperature = await station.temperature;
 
     const viewData = {
       title: "Station",
       station: station,
       latestReport: latestReport,
+      summary: summary,
+      timeSinceLastReport: timeSinceLastReport,
       // temperature: latestReport.temperature,
-      maxTemperatureReport: maxTemperatureReport,
-      minTemperatureReport: minTemperatureReport,
-      maxWindSpeedReport: maxWindSpeedReport,
-      minWindSpeedReport: minWindSpeedReport,
-      maxPressureReport: maxPressureReport,
-      minPressureReport: minPressureReport,
+      // maxTemperatureReport: maxTemperatureReport,
+      // minTemperatureReport: minTemperatureReport,
+      // maxWindSpeedReport: maxWindSpeedReport,
+      // minWindSpeedReport: minWindSpeedReport,
+      // maxPressureReport: maxPressureReport,
+      // minPressureReport: minPressureReport,
       // temperature: temperature,
       // elapsed: (Date.now() - latestReport.timestamp) / 1000,
 
@@ -55,40 +59,12 @@ export const stationController = {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
     console.log(`Deleting Report ${reportId} from Station ${stationId}`);
-    // await reportStore.deleteReport(request.params.reportId); // Original code in template with bub on delete track.
+    // Original code in template with bug on delete track.
+    // await reportStore.deleteReport(request.params.reportId);
     // Michael O'Driscoll provided a fix on Slack to delete the selected report.
     await reportStore.deleteReport(reportId);
     response.redirect("/station/" + stationId);
   },
 
-  async summary(request, response) {
-    const station = await stationStore.getStationById(request.params.id);
-    const latestReport = stationAnalytics.getLatestReport(station);
-    const maxTemperatureReport = stationAnalytics.getMaxTemperatureReport(station);
-    const minTemperatureReport = stationAnalytics.getMinTemperatureReport(station);
-    const maxWindSpeedReport = stationAnalytics.getMaxWindSpeedReport(station);
-    const minWindSpeedReport = stationAnalytics.getMinWindSpeedReport(station);
-    const maxPressureReport = stationAnalytics.getMaxPressureReport(station);
-    const minPressureReport = stationAnalytics.getMinPressureReport(station);
-    const temperature = await station.temperature;
-
-    const viewData = {
-      title: "Station",
-      station: station,
-      latestReport: latestReport,
-      temperature: latestReport.temperature,
-      maxTemperatureReport: maxTemperatureReport,
-      minTemperatureReport: minTemperatureReport,
-      maxWindSpeedReport: maxWindSpeedReport,
-      minWindSpeedReport: minWindSpeedReport,
-      maxPressureReport: maxPressureReport,
-      minPressureReport: minPressureReport,
-      // temperature: temperature,
-      elapsed: (Date.now() - latestReport.timestamp) / 1000,
-
-    };
-    console.log(`showing reports for ${station.stationname} station`);
-    response.render("dashboard-view", viewData);
-  },
 
 };

@@ -1,36 +1,30 @@
 <!-- TODO dashboard summary -->
 
 <div class="subtitle">
-  Latest Report: {{latestReport.datetime}}, {{elapsed}}
+  Latest Report: {{latestReport.datetime}},
+  {{timeSinceLastReport}}
 </div>
-  Extreme Test
-  <br>
-  Most recent reading temperature: {{getExtremeReport.temperature}} ºC
-  <br>
-  Most recent max temperature: {{getExtremeReport.temperature.max}} ºC
+  from: summary-station.hbs
+<br>
+<br>Latest temperature: {{latestReport.temperature}} ºC
+<br>Max temperature: {{summary.maxTemperature}} ºC
+<br>Min temperature: {{summary.minTemperature}} ºC
 
-  <br>
-  Most recent reading temperature: {{latestReport.temperature}} ºC
-  <br>
-  Max temperature: {{maxTemperatureReport.temperature}} ºC
-  <br>
-  Min temperature: {{minTemperatureReport.temperature}} ºC
-  <br>
-  Max wind speed: {{maxWindSpeedReport.windspeed}} m/s
-  <br>
-  Max pressure: {{maxPressureReport.pressure}} hPa
-  <br>
-  Min pressure: {{minPressureReport.pressure}} hPa
+<br>Latest wind speed: {{latestReport.windspeed}} m/s
+<br>Max wind speed: {{summary.maxWindSpeed}} m/s
+<br>Min wind speed: {{summary.minWindSpeed}} m/s
 
-  <br>
-  <!--    Max wind speed (extreme): {{extremeReport.windspeed}}-->
+<br>Latest pressure: {{latestReport.pressure}} hPa
+<br>Max pressure: {{summary.maxPressure}} hPa
+<br>Min pressure: {{summary.minPressure}} hPa
+<br>
 
 
 <div class="column is-4">
   <section class="card has-text-centered">
     <header class="card-header">
       <p class="card-header-title is-size-4 is-centered is-capitalized">
-        {{station.stationname}}
+        {{stationname}}
       </p>
     </header>
     <div>
