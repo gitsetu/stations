@@ -16,5 +16,5 @@ app.set("views", "./views");
 app.use("/", router);
 
 const listener = app.listen(process.env.PORT || 4000, function () {
-  console.log(`Weather Stations started on http://localhost:${listener.address().port}`);
+  console.log(`Stations started on http://localhost:${listener.address().port}`);
 });

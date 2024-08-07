@@ -1,3 +1,21 @@
+import { stationAnalytics } from "./station-analytics";
+
+export const extraUtils = {
+  // weather code description and icon
+  async __getWeather(station) {
+    // let weather = null;
+    let weather = await stationAnalytics.getLatestReport(station);
+    let weathercode = weather.weathercode;
+
+
+
+    return weather;
+  },
+
+}
+
+
+
 //true if is even
 function isEven(number) { return number % 2 === 0;}
 // example usage: isEven(4); // true

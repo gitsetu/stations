@@ -1,8 +1,8 @@
 <!-- TODO dashboard summary -->
-
 <div class="subtitle">
   Latest Report: {{latestReport.datetime}},
-  {{timeSinceLastReport}}
+  {{timeSinceLastReport}}<br><br>
+  Weather: {{weather.description}}
 </div>
   from: summary-station.hbs
 <br>
@@ -18,7 +18,7 @@
 <br>Max pressure: {{summary.maxPressure}} hPa
 <br>Min pressure: {{summary.minPressure}} hPa
 <br>
-
+<br>Number of reports: {{summary.numberOfReports}}
 
 <div class="column is-4">
   <section class="card has-text-centered">

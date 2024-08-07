@@ -1,6 +1,7 @@
 import { stationStore } from "../models/station-store.js";
 import { reportStore } from "../models/report-store.js";
 import { stationAnalytics } from "../utils/station-analytics.js";
+import { weatherController } from "../models/weather-controller.js";
 
 export const stationController = {
   async index(request, response) {
@@ -8,13 +9,7 @@ export const stationController = {
     const latestReport = await stationAnalytics.getLatestReport(station);
     const summary = await stationAnalytics.getSummary(station);
     const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station);
-    // const maxTemperatureReport = stationAnalytics.getMaxTemperatureReport(station);
-    // const minTemperatureReport = stationAnalytics.getMinTemperatureReport(station);
-    // const maxWindSpeedReport = stationAnalytics.getMaxWindSpeedReport(station);
-    // const minWindSpeedReport = stationAnalytics.getMinWindSpeedReport(station);
-    // const maxPressureReport = stationAnalytics.getMaxPressureReport(station);
-    // const minPressureReport = stationAnalytics.getMinPressureReport(station);
-    // const temperature = await station.temperature;
+    const weatherConditions = await weatherController.getWeather(station);
 
     const viewData = {
       title: "Station",
@@ -22,18 +17,10 @@ export const stationController = {
       latestReport: latestReport,
       summary: summary,
       timeSinceLastReport: timeSinceLastReport,
-      // temperature: latestReport.temperature,
-      // maxTemperatureReport: maxTemperatureReport,
-      // minTemperatureReport: minTemperatureReport,
-      // maxWindSpeedReport: maxWindSpeedReport,
-      // minWindSpeedReport: minWindSpeedReport,
-      // maxPressureReport: maxPressureReport,
-      // minPressureReport: minPressureReport,
-      // temperature: temperature,
-      // elapsed: (Date.now() - latestReport.timestamp) / 1000,
-
+      weather: weatherConditions,
     };
     console.log(`showing reports for ${station.stationname} station`);
+    // response.render("station-view", viewData);
     response.render("station-view", viewData);
   },
 
@@ -65,6 +52,5 @@ export const stationController = {
     await reportStore.deleteReport(reportId);
     response.redirect("/station/" + stationId);
   },
-
 
 };

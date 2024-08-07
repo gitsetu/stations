@@ -6,18 +6,31 @@ import { stationAnalytics } from "../utils/station-analytics.js";
 export const dashboardController = {
   async index(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
-    // const summaryReport = await dashboardController.summaryReport(request);
+
+    const summaryReport = null;
+    let station = null;
+    if (station) {
+      const summaryReport = await dashboardController.summaryReport(station);
+
+    }
+
     // const latestReport = stationAnalytics.getLatestReport(request);
     const viewData = {
       // title: "Station Dashboard",
       title: loggedInUser.firstname +"'s Weather Stations:",
       stations: await stationStore.getStationsByUserId(loggedInUser._id),
       // latestReport: await stationAnalytics.getLatestReport(station),
-      // summaryReport: summaryReport,
+      summary: summaryReport,
+      // summary: summary,
     };
     console.log("dashboard rendering");
     response.render("dashboard-view", viewData);
   },
+
+
+
+
+
 
   async addStation(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
@@ -42,13 +55,13 @@ export const dashboardController = {
   async _summaryReport(request, response) {
     const station = await stationStore.getStationById(request.params.id);
     const latestReport = await stationAnalytics.getLatestReport(station);
-    const summaryReport = await stationAnalytics.getSummaryReport(station);
+    const summary = await stationAnalytics.getSummary(station);
     const viewData = {
       title: "Station",
       station: station,
       latestReport: latestReport,
-      summaryReport: summaryReport,
-      elapsed: (Date.now() - latestReport.timestamp) / 1000,
+      summary: summary,
+      // elapsed: (Date.now() - latestReport.timestamp) / 1000,
     };
     console.log(`showing reports for ${station.stationname} station`);
     response.render("dashboard-view", viewData);
@@ -58,14 +71,16 @@ export const dashboardController = {
     // const loggedInUser = await accountsController.getLoggedInUser(request);
     const station = await stationStore.getStationById(request.params.id);
     const latestReport = await stationAnalytics.getLatestReport(station);
-    const summaryReport = await stationAnalytics.getSummaryReport(station);
-    const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station)
+    const summaryReport = await stationAnalytics.getSummary(station);
+    const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station);
+    // const weather = await stationAnalytics.getWeather(station);
     const viewData = {
       title: "Station",
       station: station,
       latestReport: latestReport,
-      summaryReport: summaryReport,
+      summary: summaryReport,
       timeSinceLastReport: timeSinceLastReport,
+      weather: weather,
       // loggedInUser: loggedInUser,
       // stations: await stationStore.getStationsByUserId(loggedInUser._id),
     };

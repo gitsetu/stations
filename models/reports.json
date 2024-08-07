@@ -165,6 +165,17 @@
       "timestamp": 1722940234026,
       "_id": "f41b8c32-892f-4d24-814a-f7cfcf35e0a3",
       "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+    },
+    {
+      "weathercode": 200,
+      "temperature": 4,
+      "windspeed": 4,
+      "winddirection": 0,
+      "pressure": 444,
+      "datetime": "Tue Aug 06 2024 23:53:03",
+      "timestamp": 1722984783420,
+      "_id": "cf552d12-0ffc-4671-b6ce-5c3700fb1734",
+      "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     }
   ]
 }

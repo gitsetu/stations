@@ -1,0 +1,71 @@
+{
+  "file": "./models/weathers.json",
+  "weathers": [
+    {
+      "id": 200,
+      "main": "Thunderstorm",
+      "description": "thunderstorm with light rain",
+      "icon": "11d"
+    },
+    {
+      "id": 300,
+      "main": "Drizzle",
+      "description": "light intensity drizzle",
+      "icon": "09d"
+    },
+    {
+      "id": 500,
+      "main": "Rain",
+      "description": "light rain",
+      "icon": "10d"
+    },
+    {
+      "id": 600,
+      "main": "Snow",
+      "description": "light snow",
+      "icon": "13d"
+    },
+    {
+      "id": 701,
+      "main": "Mist",
+      "description": "mist",
+      "icon": "50d"
+    },
+    {
+      "id": 741,
+      "main": "Fog",
+      "description": "fog",
+      "icon": "50d"
+    },
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
+    },
+    {
+      "id": 801,
+      "main": "Clouds",
+      "description": "few clouds",
+      "icon": "02d"
+    },
+    {
+      "id": 802,
+      "main": "Clouds",
+      "description": "scattered clouds",
+      "icon": "03d"
+    },
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "broken clouds",
+      "icon": "04d"
+    },
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04d"
+    }
+  ]
+}

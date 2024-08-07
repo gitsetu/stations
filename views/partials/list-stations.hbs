@@ -1,4 +1,5 @@
 {{#each stations}}
+  {{> summary-station}}
 <div class="box box-link-hover-shadow">
   <h2 class="title">
     {{stationname}}
@@ -7,8 +8,6 @@
     <p>this comes from: list-stations.hbs</p>
     Elapsed: {{timeSinceLastReport}}, Lat: {{latitude}}, Lon: {{longitude}}
   </h6>
-
-  {{> summary-station}}
 
   <a href="/station/{{_id}}" class="button">
     {{>icons/open}}
