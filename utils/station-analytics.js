@@ -244,4 +244,76 @@ export const stationAnalytics = {
     return summary;
   },
 
+
+  async windDegreesToDirection (degrees) {
+    let windDirection = "unknown"
+
+    if (degrees <= 360) { // check input is valid
+      const numberOfDirections = 16;
+      const step = 360 / numberOfDirections;
+      let steps = degrees / step;
+      steps = Math.round(steps);
+
+      switch (steps) {
+        case 16: case 0:
+          windDirection = "N";
+          break;
+        case 1 :
+          windDirection = "N/NE";
+          break;
+        case 2 :
+          windDirection = "NE";
+          break;
+        case 3 :
+          windDirection = "E/NE";
+          break;
+        case 4 :
+          windDirection = "E";
+          break;
+        case 5 :
+          windDirection = "E/SE";
+          break;
+        case 6 :
+          windDirection = "SE";
+          break;
+        case 7 :
+          windDirection = "S/SE";
+          break;
+        case 8 :
+          windDirection = "S";
+        break;
+        case 9 :
+          windDirection = "S/SW";
+          break;
+        case 10 :
+          windDirection = "SW";
+          break;
+        case 11 :
+          windDirection = "W/SW";
+          break;
+        case 12 :
+          windDirection = "W";
+          break;
+        case 13 :
+          windDirection = "W/NW";
+          break;
+        case 14 :
+          windDirection = "NW";
+          break;
+        case 15 :
+          windDirection = "N/NW";
+          break;
+
+        default:
+          windDirection = "unknown";
+      }
+
+    }
+
+    console.log("wind is coming from: "+ windDirection);
+    return windDirection;
+  },
+
+
+
 };

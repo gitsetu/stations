@@ -1,6 +1,7 @@
 import { stationStore } from "./station-store.js";
 import { stationAnalytics } from "../utils/station-analytics.js";
 import { weatherStore } from "./weather-store.js";
+import { extraUtils } from "../utils/extra-utils.js";
 
 export const weatherController = {
 
@@ -27,10 +28,21 @@ export const weatherController = {
   async getWeather(station) {
     // await db.read();
     const latestReport = await stationAnalytics.getLatestReport(station);
-    let weatherCode = latestReport.weathercode;
-    let weatherConditions = await weatherStore.getWeatherById(weatherCode);
-    console.log("getting weather conditions " + weatherConditions.main);
-    return weatherConditions;
+
+    if (station.reports.length > 0) {
+      let weatherCode = latestReport.weathercode;
+      let weatherConditions = await weatherStore.getWeatherById(weatherCode);
+
+      // console.log("getting weather conditions " + weatherConditions.main);
+      console.log("getting weather description");
+      return weatherConditions;
+
+    } else {
+      console.log("station does not have any report");
+    }
+
+
+
   },
 
 

@@ -10,6 +10,9 @@ export const stationController = {
     const summary = await stationAnalytics.getSummary(station);
     const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station);
     const weatherConditions = await weatherController.getWeather(station);
+    if (station.reports.length > 0) {
+      weatherConditions.winddirection = await stationAnalytics.windDegreesToDirection(latestReport.winddirection);
+    }
 
     const viewData = {
       title: "Station",
@@ -20,7 +23,7 @@ export const stationController = {
       weather: weatherConditions,
     };
     console.log(`showing reports for ${station.stationname} station`);
-    // response.render("station-view", viewData);
+    // response.render("dashboard-view", viewData);
     response.render("station-view", viewData);
   },
 

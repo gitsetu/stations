@@ -20,7 +20,8 @@ export const dashboardController = {
       title: loggedInUser.firstname +"'s Weather Stations:",
       stations: await stationStore.getStationsByUserId(loggedInUser._id),
       // latestReport: await stationAnalytics.getLatestReport(station),
-      summary: summaryReport,
+      // latestReport: latestReport,
+      // summary: summaryReport,
       // summary: summary,
     };
     console.log("dashboard rendering");

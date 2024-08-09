@@ -13,6 +13,8 @@
 <br>Latest wind speed: {{latestReport.windspeed}} m/s
 <br>Max wind speed: {{summary.maxWindSpeed}} m/s
 <br>Min wind speed: {{summary.minWindSpeed}} m/s
+<br>Wind direction: {{weather.winddirection}}
+
 
 <br>Latest pressure: {{latestReport.pressure}} hPa
 <br>Max pressure: {{summary.maxPressure}} hPa
@@ -20,27 +22,29 @@
 <br>
 <br>Number of reports: {{summary.numberOfReports}}
 
-<div class="column is-4">
+<div class="column is-3">
   <section class="card has-text-centered">
     <header class="card-header">
       <p class="card-header-title is-size-4 is-centered is-capitalized">
-        {{stationname}}
+        Location: {{stationname}}
       </p>
     </header>
     <div>
       <div>
-        <button class="button is-white m-1 has-text-grey is-size-3" aria-haspopup="true" aria-controls="dropdown-menu2">
+        <button class="button is-white m-1 has-text-grey is-size-4" aria-haspopup="true" aria-controls="dropdown-menu2">
+          {{weather.main}}
         </button>
       </div>
 
     </div>
 
-    <div class="card-image px-6">
-
-      <figure class="image">
-        <img class="px-6 mb-1" src=""
-             alt="image">
-      </figure>
+    <div class="card-image">
+      <img class="px-6 mb-1" src="https://openweathermap.org/img/wn/10d@2x.png" alt="image">
+<!--      {{>icons/logo}}-->
+<!--      <figure class="image">-->
+<!--        <img class="px-6 mb-1" src="https://openweathermap.org/img/wn/10d@2x.png" alt="image">-->
+<!--        -->
+<!--      </figure>-->
     </div>
     <article class="card-content">
 
@@ -50,12 +54,12 @@
       </p>
     </article>
 
-    <footer class="card-footer">
+    <footer class="card-footer is-size-7">
       <p class="card-footer-item">
-        Lat {{station.latitude}}
+        <span>Lat: {{station.latitude}}</span>
       </p>
       <p class="card-footer-item">
-        <span>Lon {{station.longitude}}</span>
+        <span>Lon: {{station.longitude}}</span>
       </p>
     </footer>
   </section>

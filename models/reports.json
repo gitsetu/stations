@@ -145,7 +145,7 @@
       "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
     },
     {
-      "weathercode": 333,
+      "weathercode": 300,
       "temperature": 3,
       "windspeed": 33,
       "winddirection": 45,
@@ -156,7 +156,7 @@
       "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
     },
     {
-      "weathercode": 444,
+      "weathercode": 400,
       "temperature": 44,
       "windspeed": 4,
       "winddirection": 180,
@@ -176,6 +176,72 @@
       "timestamp": 1722984783420,
       "_id": "cf552d12-0ffc-4671-b6ce-5c3700fb1734",
       "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
+    },
+    {
+      "weathercode": 300,
+      "temperature": 1,
+      "windspeed": 1,
+      "winddirection": 45,
+      "pressure": 1111,
+      "datetime": "Wed Aug 07 2024 19:14:20",
+      "timestamp": 1723054460233,
+      "_id": "e390f02b-26da-4180-879e-6182cc4d68cf",
+      "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+    },
+    {
+      "weathercode": 301,
+      "temperature": 45,
+      "windspeed": 34,
+      "winddirection": 225,
+      "pressure": 300,
+      "datetime": "Wed Aug 07 2024 19:26:14",
+      "timestamp": 1723055174988,
+      "_id": "476bf1f9-a141-460a-b41a-0886850b731d",
+      "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+    },
+    {
+      "weathercode": 400,
+      "temperature": 5,
+      "windspeed": 8,
+      "winddirection": 270,
+      "pressure": 1009,
+      "datetime": "Wed Aug 07 2024 19:27:07",
+      "timestamp": 1723055227732,
+      "_id": "929add4e-e587-442d-af3d-1a384c9cf916",
+      "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+    },
+    {
+      "weathercode": 300,
+      "temperature": 3,
+      "windspeed": 3,
+      "winddirection": 90,
+      "pressure": 1001,
+      "datetime": "Fri Aug 09 2024 02:16:17",
+      "timestamp": 1723166177931,
+      "_id": "72a83aab-4b7e-4014-8881-c8ffe9f475ad",
+      "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
+    },
+    {
+      "weathercode": 200,
+      "temperature": 2,
+      "windspeed": 2,
+      "winddirection": 90,
+      "pressure": 900,
+      "datetime": "Fri Aug 09 2024 02:24:55",
+      "timestamp": 1723166695394,
+      "_id": "b1a06d7d-b4ab-4b0c-8ee9-4271fc6a1901",
+      "stationid": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
+    },
+    {
+      "weathercode": 200,
+      "temperature": 3,
+      "windspeed": 3,
+      "winddirection": 33,
+      "pressure": 1006,
+      "datetime": "Fri Aug 09 2024 02:43:11",
+      "timestamp": 1723167791359,
+      "_id": "a155692b-a8e7-4263-83cd-17e946202aed",
+      "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
     }
   ]
 }

@@ -5,7 +5,7 @@
 
         <div class="field column">
           <label>Weather Code</label>
-          <input class="input" type="text" placeholder="000" maxlength="3" name="weathercode">
+          <input class="input" type="text" placeholder="200" maxlength="3" name="weathercode">
         </div>
         <div class="field column">
           <label>Temperature [ ºC ]</label>
@@ -13,23 +13,32 @@
         </div>
         <div class="field column">
           <label>Wind Speed [ m/s ]</label>
-          <input class="input" type="text" placeholder="00" maxlength="2" name="windspeed">
+          <input class="input" type="text" placeholder="1.1" maxlength="4" name="windspeed">
         </div>
 
         <div class="field column">
           <label>Wind Direction</label>
           <!--          TODO: wind direction dropdown-->
+<!--          https://uni.edu/storm/Wind%20Direction%20slide.pdf-->
           <div class="select">
             <select class="input" name="winddirection">
               <option>Select</option>
               <option value="0">North</option>
+              <option value="25">N/NE</option>
               <option value="45">North East</option>
+              <option value="65">E/NE</option>
               <option value="90">East</option>
+              <option value="115">E/SE</option>
               <option value="135">South East</option>
+              <option value="155">S/SE</option>
               <option value="180">South</option>
+              <option value="205">S/SW</option>
               <option value="225">South West</option>
+              <option value="245">W/SW</option>
               <option value="270">West</option>
+              <option value="295">W/NW</option>
               <option value="315">North West</option>
+              <option value="335">N/NW</option>
             </select>
           </div>
           <!--          <label class="label">Date/Time</label>-->
