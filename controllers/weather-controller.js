@@ -1,6 +1,6 @@
-import { stationStore } from "./station-store.js";
+import { stationStore } from "../models/station-store.js";
 import { stationAnalytics } from "../utils/station-analytics.js";
-import { weatherStore } from "./weather-store.js";
+import { weatherStore } from "../models/weather-store.js";
 import { extraUtils } from "../utils/extra-utils.js";
 
 export const weatherController = {
@@ -45,6 +45,40 @@ export const weatherController = {
 
   },
 
+
+  async randomWeather() {
+    // random
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    // await db.read();
+    const allWeather = await weatherStore.getAllWeather();
+    const weathersLength = allWeather.length;
+    // console.log("getting weathersLength: " + weathersLength);
+    const randomInt = Math.floor(Math.random() * weathersLength);
+    // console.log("getting random int: " + randomInt);
+    const randomWeather = allWeather[randomInt];
+    let mainClass = "";
+    if(Math.floor(randomWeather.id / 100) === 2) {
+      mainClass = "is-size-4";
+    }
+
+    let randomCard = [
+      {
+        title: "",
+        subtitle: randomWeather.description,
+        image: "https://openweathermap.org/img/wn/"+ randomWeather.icon +"@2x.png",
+        imageclass: "",
+        heading: "weather",
+        main: randomWeather.main,
+        mainClass: mainClass,
+        min: "random weather card",
+        max: "",
+      },
+    ];
+
+    console.log("getting random weather card: " + randomWeather.main);
+    return randomCard;
+
+  },
 
 
 

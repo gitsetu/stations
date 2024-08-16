@@ -1,13 +1,26 @@
+import { userStore } from "../models/user-store.js";
+import { accountsController } from "./accounts-controller.js";
+import { stationAnalytics } from "../utils/station-analytics.js";
+import { weatherController } from "./weather-controller.js";
+import { weatherStore } from "../models/weather-store.js";
+
 export const aboutController = {
-  index(request, response) {
+  async index(request, response) {
+
+    let page = "about";
+    let menuHide = stationAnalytics.menuHide(page);
+
+    const weathers = await weatherStore.getAllWeather();
+
+    const loggedInUser = await accountsController.getLoggedInUser(request);
     const viewData = {
+      page: "about",
       title: "About WeatherTop",
+      firstname: loggedInUser.firstname,
+      menuHide: menuHide,
+      weathers: weathers,
     };
     console.log("about rendering");
-    const timestamp = Date.toLocaleString();
-    const dateint = Intl.DateTimeFormat;
-    // const customdatetime = dayjs().format('YYYY-MM-DD HH:mm:ss.SSS');
-    console.log("");
     response.render("about-view", viewData);
   },
 };

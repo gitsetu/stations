@@ -26,6 +26,13 @@ export const stationStore = {
     return list;
   },
 
+  async _getStationById(id) {
+    await db.read();
+    const list = db.data.stations.find((station) => station._id === id);
+    list.reports = await reportStore.getReportsByStationId(list._id);
+    return list;
+  },
+
   async getStationsByUserId(userid) {
     await db.read();
     const userStations = db.data.stations.filter((station) => station.userid === userid);
@@ -33,7 +40,7 @@ export const stationStore = {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
     // https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
     const sortedStations = userStations.sort((a, b) => a.stationname.localeCompare(b.stationname));
-    console.log("stations sorted alphabetically"); // sorted! :)
+    console.log("stations sorted by name"); // sorted! :)
     return sortedStations;
   },
 

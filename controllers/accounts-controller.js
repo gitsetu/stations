@@ -1,12 +1,30 @@
 import { userStore } from "../models/user-store.js";
 import { reportStore } from "../models/report-store.js";
 import { stationStore } from "../models/station-store.js";
+import { weatherController } from "./weather-controller.js";
+import { stationAnalytics } from "../utils/station-analytics.js";
 // import { stationStore } from "../models/station-store.js";
 
 export const accountsController = {
-  index(request, response) {
+  async index(request, response) {
+
+    const randomWeatherList = await weatherController.randomWeather();
+
+    const randomWeather = randomWeatherList[0];
+
+    let firstname = "Account";
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+    if (loggedInUser === undefined){
+      let firstname = "Account";
+    } else {
+      let firstname = loggedInUser.firstname;
+    }
+
     const viewData = {
+      page: "account",
       title: "Login or Signup",
+      randomCard: randomWeather,
+      firstname: firstname,
     };
     response.render("index", viewData);
   },
@@ -89,18 +107,23 @@ export const accountsController = {
   async account(request, response) {
     // await db.read();
     const userEmail = request.cookies.station;
-    const user = await userStore.getUserByEmail(userEmail);
+    // const userName = userStore.getUserByEmail(userEmail);
+    const loggedInUser = await accountsController.getLoggedInUser(request);
 
-    console.log(`editing account ${user._id}`);
+    let page = "account";
+    let menuHide = stationAnalytics.menuHide(page);
+
+    console.log(`editing account ${loggedInUser._id}`);
     const viewData = {
       title: "Edit Account",
       user: await userStore.getUserByEmail(userEmail),
       // passes id, email and password to account-view
-      // firstname: user.firstname,
+      firstname: loggedInUser.firstname,
       // lastname: user.lastname,
       // email: user.email,
       // userid: user._id,
       // email: await userStore.getUserById(userId),
+      menuHide: menuHide,
     };
     response.render("account-view", viewData);
   },

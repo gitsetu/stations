@@ -5,11 +5,9 @@
     {{station.stationname}}
   </div>
   <div class="subtitle">
-    Latest Report: {{latestReport.datetime}}, {{elapsed}}
-    <br>
   </div>
+  {{> summary-station}}
 
-  {{> summary-card}}{{> summary-card}}{{> summary-card}}
   {{> list-reports}}
   {{> add-report}}
 </section>

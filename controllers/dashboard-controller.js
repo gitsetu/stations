@@ -7,22 +7,31 @@ export const dashboardController = {
   async index(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
 
+    let page = "dashboard";
+    let menuHide = stationAnalytics.menuHide(page);
+    // console.log("menuHide: " + menuHide.buttonClassLogout);
     const summaryReport = null;
-    let station = null;
-    if (station) {
+    let station = [];
+    let cards = [];
+    if (station && cards === undefined) {
       const summaryReport = await dashboardController.summaryReport(station);
-
+      let cards = await stationAnalytics.getConditions(station);
     }
 
+    // let cards = await stationAnalytics.getConditions(station);
     // const latestReport = stationAnalytics.getLatestReport(request);
     const viewData = {
       // title: "Station Dashboard",
+      page: "dashboard",
+      menuHide: menuHide,
       title: loggedInUser.firstname +"'s Weather Stations:",
       stations: await stationStore.getStationsByUserId(loggedInUser._id),
+      firstname: loggedInUser.firstname,
       // latestReport: await stationAnalytics.getLatestReport(station),
       // latestReport: latestReport,
       // summary: summaryReport,
       // summary: summary,
+      cards: cards,
     };
     console.log("dashboard rendering");
     response.render("dashboard-view", viewData);

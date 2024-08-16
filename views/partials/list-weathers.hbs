@@ -1,0 +1,30 @@
+<h2 class="title my-6" id="weather-codes">Weather Codes</h2>
+
+<div class="columns is-multiline mt-6">
+  {{#each weathers}}
+    <div class="column tile is-one-fifth">
+      <section class="card has-text-centered tile is-child">
+        <!--      <img class="px-6 mb-1" src="https://openweathermap.org/img/wn/10d@2x.png" alt="image">-->
+
+        <article class="card-content">
+          <div class="columns is-flex is-centered">
+            <figure class="image is-48x48">
+              <img src="https://openweathermap.org/img/wn/{{icon}}@2x.png" alt="weather icon"/>
+            </figure>
+          </div>
+
+          <div class="subtitle has-text-weight-light is-family-sans-serif is-size-6 has-text-grey">
+            {{id}}
+          </div>
+        </article>
+
+        <footer class="card-footer is-size-6 mt-auto">
+          <p class="card-footer-item is-family-monospace">
+            {{description}}
+          </p>
+        </footer>
+      </section>
+    </div>
+
+  {{/each}}
+</div>

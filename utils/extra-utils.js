@@ -2,7 +2,7 @@
 
 export const extraUtils = {
 
-  async _getWindDirection (degrees) {
+  _getWindDirection (degrees) {
     let windDirection = "unknown"
 
     if (degrees <= 360) { // check input is valid
@@ -93,3 +93,6 @@ function celsiusToFahrenheit(celsius) {
 
 // Math.floor()
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+
+
+// const customdatetime = dayjs().format('YYYY-MM-DD HH:mm:ss.SSS');

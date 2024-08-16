@@ -1,26 +1,42 @@
 import { stationStore } from "../models/station-store.js";
 import { reportStore } from "../models/report-store.js";
 import { stationAnalytics } from "../utils/station-analytics.js";
-import { weatherController } from "../models/weather-controller.js";
+import { weatherController } from "./weather-controller.js";
+import { accountsController } from "./accounts-controller.js";
 
 export const stationController = {
   async index(request, response) {
     const station = await stationStore.getStationById(request.params.id);
+    const loggedInUser = await accountsController.getLoggedInUser(request);
     const latestReport = await stationAnalytics.getLatestReport(station);
     const summary = await stationAnalytics.getSummary(station);
     const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station);
     const weatherConditions = await weatherController.getWeather(station);
+
+    let page = "station";
+    let menuHide = stationAnalytics.menuHide(page);
+
+    // let reports = reportStore.getReportsByStationId(station);
+    let reportsLength = await summary.numberOfReports;
+    console.log("number of reports: " + reportsLength);
+    let cards = [];
     if (station.reports.length > 0) {
       weatherConditions.winddirection = await stationAnalytics.windDegreesToDirection(latestReport.winddirection);
+      let cards = await stationAnalytics.getConditions(station);
     }
+    // let cards = await stationAnalytics.getConditions(station);
 
     const viewData = {
+      page: page,
       title: "Station",
       station: station,
+      firstname: loggedInUser.firstname,
       latestReport: latestReport,
       summary: summary,
       timeSinceLastReport: timeSinceLastReport,
       weather: weatherConditions,
+      cards: cards,
+      menuHide: menuHide,
     };
     console.log(`showing reports for ${station.stationname} station`);
     // response.render("dashboard-view", viewData);
@@ -37,8 +53,8 @@ export const stationController = {
       pressure: Number(request.body.pressure),
       // datetime: request.body.datetime,
       // datetime: dayjs().format('YYYY-MM-DD HH:mm:ss.SSS'),
-      datetime: Date().toString().substring(0,24),
-      timestamp: Date.now(),
+      datetime: Date().toString().substring(0,24), // human-readable date
+      timestamp: Date.now(), // epoch date
     };
     console.log(`adding report ${newReport._id}`);
     await reportStore.addReport(station._id, newReport);

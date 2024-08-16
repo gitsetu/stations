@@ -1,17 +1,18 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Date/Time</th>
-      <th>Code</th>
-      <th>Temperature</th>
-      <th>Wind Speed</th>
-      <th>Wind Direction</th>
-      <th>Pressure</th>
+      <th class="has-text-right">Date & Time</th>
+      <th class="has-text-right">Code</th>
+      <th class="has-text-right">Temperature</th>
+      <th class="has-text-right">Wind Speed</th>
+      <th class="has-text-right">Wind Direction</th>
+      <th class="has-text-right">Pressure</th>
+      <th class="has-text-right"> </th>
     </tr>
   </thead>
   <tbody>
     {{#each station.reports}}
-    <tr>
+    <tr class="is-family-monospace has-text-weight-light has-text-right">
       <td>
         {{datetime}}
       </td>
@@ -34,8 +35,7 @@
         <a href="/station/{{../station._id}}/deletereport/{{_id}}" class="button">
           {{>icons/delete}}
         </a>
-      </td>
-      <td>
+
         <a href="/station/{{../station._id}}/editreport/{{_id}}" class="button">
           {{>icons/edit}}
         </a>

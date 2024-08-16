@@ -4,16 +4,30 @@
       <div class="field-body columns">
 
         <div class="field column">
-          <label>Weather Code</label>
-          <input class="input" type="text" placeholder="200" maxlength="3" name="weathercode">
+<!--          https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist-->
+          <label for="weather-codes">Weather Code</label>
+          <a href="/about#weather-codes" class="has-text-primary has-text-weight-bold" title="List of weather codes"> &#9432;</a>
+          <input list="weather-codes" class="input" type="text" placeholder="200" maxlength="3" name="weathercode">
+          <datalist id="weather-codes">
+            <option value="200">
+            <option value="300">
+            <option value="500">
+            <option value="600">
+            <option value="701">
+            <option value="800">
+            <option value="801">
+            <option value="802">
+            <option value="803">
+            <option value="804">
+          </datalist>
         </div>
         <div class="field column">
-          <label>Temperature [ ºC ]</label>
-          <input class="input" type="text" placeholder="-10.1" maxlength="5" name="temperature">
+          <label>Temperature</label>
+          <input class="input" type="text" placeholder="-10.1 ºC" maxlength="5" name="temperature">
         </div>
         <div class="field column">
-          <label>Wind Speed [ m/s ]</label>
-          <input class="input" type="text" placeholder="1.1" maxlength="4" name="windspeed">
+          <label>Wind Speed</label>
+          <input class="input" type="text" placeholder="1.1 m/s" maxlength="4" name="windspeed">
         </div>
 
         <div class="field column">
@@ -69,6 +83,6 @@
     </div>
 
   <div class="field is-grouped">
-    <button class="button is-primary">Add Report</button>
+    <button class="button is-primary" id="new-report">Add Report</button>
   </div>
 </form>
