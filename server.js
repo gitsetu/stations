@@ -15,6 +15,6 @@ app.set("view engine", ".hbs");
 app.set("views", "./views");
 app.use("/", router);
 
-const listener = app.listen(process.env.PORT || 4040, function () {
+const listener = app.listen(process.env.PORT || 4000, function () {
   console.log(`WeatherTop started on http://localhost:${listener.address().port}`);
 });

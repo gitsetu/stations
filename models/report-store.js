@@ -31,8 +31,8 @@ export const reportStore = {
     await db.read();
     const stationReports = db.data.reports.filter((report) => report.stationid === id);
     // sort reports in descending order (most recent first)
-    const sortedReports = stationReports.sort((a, b) => b.timestamp - a.timestamp);
-    console.log("reports sorted by most recent first");
+    const sortedReports = this.sortByDate(stationReports);
+    // console.log("reports sorted by most recent first");
     return sortedReports;
   },
 
@@ -40,6 +40,24 @@ export const reportStore = {
     await db.read();
     return db.data.reports.filter((report) => report.stationid === id);
   },
+
+  async getReportsByUserId(id) {
+    await db.read();
+    const stationReports = db.data.reports.filter((report) => report.stationid === id);
+    // sort reports in descending order (most recent first)
+    // const sortedReports = this.sortByDate(stationReports);
+    // console.log("reports sorted by most recent first");
+    return this.sortByDate(stationReports);
+  },
+
+
+  async sortByDate(reportsToSort){
+    // sort reports in descending order (most recent first)
+    const sortedReports = reportsToSort.sort((a, b) => b.timestamp - a.timestamp);
+    console.log("reports sorted by most recent first");
+    return sortedReports;
+  },
+
 
   async getReportById(id) {
     await db.read();
@@ -60,7 +78,7 @@ export const reportStore = {
 
   // TODO DONE delete all reports from station
   async deleteAllReportsFromStation(stationId) {
-    let index = db.data.reports.stationid;
+    let index = await db.data.reports.stationid;
     index = [];
     await db.write();
     console.log(`deleting all reports from station ${stationId}`)

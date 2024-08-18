@@ -9,10 +9,9 @@ export const aboutController = {
 
     let page = "about";
     let menuHide = stationAnalytics.menuHide(page);
-
     const weathers = await weatherStore.getAllWeather();
-
     const loggedInUser = await accountsController.getLoggedInUser(request);
+
     const viewData = {
       page: "about",
       title: "About WeatherTop",

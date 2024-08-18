@@ -242,6 +242,17 @@
       "timestamp": 1723167791359,
       "_id": "a155692b-a8e7-4263-83cd-17e946202aed",
       "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+    },
+    {
+      "weathercode": 500,
+      "temperature": 55,
+      "windspeed": 6,
+      "winddirection": 0,
+      "pressure": 7890,
+      "datetime": "Fri Aug 16 2024 16:35:35",
+      "timestamp": 1723822535197,
+      "_id": "cee3bc59-81ab-446e-a239-78464119ddef",
+      "stationid": "ba9992b1-4fa4-47f4-8c2c-3a2b059acf86"
     }
   ]
 }

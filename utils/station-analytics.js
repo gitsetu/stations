@@ -1,14 +1,15 @@
 import { weatherStore } from "../models/weather-store.js";
 import { weatherController } from "../controllers/weather-controller.js";
+import { reportStore } from "../models/report-store.js";
 
 export const stationAnalytics = {
   async getLatestReport(station) {
     let latestReport = null;
     if (station.reports.length > 0) {
-      latestReport = station.reports[0];
+      let latestReport = station.reports[0];
       for (let i = 1; i < station.reports.length; i++) {
         if (station.reports[i].timestamp > latestReport.timestamp) {
-          latestReport = station.reports[i];
+          let latestReport = station.reports[i];
         }
       }
     }
@@ -86,13 +87,12 @@ export const stationAnalytics = {
         if (station.reports[i].pressure < summary.minPressure) {
           summary.minPressure = station.reports[i].pressure;
         }
-
       }
     }
     return summary;
   },
 
-  async windDegreesToDirection (degrees) {
+  windDegreesToDirection (degrees) {
     let windDirection = "unknown"
 
     if (degrees <= 360) { // check input is valid
@@ -150,40 +150,38 @@ export const stationAnalytics = {
         case 15 :
           windDirection = "N/NW";
           break;
-
         default:
           windDirection = "unknown";
       }
-
     }
-
     console.log("wind is coming from: "+ windDirection);
     return windDirection;
   },
-
-
 
   async getConditions(station) {
 
     // const loggedInUser = await accountsController.getLoggedInUser(request);
     // const userName = loggedInUser.firstname;
     // const weatherStation = await stationStore.getStationById(request.params.id);
+    let report = await this.getLatestReport(station)
 
     let cards = [];
 
-    let reportsLength = station.reports.length;
+    // let reportsLength = station.reports.length;
 
-    if (reportsLength > 0) {
+    // console.log("reportsLength: " + reportsLength);
+
+    // if (reportsLength > 0) {
       const timeSinceLastReport = await this.getTimeSinceLastReport(station);
       let summary = await this.getSummary(station);
-      const weather = await weatherController.getWeather(station);
-      const windDirection = await stationAnalytics.windDegreesToDirection(summary.winddirection);
+      const weather = await weatherController.getWeather(report);
+      const windDirection = stationAnalytics.windDegreesToDirection(summary.winddirection);
 
       // reduce text size to fit in card if weather is in the thunderstorm group
       let mainClass = "";
       if ( Math.floor(weather.id / 100 ) === 2) {
         mainClass = "is-size-4";
-      }
+      // }
 
       // to fit in card, reduce text size if name is more than 7 characters long
       let mainClassStationName = "";
@@ -194,7 +192,9 @@ export const stationAnalytics = {
 
 
       // capitalize: https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
-      const stationName = station.stationname.charAt(0).toUpperCase() + station.stationname.slice(1); // capitalize
+      // const stationName = station.stationname.charAt(0).toUpperCase() + station.stationname.slice(1); // capitalize
+
+      const stationName = this.capitalizeFirstLetter(station.stationname);
 
       cards = [
         {
@@ -354,6 +354,12 @@ export const stationAnalytics = {
   }
 
   return menuHide;
+},
+
+  capitalizeFirstLetter(string) {
+    // capitalize: https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
+    // const stationName = station.stationname.charAt(0).toUpperCase() + station.stationname.slice(1); // capitalize
+    return string && string.charAt(0).toUpperCase() + string.substring(1);
 },
 
 

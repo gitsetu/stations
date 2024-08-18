@@ -25,24 +25,13 @@ export const weatherController = {
     response.render("station-view", viewData);
   },
 
-  async getWeather(station) {
-    // await db.read();
-    const latestReport = await stationAnalytics.getLatestReport(station);
-
-    if (station.reports.length > 0) {
-      let weatherCode = latestReport.weathercode;
+  async getWeather(report) {
+      let weatherCode = await report.weathercode;
       let weatherConditions = await weatherStore.getWeatherById(weatherCode);
 
       // console.log("getting weather conditions " + weatherConditions.main);
-      console.log("getting weather description");
+      console.log("getting weather info");
       return weatherConditions;
-
-    } else {
-      console.log("station does not have any report");
-    }
-
-
-
   },
 
 
@@ -52,13 +41,11 @@ export const weatherController = {
     // await db.read();
     const allWeather = await weatherStore.getAllWeather();
     const weathersLength = allWeather.length;
-    // console.log("getting weathersLength: " + weathersLength);
-    const randomInt = Math.floor(Math.random() * weathersLength);
-    // console.log("getting random int: " + randomInt);
+    const randomInt = Math.floor(Math.random() * weathersLength); // 0.0 - 1.0 * all
     const randomWeather = allWeather[randomInt];
     let mainClass = "";
-    if(Math.floor(randomWeather.id / 100) === 2) {
-      mainClass = "is-size-4";
+    if(Math.floor(randomWeather.id / 100) === 2) { // thunderstorm group 2xx
+      mainClass = "is-size-6 my-3"; // reduce text size for long words
     }
 
     let randomCard = [

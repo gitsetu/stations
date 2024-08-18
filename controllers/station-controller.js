@@ -6,39 +6,37 @@ import { accountsController } from "./accounts-controller.js";
 
 export const stationController = {
   async index(request, response) {
-    const station = await stationStore.getStationById(request.params.id);
-    const loggedInUser = await accountsController.getLoggedInUser(request);
-    const latestReport = await stationAnalytics.getLatestReport(station);
-    const summary = await stationAnalytics.getSummary(station);
-    const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station);
-    const weatherConditions = await weatherController.getWeather(station);
-
     let page = "station";
     let menuHide = stationAnalytics.menuHide(page);
 
-    // let reports = reportStore.getReportsByStationId(station);
-    let reportsLength = await summary.numberOfReports;
-    console.log("number of reports: " + reportsLength);
-    let cards = [];
-    if (station.reports.length > 0) {
-      weatherConditions.winddirection = await stationAnalytics.windDegreesToDirection(latestReport.winddirection);
-      let cards = await stationAnalytics.getConditions(station);
-    }
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+    console.log("user logged in: " + loggedInUser.firstname);
+
+    const station = await stationStore.getStationById(request.params.id);
+    // const station = request.params.id;
+    console.log("(Station Controller) station name: " + station.stationname);
+    const numberOfReportsInStation = station.reports.length;
+    console.log("(Station Controller) number of reports in station: " + station.reports.length);
+
     // let cards = await stationAnalytics.getConditions(station);
+
+    let cards = [];
 
     const viewData = {
       page: page,
       title: "Station",
       station: station,
       firstname: loggedInUser.firstname,
-      latestReport: latestReport,
-      summary: summary,
-      timeSinceLastReport: timeSinceLastReport,
-      weather: weatherConditions,
-      cards: cards,
       menuHide: menuHide,
+      // latestReport: latestReport,
+      // summary: summary,
+      // timeSinceLastReport: timeSinceLastReport,
+      // weather: weatherConditions,
+      cards: cards,
+      numberOfReportsInStation: numberOfReportsInStation,
     };
     console.log(`showing reports for ${station.stationname} station`);
+    console.log(`number of reports in station: ${numberOfReportsInStation}`);
     // response.render("dashboard-view", viewData);
     response.render("station-view", viewData);
   },

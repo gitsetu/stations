@@ -9,7 +9,6 @@ export const accountsController = {
   async index(request, response) {
 
     const randomWeatherList = await weatherController.randomWeather();
-
     const randomWeather = randomWeatherList[0];
 
     let firstname = "Account";
@@ -50,14 +49,14 @@ export const accountsController = {
   },
 
   async register(request, response) {
-    const newuser = request.body;
-    const userexist = await userStore.getUserByEmail(request.body.email);
-    if (userexist) {
-      console.log(`user ${userexist.email} already exist`);
+    const newUser = request.body;
+    const userExist = await userStore.getUserByEmail(request.body.email);
+    if (userExist) {
+      console.log(`user ${userExist.email} already exist`);
       response.redirect("/");
     } else {
-      await userStore.addUser(newuser);
-      console.log(`registering new user ${newuser.email}`);
+      await userStore.addUser(newUser);
+      console.log(`registering new user ${newUser.email}`);
       response.redirect("/");
     }
   },

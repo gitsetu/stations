@@ -41,8 +41,14 @@ export const stationStore = {
     // https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
     const sortedStations = userStations.sort((a, b) => a.stationname.localeCompare(b.stationname));
     console.log("stations sorted by name"); // sorted! :)
+
     return sortedStations;
   },
+
+  // function orderByName(){
+  // const ordered = objects.sort((a, b) => a.fieldname.localeCompare(b.fieldname));
+  // return ordered
+  // },
 
   async _getStationsByUserId(userid) {
     await db.read();
