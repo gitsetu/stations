@@ -253,6 +253,17 @@
       "timestamp": 1723822535197,
       "_id": "cee3bc59-81ab-446e-a239-78464119ddef",
       "stationid": "ba9992b1-4fa4-47f4-8c2c-3a2b059acf86"
+    },
+    {
+      "weathercode": 500,
+      "temperature": 3,
+      "windspeed": 3,
+      "winddirection": 90,
+      "pressure": 900,
+      "datetime": "Mon Aug 19 2024 17:30:44",
+      "timestamp": 1724085044500,
+      "_id": "064ff36e-7984-4a57-a108-c99792a46387",
+      "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
     }
   ]
 }

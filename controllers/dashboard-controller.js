@@ -4,6 +4,8 @@ import { stationController } from "./station-controller.js";
 import { stationAnalytics } from "../utils/station-analytics.js";
 import { reportStore } from "../models/report-store.js";
 import { reportController } from "./report-controller.js";
+import { weatherController } from "./weather-controller.js";
+import { weatherStore } from "../models/weather-store.js";
 
 export const dashboardController = {
   async index(request, response) {
@@ -19,42 +21,54 @@ export const dashboardController = {
     const allReports = await reportStore.getAllReports();
     let numberOfReports = allReports.length;
 
-    let reportsLatest = [];
-
-    let latestReportId = "";
     for (let i = 0; i < numberOfStations; i++) {
-      let stationid = stations[i]._id; // get station id
+      let station = stations[i];
+      // let stationid = stations[i]._id; // get station id
 
-      // get reports by station id
-      const stationReports = allReports.filter((report) => report.stationid === stationid);
-      // get latest report of station
-      if (stationReports.length > 0) {
-        let latestReport = stationReports[0];
-        for (let i = 1; i < stationReports.length; i++) {
-          if (stationReports[i].timestamp > latestReport.timestamp) {
-            let latestReport = stationReports[i];
-            latestReportId = latestReport._id;
-          }
-        }
-      } else {
-        // station has no reports
-        latestReportId = null;
-      }
-      stations[i].latestreportid = latestReportId;
-      stations[i].stationreports = stationReports;
-      // stations[i].cards = stationAnalytics.getConditions(stationid);
-      // reportsLatest[i].stationid = stationid;
+      // get reports for station[i]
+      station.reports = await allReports.filter((report) => report.stationid === station._id);
+      station.numberOfReports = station.reports.length;
+      console.log("station: " + station.stationname + ", number of reports: " + station.numberOfReports);
+      // if there are reports
+      if (station.numberOfReports > 0) {
+        // get latest report added to station
+        station.latestReportId = await station.reports[(station.reports.length)-1]._id;
+        // console.log("latest report added: " + station.latestReportId);
+        station.latestReportDatetime = await station.reports[(station.reports.length)-1].datetime;
+        console.log("latest report datetime: " + station.latestReportDatetime);
+        station.latestReportTimestamp = await station.reports[(station.reports.length)-1].timestamp;
+        // console.log("latest report timestamp: " + station.latestReportTimestamp);
+        station.latestReportWeathercode = await station.reports[(station.reports.length)-1].weathercode;
+        // console.log("latest report weather code: " + station.latestReportWeathercode);
+        station.latestWeather = await weatherStore.getWeatherById(station.latestReportWeathercode);
+        console.log("latest weather: " + station.latestWeather.description);
 
-      console.log("reportsLatest latestReportId: " + latestReportId);
-      // reportsLatest[i].reportid = stationAnalytics.getLatestReport(stations[i]);
-      // reportsLatest[i].stationid = stations[i]._id;
-      // stations[i]._id
-      // console.log("reportsLatest reportid: " + reportsLatest[i].reportid + "stationid" + reportsLatest[i].stationid);
-    }
+      } // if there are reports
 
+      // station.theLatestReport = await reportStore.getReportById(latestReportId);
+
+      // get time since last report
+      station.timeSinceLastReport = await stationAnalytics.timeSince(station.latestReportTimestamp);
+      console.log("time since last report: " + station.timeSinceLastReport);
+
+      // get weather summary
+      station.summary = await stationAnalytics.getSummary(station);
+      station.windDirectionCompass = stationAnalytics.windDegreesToDirection(station.summary.winddirection);
+      console.log("wind direction compass: " + station.windDirectionCompass);
+
+
+      station.cards = stationAnalytics.makeCards(station);
+
+      // station.latestweather = await weatherStore.getWeatherById(station.latestReportWeathercode);
+      // console.log("latest weather: " + station.latestweather);
+
+      // let reportcode = await reportStore.getReportById(station.latestReportId);
+      // station.latestweather = await weatherController.getWeather(reportcode);
+      // console.log("latest weather: " + station.latestweather.description);
+
+    } // for each station
 
     // const allReports = await reportController.index(request, response);
-
     // let cards = await stationAnalytics.getConditions(_id);
     // const latestReport = stationAnalytics.getLatestReport(request);
     const viewData = {
@@ -73,7 +87,6 @@ export const dashboardController = {
       // cards: cards,
       reports: allReports,
       numberOfReports: numberOfReports,
-      latestReportId: latestReportId,
     };
     console.log("dashboard rendering");
     console.log("number of stations: " + stations.length);

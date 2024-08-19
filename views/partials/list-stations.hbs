@@ -2,16 +2,17 @@
 Reports in station: {{numberOfReportsInStation}}
 {{#each stations}}
 
->summary-station
+{{>summary-station}}
 
 <div class="box box-link-hover-shadow">
   <h2 class="title is-capitalized">
     {{stationname}}
   </h2>
   <h6 class="heading mb-4">
-    Station Id: {{_id}},
-    <br>Lat: {{latitude}}, Lon: {{longitude}}, Reports in station: {{stationreports.length}}
-    <br>Latest report: {{latestreportid}}
+
+    <br>Lat: {{latitude}}, Lon: {{longitude}}, Station Id: {{_id}},
+    <br>Reports in station: {{numberOfReports}}, Updated: {{timeSinceLastReport}}
+
   </h6>
 
   <a href="/station/{{_id}}" class="button">
