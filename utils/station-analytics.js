@@ -6,7 +6,8 @@ export const stationAnalytics = {
   async getLatestReport(station) {
     let latestReport = null;
     if (station.reports.length > 0) {
-      let latestReport = station.reports[0];
+      // let latestReport = station.reports[0];
+      latestReport = station.reports[0];
       for (let i = 1; i < station.reports.length; i++) {
         if (station.reports[i].timestamp > latestReport.timestamp) {
           // let latestReport = station.reports[i];

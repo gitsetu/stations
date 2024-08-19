@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import { initStore } from "../utils/store-utils.js";
+import { stationStore } from "./station-store.js";
 
 const db = initStore("reports");
 
@@ -76,8 +77,18 @@ export const reportStore = {
     await db.write();
   },
 
-  // TODO DONE delete all reports from station
+  // TODO delete all reports from station
   async deleteAllReportsFromStation(stationId) {
+    await db.read();
+    const stationReports = db.data.reports.filter((report) => report.stationid === stationId);
+    for (let i = 0; i < stationReports.length; i++){
+      await this.deleteReport(stationReports[i]._id);
+    }
+    await db.write();
+    console.log(`deleting all reports from station ${stationId}`)
+  },
+
+  async _deleteAllReportsFromStation(stationId) {
     let index = await db.data.reports.stationid;
     index = [];
     await db.write();

@@ -13,14 +13,16 @@ export const stationController = {
     console.log("user logged in: " + loggedInUser.firstname);
 
     const station = await stationStore.getStationById(request.params.id);
+    // const station = await stationStore.getStationById(request);
     // const station = request.params.id;
     console.log("(Station Controller) station name: " + station.stationname);
     const numberOfReportsInStation = station.reports.length;
     console.log("(Station Controller) number of reports in station: " + station.reports.length);
 
-    // let cards = await stationAnalytics.getConditions(station);
 
-    let cards = [];
+    let cards = stationAnalytics.makeCards(station);
+    // let cards = await stationAnalytics.getConditions(station);
+    // let cards = [];
 
     const viewData = {
       page: page,

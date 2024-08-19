@@ -31,7 +31,7 @@ export const dashboardController = {
       console.log("station: " + station.stationname + ", number of reports: " + station.numberOfReports);
       // if there are reports
       if (station.numberOfReports > 0) {
-        // get latest report added to station
+        // get the latest report added to station
         station.latestReportId = await station.reports[(station.reports.length)-1]._id;
         // console.log("latest report added: " + station.latestReportId);
         station.latestReportDatetime = await station.reports[(station.reports.length)-1].datetime;
@@ -43,7 +43,7 @@ export const dashboardController = {
         station.latestWeather = await weatherStore.getWeatherById(station.latestReportWeathercode);
         console.log("latest weather: " + station.latestWeather.description);
 
-      } // if there are reports
+      } // end of - if there are reports
 
       // station.theLatestReport = await reportStore.getReportById(latestReportId);
 
@@ -57,7 +57,7 @@ export const dashboardController = {
       console.log("wind direction compass: " + station.windDirectionCompass);
 
 
-      station.cards = stationAnalytics.makeCards(station);
+      // station.cards = stationAnalytics.makeCards(station);
 
       // station.latestweather = await weatherStore.getWeatherById(station.latestReportWeathercode);
       // console.log("latest weather: " + station.latestweather);

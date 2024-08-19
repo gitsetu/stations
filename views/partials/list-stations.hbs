@@ -1,25 +1,32 @@
 
-Reports in station: {{numberOfReportsInStation}}
 {{#each stations}}
 
-{{>summary-station}}
+  {{>summary-station}}
 
 <div class="box box-link-hover-shadow">
-  <h2 class="title is-capitalized">
-    {{stationname}}
-  </h2>
-  <h6 class="heading mb-4">
 
-    <br>Lat: {{latitude}}, Lon: {{longitude}}, Station Id: {{_id}},
-    <br>Reports in station: {{numberOfReports}}, Updated: {{timeSinceLastReport}}
+  <div class="columns">
+    <div class="column is-two-fifths">
+      <h2 class="title is-capitalized">
+        {{stationname}}
+      </h2>
+    </div>
+    <div class="column">
+      <h6 class="heading">
+        <br>Lat: {{latitude}}, Lon: {{longitude}},
+        <br>Station Id: {{_id}},
+        <br>Reports in station: {{numberOfReports}}, Updated: {{timeSinceLastReport}}
+      </h6>
+    </div>
+    <div class="column is-one-fifth">
+      <a href="/station/{{_id}}" class="button">
+        {{>icons/open}}
+      </a>
+      <a href="/dashboard/deletestation/{{_id}}" class="button">
+        {{>icons/delete}}
+      </a>
+    </div>
+  </div>
 
-  </h6>
-
-  <a href="/station/{{_id}}" class="button">
-    {{>icons/open}}
-  </a>
-  <a href="/dashboard/deletestation/{{_id}}" class="button">
-    {{>icons/delete}}
-  </a>
 </div>
 {{/each}}
