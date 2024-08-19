@@ -49,7 +49,7 @@ export const dashboardController = {
 
       // get time since last report
       station.timeSinceLastReport = await stationAnalytics.timeSince(station.latestReportTimestamp);
-      console.log("time since last report: " + station.timeSinceLastReport);
+      console.log("last report updated: " + station.timeSinceLastReport);
 
       // get weather summary
       station.summary = await stationAnalytics.getSummary(station);
