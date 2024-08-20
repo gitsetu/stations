@@ -1,9 +1,10 @@
 {{> menu active="dashboard"}}
 
 <section class="section">
-  <h1 class="title is-capitalized has-text-weight-light">{{title}}</h1>
-  <h2 class="subtitle">Total: {{numberOfStations}} stations, {{numberOfReports}} reports</h2>
+  <h2 class="title {{> class-brand}}">{{title}}</h2>
+  <h4 class="subtitle has-text-weight-light is-6">{{numberOfStations}} stations, {{numberOfReports}} reports</h4>
   <div class="field">
+    <br>
   </div>
 
   {{> list-stations}}

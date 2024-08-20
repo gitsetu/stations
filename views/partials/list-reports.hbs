@@ -1,4 +1,4 @@
-<table class="table is-fullwidth">
+<table class="table is-fullwidth -is-borderless -box">
   <thead>
     <tr>
       <th class="has-text-right">Date & Time</th>
@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     {{#each station.reports}}
-    <tr class="is-family-monospace has-text-weight-light has-text-right">
+    <tr class="{{> class-brand}} has-text-weight-light has-text-right">
       <td>
         {{datetime}}
       </td>

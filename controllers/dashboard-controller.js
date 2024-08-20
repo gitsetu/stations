@@ -14,7 +14,7 @@ export const dashboardController = {
 
     let page = "dashboard";
     let menuHide = stationAnalytics.menuHide(page);
-    console.log("hiding menu buttons not used on: " + page);
+    // console.log("hiding menu buttons not used on: " + page);
 
     const stations = await stationStore.getStationsByUserId(loggedInUser._id);
     const numberOfStations= stations.length;
@@ -43,7 +43,12 @@ export const dashboardController = {
         station.latestWeather = await weatherStore.getWeatherById(station.latestReportWeathercode);
         console.log("latest weather: " + station.latestWeather.description);
 
-      } // end of - if there are reports
+        station.classHidden = "";
+        // end of - if there are reports
+      } else {
+        station.classHidden = "is-hidden";
+
+      }
 
       // station.theLatestReport = await reportStore.getReportById(latestReportId);
 
@@ -55,9 +60,11 @@ export const dashboardController = {
       station.summary = await stationAnalytics.getSummary(station);
       station.windDirectionCompass = stationAnalytics.windDegreesToDirection(station.summary.winddirection);
       console.log("wind direction compass: " + station.windDirectionCompass);
+      station.latestTemperature = station.summary.temperature+"º"
 
 
-      // station.cards = stationAnalytics.makeCards(station);
+      // let cards = stationAnalytics.makeCards(station);
+      // station.cards = cards;
 
       // station.latestweather = await weatherStore.getWeatherById(station.latestReportWeathercode);
       // console.log("latest weather: " + station.latestweather);
@@ -75,7 +82,7 @@ export const dashboardController = {
       // title: "Station Dashboard",
       page: "dashboard",
       menuHide: menuHide,
-      title: firstname +"'s Weather Stations:",
+      title: "Weather Stations",
       // stations: await stationStore.getStationsByUserId(loggedInUser._id),
       stations: stations,
       numberOfStations: numberOfStations,

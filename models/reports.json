@@ -264,6 +264,28 @@
       "timestamp": 1724085044500,
       "_id": "064ff36e-7984-4a57-a108-c99792a46387",
       "stationid": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+    },
+    {
+      "weathercode": 800,
+      "temperature": 23,
+      "windspeed": 3,
+      "winddirection": 315,
+      "pressure": 1020,
+      "datetime": "Tue Aug 20 2024 04:14:38",
+      "timestamp": 1724123678475,
+      "_id": "68ccb78e-35f9-4de0-ac8f-2cac7a7dfa02",
+      "stationid": "2181f40d-6d88-4b84-b7d7-0c0ff8f176ef"
+    },
+    {
+      "weathercode": 802,
+      "temperature": 10,
+      "windspeed": 6,
+      "winddirection": 155,
+      "pressure": 1010,
+      "datetime": "Tue Aug 20 2024 04:15:28",
+      "timestamp": 1724123728529,
+      "_id": "dc88f6bb-5fbc-41f7-83ad-3ae411d27ab8",
+      "stationid": "2181f40d-6d88-4b84-b7d7-0c0ff8f176ef"
     }
   ]
 }

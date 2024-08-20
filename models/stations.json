@@ -21,6 +21,13 @@
       "longitude": "2.221",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
       "_id": "be826b8c-68cf-49ba-8e4a-d6944800d7d9"
+    },
+    {
+      "stationname": "madrid",
+      "latitude": "0.4457890",
+      "longitude": "-23.667332",
+      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
+      "_id": "2181f40d-6d88-4b84-b7d7-0c0ff8f176ef"
     }
   ]
 }

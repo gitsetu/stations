@@ -6,26 +6,66 @@
 <div class="box box-link-hover-shadow">
 
   <div class="columns">
-    <div class="column is-two-fifths">
-      <h2 class="title is-capitalized">
+    <div class="column is-4">
+      <h2 class="title is-capitalized is-4 {{> class-brand}}">
         {{stationname}}
       </h2>
-    </div>
-    <div class="column">
       <h6 class="heading">
-        <br>Lat: {{latitude}}, Lon: {{longitude}},
-        <br>Station Id: {{_id}},
-        <br>Reports in station: {{numberOfReports}}, Updated: {{timeSinceLastReport}}
+        Lat: {{latitude}}, Lon: {{longitude}}
+        <br>{{numberOfReports}} reports<span class="{{classHidden}}">, Updated {{timeSinceLastReport}}</span>
       </h6>
+
     </div>
-    <div class="column is-one-fifth">
+
+    <div class="column is-2">
+      <h2 class="title has-text-weight-light mt-5 has-text-centered {{classHidden}}">
+        {{latestTemperature}}
+      </h2>
+
+
+    </div>
+
+
+    <div class="column is-2">
+      <div class="columns is-flex is-centered">
+        <img class="{{imageclass}} {{classHidden}} image is-64x64" src="https://openweathermap.org/img/wn/{{latestWeather.icon}}@2x.png" alt="image">
+      </div>
+      <div class="subtitle has-text-weight-light {{> class-brand}} is-size-6 has-text-grey has-text-centered">
+        {{latestWeather.main}}
+      </div>
+    </div>
+
+
+    <div class="column">
+
+    </div>
+    <div class="column is-2">
       <a href="/station/{{_id}}" class="button">
         {{>icons/open}}
       </a>
-      <a href="/dashboard/deletestation/{{_id}}" class="button">
+
+      <a href="/dashboard/deletestation/{{_id}}" class="button is-hidden">
         {{>icons/delete}}
       </a>
+
+
+      <div class="dropdown is-right">
+        <div class="dropdown-trigger">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3" onclick="this.parentNode.parentNode.classList.toggle('is-active')">
+            {{>icons/delete}}
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+          <div class="dropdown-content has-text-danger">
+            <a href="/dashboard/deletestation/{{_id}}" class="dropdown-item has-text-centered has-text-weight-bold has-text-delete">Delete Station</a>
+          </div>
+        </div>
+      </div>
+
+
     </div>
+
+
   </div>
 
 </div>
