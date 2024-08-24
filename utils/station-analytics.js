@@ -58,7 +58,7 @@ export const stationAnalytics = {
     if (station.reports.length > 0) {
       summary.maxTemperature = station.reports[0].temperature;
       summary.minTemperature = station.reports[0].temperature;
-      summary.temperature = station.reports[0].temperature;
+      summary.temperature = station.reports[summary.numberOfReports - 1].temperature;
       if (summary.temperature > 29) {
         summary.temperatureAlert = "temperature-is-high";
       } else if (summary.temperature < 5) {
@@ -69,7 +69,8 @@ export const stationAnalytics = {
 
       summary.maxWindSpeed = station.reports[0].windspeed;
       summary.minWindSpeed = station.reports[0].windspeed;
-      summary.windspeed = station.reports[0].windspeed;
+
+      summary.windspeed = station.reports[summary.numberOfReports - 1].windspeed;
       summary.winddegrees = station.reports[summary.numberOfReports - 1].winddegrees;
       summary.windDirection = this.windDegreesToDirection(summary.winddegrees);
 
@@ -81,7 +82,7 @@ export const stationAnalytics = {
 
       summary.maxPressure = station.reports[0].pressure;
       summary.minPressure = station.reports[0].pressure;
-      summary.pressure = station.reports[0].pressure;
+      summary.pressure = station.reports[summary.numberOfReports - 1].pressure;
 
       for (let i = 1; i < station.reports.length; i++) {
         if (station.reports[i].temperature > summary.maxTemperature) {

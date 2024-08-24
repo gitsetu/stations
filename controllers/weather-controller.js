@@ -51,13 +51,13 @@ export const weatherController = {
     let randomCard = [
       {
         title: "",
-        subtitle: randomWeather.description,
+        subtitle: randomWeather.id,
         image: "https://openweathermap.org/img/wn/"+ randomWeather.icon +"@2x.png",
         imageclass: "",
         heading: "weather",
         main: randomWeather.main,
         mainClass: mainClass,
-        min: "random weather card",
+        min: randomWeather.description,
         max: "",
       },
     ];

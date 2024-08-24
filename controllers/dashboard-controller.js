@@ -45,7 +45,7 @@ export const dashboardController = {
           station.latestWeather = {
             "id": 0,
             "main": "?",
-            "description": "[ weather code not found ]",
+            "description": "-- weather code not on the list --",
             "icon": ""
           };
           station.imageclass = "is-invisible";
