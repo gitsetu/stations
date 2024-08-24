@@ -59,11 +59,25 @@ export const stationAnalytics = {
       summary.maxTemperature = station.reports[0].temperature;
       summary.minTemperature = station.reports[0].temperature;
       summary.temperature = station.reports[0].temperature;
+      if (summary.temperature > 29) {
+        summary.temperatureAlert = "temperature-is-high";
+      } else if (summary.temperature < 5) {
+        summary.temperatureAlert = "temperature-is-low";
+      } else {
+        summary.temperatureAlert = "";
+      }
 
       summary.maxWindSpeed = station.reports[0].windspeed;
       summary.minWindSpeed = station.reports[0].windspeed;
       summary.windspeed = station.reports[0].windspeed;
-      summary.winddirection = station.reports[0].winddirection;
+      summary.winddegrees = station.reports[summary.numberOfReports - 1].winddegrees;
+      summary.windDirection = this.windDegreesToDirection(summary.winddegrees);
+
+      if (summary.windspeed > 14) {
+        summary.windalert = "wind-is-strong";
+      } else {
+        summary.windalert = "is-hidden";
+      }
 
       summary.maxPressure = station.reports[0].pressure;
       summary.minPressure = station.reports[0].pressure;
@@ -155,6 +169,7 @@ export const stationAnalytics = {
           windDirection = "unknown";
       }
     }
+
     // console.log("wind is coming from: "+ windDirection);
     return windDirection;
   },

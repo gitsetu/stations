@@ -1,15 +1,11 @@
 {{> menu active="about"}}
 
-<section class="-box is-3 has-text-centered">
-  <h3 class="title {{> class-brand}}">
-    WeatherTop
-  </h3>
-  <div class="section">
-    <p>
-      Weather station reports - Version 1
-    </p>
-  </div>
+<section class="section">
+  <h2 class="title {{> class-brand}}">{{title}}</h2>
+  <h4 class="subtitle has-text-weight-light is-6">Weather station reports - Version 1</h4>
 
-  {{>list-weathers}}
 
+  <section class="section">
+    {{>list-weathers}}
+  </section>
 </section>

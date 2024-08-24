@@ -28,6 +28,13 @@
       "longitude": "-23.667332",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
       "_id": "2181f40d-6d88-4b84-b7d7-0c0ff8f176ef"
+    },
+    {
+      "stationname": "Paris",
+      "latitude": "344.8990",
+      "longitude": "-9.098655",
+      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
+      "_id": "ae89511b-f19f-4249-b188-e2f3dd679cd2"
     }
   ]
 }

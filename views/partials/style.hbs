@@ -32,7 +32,7 @@
     color: hsl(12, 78%, 61%);
   }
 
-  /* select arrow colour*/
+  /* select dropdown arrow colour */
   /* https://stackoverflow.com/questions/52096558/change-select-arrow-color-in-bulma */
   .select.is-brand:after {
     border-color: hsl(12, 78%, 61%) !important;
@@ -42,5 +42,35 @@
     border: 0;
   }
 
+  .is-pink {
+    background-color: pink;
+  }
+
+  .-rotate-arrow{
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
+
+  .temperature-is-low{
+    color: 	hsl(172, 54%, 58%)!important;
+  }
+  .temperature-is-low:after{
+    content: '\2744';
+    font-size: medium;
+    /*color: 	hsl(172, 54%, 58%)!important;*/
+  }
+
+  .temperature-is-high{
+    color: hsl(12, 78%, 61%)!important;
+  }
+
+  .wind-is-strong:after{
+    content: '\26A0';
+    /*font-size: medium;*/
+    /*color: 	hsl(172, 54%, 58%)!important;*/
+  }
 
 </style>

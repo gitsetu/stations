@@ -39,7 +39,7 @@ export const reportController = {
       weathercode: Number(request.body.weathercode),
       temperature: Number(request.body.temperature),
       windspeed: Number(request.body.windspeed),
-      winddirection: Number(request.body.winddirection),
+      winddegrees: Number(request.body.winddegrees),
       pressure: Number(request.body.pressure),
     };
     console.log(`Updating Report ${reportId} from Station ${stationId}`);

@@ -39,9 +39,19 @@ export const dashboardController = {
         station.latestReportTimestamp = await station.reports[(station.reports.length)-1].timestamp;
         // console.log("latest report timestamp: " + station.latestReportTimestamp);
         station.latestReportWeathercode = await station.reports[(station.reports.length)-1].weathercode;
-        // console.log("latest report weather code: " + station.latestReportWeathercode);
+        console.log("latest report weather code: " + station.latestReportWeathercode);
         station.latestWeather = await weatherStore.getWeatherById(station.latestReportWeathercode);
-        console.log("latest weather: " + station.latestWeather.description);
+        if (station.latestWeather === undefined){
+          station.latestWeather = {
+            "id": 0,
+            "main": "?",
+            "description": "[ weather code not found ]",
+            "icon": ""
+          };
+          station.imageclass = "is-invisible";
+        }
+        console.log("station.latestWeather: " + station.latestWeather);
+        // console.log("latest weather: " + station.latestWeather.description);
 
         station.classHidden = "";
         // end of - if there are reports
@@ -58,7 +68,8 @@ export const dashboardController = {
 
       // get weather summary
       station.summary = await stationAnalytics.getSummary(station);
-      station.windDirectionCompass = stationAnalytics.windDegreesToDirection(station.summary.winddirection);
+      station.windDirectionCompass = stationAnalytics.windDegreesToDirection(station.summary.winddegrees);
+      station.windarrow = station.summary.winddegrees - 90;
       console.log("wind direction compass: " + station.windDirectionCompass);
       station.latestTemperature = station.summary.temperature+"º"
 

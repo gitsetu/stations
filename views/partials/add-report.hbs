@@ -1,5 +1,5 @@
 <form class="box" action="/station/{{station._id}}/addreport" method="POST">
-  <label class="label">Enter Weather Report Details: </label>
+  <label class="label" id="new-report">Enter Weather Report Details: </label>
     <div class="field is-horizontal">
       <div class="field-body columns">
 
@@ -8,7 +8,7 @@
 <!--          https://stackoverflow.com/questions/33878539/is-there-an-html-entity-for-an-info-icon#33878610-->
           <label for="weather-codes">Weather Code</label>
           <a href="/about#weather-codes" class="has-text-brand has-text-weight-bold" title="List of weather codes"> &#9432;</a>
-          <input list="weather-codes" class="input" type="text" placeholder="200" maxlength="3" name="weathercode">
+          <input list="weather-codes" class="input" type="number" min="200" max="804" placeholder="200" maxlength="3" name="weathercode">
           <datalist id="weather-codes">
             <option value="200">
             <option value="300">
@@ -24,11 +24,11 @@
         </div>
         <div class="field column">
           <label>Temperature</label>
-          <input class="input" type="text" placeholder="-10.1 ºC" maxlength="5" name="temperature">
+          <input class="input" type="number" min="-90" max="90" placeholder="-10.1 ºC" maxlength="5" name="temperature">
         </div>
         <div class="field column">
           <label>Wind Speed</label>
-          <input class="input" type="text" placeholder="1.1 m/s" maxlength="4" name="windspeed">
+          <input class="input" type="number" min="0" max="150" placeholder="1.1 m/s" maxlength="4" name="windspeed">
         </div>
 
         <div class="field column">
@@ -36,7 +36,7 @@
           <!--          TODO: wind direction dropdown-->
 <!--          https://uni.edu/storm/Wind%20Direction%20slide.pdf-->
           <div class="select is-fullwidth is-brand">
-            <select class="input" name="winddirection">
+            <select class="input" name="winddegrees">
               <option>Select</option>
               <option value="0">North</option>
               <option value="25">N/NE</option>
@@ -62,7 +62,7 @@
 
         <div class="field column">
           <label>Pressure</label>
-          <input class="input" type="text" placeholder="0000" maxlength="4" name="pressure">
+          <input class="input" type="number" min="870" max="1085" placeholder="0000" maxlength="4" name="pressure">
         </div>
 
       </div>
@@ -84,6 +84,6 @@
     </div>
 
   <div class="field is-grouped">
-    <button class="button is-primary" id="new-report">Add Report</button>
+    <button class="button is-primary">Add Report</button>
   </div>
 </form>

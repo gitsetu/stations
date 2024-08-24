@@ -100,7 +100,7 @@ export const reportStore = {
     report.weathercode = updatedReport.weathercode;
     report.temperature = updatedReport.temperature;
     report.windspeed = updatedReport.windspeed;
-    report.winddirection = updatedReport.winddirection;
+    report.winddegrees = updatedReport.winddegrees;
     report.pressure = updatedReport.pressure;
     report.datetime = updatedReport.datetime;
     await db.write();

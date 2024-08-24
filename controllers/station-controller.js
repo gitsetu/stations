@@ -10,7 +10,7 @@ export const stationController = {
     let menuHide = stationAnalytics.menuHide(page);
 
     const loggedInUser = await accountsController.getLoggedInUser(request);
-    console.log("user logged in: " + loggedInUser.firstname);
+    // console.log("user logged in: " + loggedInUser.firstname);
 
     const station = await stationStore.getStationById(request.params.id);
     // const station = await stationStore.getStationById(request);
@@ -49,7 +49,7 @@ export const stationController = {
       weathercode: Number(request.body.weathercode),
       temperature: Number(request.body.temperature),
       windspeed: Number(request.body.windspeed),
-      winddirection: Number(request.body.winddirection),
+      winddegrees: Number(request.body.winddegrees),
       pressure: Number(request.body.pressure),
       // datetime: request.body.datetime,
       // datetime: dayjs().format('YYYY-MM-DD HH:mm:ss.SSS'),

@@ -11,23 +11,24 @@
       </div>
       <div class="field">
         <label>Weather Code</label>
-        <input class="input" type="text" placeholder="000" name="weathercode" maxlength="3" value="{{report.weathercode}}">
+        <!--        https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min-->
+        <input class="input" type="number" min="200" max="804" placeholder="000" name="weathercode" maxlength="3" value="{{report.weathercode}}">
       </div>
       <div class="field">
         <label>Temperature</label>
-        <input class="input" type="text" placeholder="ºC" name="temperature" maxlength="5" value="{{report.temperature}}">
+        <input class="input" type="number" min="-90" max="90" placeholder="ºC" name="temperature" maxlength="5" value="{{report.temperature}}">
       </div>
       <div class="field">
         <label>Wind Speed</label>
-        <input class="input" type="text" placeholder="m/s" name="windspeed" maxlength="4" value="{{report.windspeed}}">
+        <input class="input" type="number" min="0" max="150" placeholder="m/s" name="windspeed" maxlength="4" value="{{report.windspeed}}">
       </div>
       <div class="field">
         <label>Wind Direction</label>
-        <input class="input" type="text" placeholder="º" name="winddirection" maxlength="4" value="{{report.winddirection}}">
+        <input class="input" type="number" min="0" max="360" placeholder="360º" name="winddegrees" maxlength="4" value="{{report.winddegrees}}">
       </div>
       <div class="field">
         <label>Pressure</label>
-        <input class="input" type="text" placeholder="hPa" name="pressure" maxlength="4" value="{{report.pressure}}">
+        <input class="input" type="number" min="870" max="1085" placeholder="hPa" name="pressure" maxlength="4" value="{{report.pressure}}">
       </div>
     </div>
   </div>
