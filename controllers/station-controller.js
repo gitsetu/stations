@@ -19,6 +19,7 @@ export const stationController = {
     const numberOfReportsInStation = station.reports.length;
     console.log("(Station Controller) number of reports in station: " + numberOfReportsInStation);
 
+
     let cards = await stationAnalytics.makeCards(station);
 
     const viewData = {

@@ -336,53 +336,7 @@ export const stationAnalytics = {
       console.log("makeCards - cards[0].main: " + cards[0].main);
 
     } else {
-      cards = [
-        {
-          title: "location",
-          subtitle: "-",
-          image: "https://openweathermap.org/img/wn/10d@2x.png",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "temperature",
-          subtitle: "-",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "wind",
-          subtitle: "-",
-          image: "-",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "pressure",
-          subtitle: "-",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        }
-      ];
-
+      cards = [];
     }
     return cards;
   },

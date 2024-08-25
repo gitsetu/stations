@@ -32,12 +32,11 @@
         {{pressure}}
       </td>
       <td>
-        <a href="/station/{{../station._id}}/deletereport/{{_id}}" class="button">
-          {{>icons/delete}}
-        </a>
-
-        <a href="/station/{{../station._id}}/editreport/{{_id}}" class="button">
+        <a href="/station/{{../station._id}}/editreport/{{_id}}" class="button" title="Edit">
           {{>icons/edit}}
+        </a>
+        <a href="/station/{{../station._id}}/deletereport/{{_id}}" class="button" title="Delete">
+          {{>icons/delete}}
         </a>
       </td>
     </tr>
