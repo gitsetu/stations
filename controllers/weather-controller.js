@@ -30,7 +30,7 @@ export const weatherController = {
       let weatherConditions = await weatherStore.getWeatherById(weatherCode);
 
       // console.log("getting weather conditions " + weatherConditions.main);
-      console.log("getting weather info");
+      console.log("(Weather Controller) getting weather info");
       return weatherConditions;
   },
 

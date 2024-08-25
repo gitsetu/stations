@@ -28,18 +28,18 @@ export const dashboardController = {
       // get reports for station[i]
       station.reports = await allReports.filter((report) => report.stationid === station._id);
       station.numberOfReports = station.reports.length;
-      console.log("station: " + station.stationname + ", number of reports: " + station.numberOfReports);
+      console.log("(Dashboard Controller) station: " + station.stationname + ", number of reports: " + station.numberOfReports);
       // if there are reports
       if (station.numberOfReports > 0) {
         // get the latest report added to station
         station.latestReportId = await station.reports[(station.reports.length)-1]._id;
-        // console.log("latest report added: " + station.latestReportId);
+        // console.log("(Dashboard Controller) latest report added: " + station.latestReportId);
         station.latestReportDatetime = await station.reports[(station.reports.length)-1].datetime;
-        console.log("latest report datetime: " + station.latestReportDatetime);
+        console.log("(Dashboard Controller) latest report datetime: " + station.latestReportDatetime);
         station.latestReportTimestamp = await station.reports[(station.reports.length)-1].timestamp;
         // console.log("latest report timestamp: " + station.latestReportTimestamp);
         station.latestReportWeathercode = await station.reports[(station.reports.length)-1].weathercode;
-        console.log("latest report weather code: " + station.latestReportWeathercode);
+        console.log("(Dashboard Controller) latest report weather code: " + station.latestReportWeathercode);
         station.latestWeather = await weatherStore.getWeatherById(station.latestReportWeathercode);
         if (station.latestWeather === undefined){
           station.latestWeather = {
@@ -50,8 +50,7 @@ export const dashboardController = {
           };
           station.imageclass = "is-invisible";
         }
-        console.log("station.latestWeather: " + station.latestWeather);
-        // console.log("latest weather: " + station.latestWeather.description);
+        console.log("(Dashboard Controller) station.latestWeather: " + station.latestWeather);
 
         station.classHidden = "";
         // end of - if there are reports
@@ -64,25 +63,14 @@ export const dashboardController = {
 
       // get time since last report
       station.timeSinceLastReport = await stationAnalytics.timeSince(station.latestReportTimestamp);
-      console.log("last report updated: " + station.timeSinceLastReport);
+      console.log("(Dashboard Controller) last report updated: " + station.timeSinceLastReport);
 
       // get weather summary
       station.summary = await stationAnalytics.getSummary(station);
       station.windDirectionCompass = stationAnalytics.windDegreesToDirection(station.summary.winddegrees);
       station.windarrow = station.summary.winddegrees - 90;
-      console.log("wind direction compass: " + station.windDirectionCompass);
+      console.log("(Dashboard Controller) wind direction compass: " + station.windDirectionCompass);
       station.latestTemperature = station.summary.temperature+"º"
-
-
-      // let cards = stationAnalytics.makeCards(station);
-      // station.cards = cards;
-
-      // station.latestweather = await weatherStore.getWeatherById(station.latestReportWeathercode);
-      // console.log("latest weather: " + station.latestweather);
-
-      // let reportcode = await reportStore.getReportById(station.latestReportId);
-      // station.latestweather = await weatherController.getWeather(reportcode);
-      // console.log("latest weather: " + station.latestweather.description);
 
     } // for each station
 
@@ -98,17 +86,12 @@ export const dashboardController = {
       stations: stations,
       numberOfStations: numberOfStations,
       firstname: firstname,
-      // latestReport: await stationAnalytics.getLatestReport(station),
-      // latestReport: latestReport,
-      // summary: summaryReport,
-      // summary: summary,
-      // cards: cards,
       reports: allReports,
       numberOfReports: numberOfReports,
     };
-    console.log("dashboard rendering");
-    console.log("number of stations: " + stations.length);
-    console.log("total number of reports: " + allReports.length);
+    console.log("(Dashboard Controller) dashboard rendering");
+    console.log("(Dashboard Controller) number of stations: " + stations.length);
+    console.log("(Dashboard Controller) total number of reports: " + allReports.length);
     response.render("dashboard-view", viewData);
   },
 
@@ -122,14 +105,14 @@ export const dashboardController = {
       longitude: request.body.longitude,
       userid: loggedInUser._id,
     };
-    console.log(`adding station ${newStation.stationname}`);
+    console.log(`(Dashboard Controller) adding station ${newStation.stationname}`);
     await stationStore.addStation(newStation);
     response.redirect("/dashboard");
   },
 
   async deleteStation(request, response) {
     const stationId = request.params.id;
-    console.log(`Deleting Station ${stationId}`);
+    console.log(`(Dashboard Controller) Deleting Station ${stationId}`);
     await stationStore.deleteStationById(stationId);
     response.redirect("/dashboard");
   },
@@ -145,29 +128,8 @@ export const dashboardController = {
       summary: summary,
       // elapsed: (Date.now() - latestReport.timestamp) / 1000,
     };
-    console.log(`showing reports for ${station.stationname} station`);
+    console.log(`(Dashboard Controller) showing reports for ${station.stationname} station`);
     response.render("dashboard-view", viewData);
-  },
-
-  async summaryReport(request, response) {
-    // const loggedInUser = await accountsController.getLoggedInUser(request);
-    const station = await stationStore.getStationById(request.params.id);
-    const latestReport = await stationAnalytics.getLatestReport(station);
-    const summaryReport = await stationAnalytics.getSummary(station);
-    const timeSinceLastReport = await stationAnalytics.getTimeSinceLastReport(station);
-    // const weather = await stationAnalytics.getWeather(station);
-    const viewData = {
-      title: "Station",
-      station: station,
-      latestReport: latestReport,
-      summary: summaryReport,
-      timeSinceLastReport: timeSinceLastReport,
-      weather: weather,
-      // loggedInUser: loggedInUser,
-      // stations: await stationStore.getStationsByUserId(loggedInUser._id),
-    };
-    console.log(`summary reports for ${station.stationname} station`);
-    response.render("station-view", viewData);
   },
 
 };

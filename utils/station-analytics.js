@@ -8,7 +8,7 @@ export const stationAnalytics = {
     if (station.reports.length > 0) {
       // let latestReport = station.reports[0];
       latestReport = station.reports[0];
-      for (let i = 1; i < station.reports.length; i++) {
+      for (let i = 0; i < station.reports.length; i++) {
         if (station.reports[i].timestamp > latestReport.timestamp) {
           // let latestReport = station.reports[i];
           latestReport = station.reports[i];
@@ -47,7 +47,6 @@ export const stationAnalytics = {
     // console.log("last report " + updatedSince);
     return updatedSince;
   },
-
 
   // TODO summary report
   async getSummary(station) {
@@ -175,155 +174,6 @@ export const stationAnalytics = {
     return windDirection;
   },
 
-  async getConditions(station) {
-
-    // const loggedInUser = await accountsController.getLoggedInUser(request);
-    // const userName = loggedInUser.firstname;
-    // const weatherStation = await stationStore.getStationById(request.params.id);
-    let report = await this.getLatestReport(station)
-
-    let cards = [];
-
-    // let reportsLength = station.reports.length;
-
-    // console.log("reportsLength: " + reportsLength);
-
-    // if (reportsLength > 0) {
-      const timeSinceLastReport = await this.timeSince(report.timestamp);
-      let summary = await this.getSummary(station);
-      const weather = await weatherController.getWeather(report);
-      const windDirection = stationAnalytics.windDegreesToDirection(summary.winddirection);
-
-      // reduce text size to fit in card if weather is in the thunderstorm group
-      let mainClass = "";
-      if ( Math.floor(weather.id / 100 ) === 2) {
-        mainClass = "is-size-4";
-      // }
-
-      // to fit in card, reduce text size if name is more than 7 characters long
-      let mainClassStationName = "";
-      if ( station.stationname.length > 7) {
-        mainClassStationName = "is-size-4";
-        console.log("long station name");
-      }
-
-
-      // capitalize: https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
-      // const stationName = station.stationname.charAt(0).toUpperCase() + station.stationname.slice(1); // capitalize
-
-      const stationName = this.capitalizeFirstLetter(station.stationname);
-
-      cards = [
-        {
-          title: "",
-          subtitle: summary.numberOfReports + " reports",
-          image: "/icons/logo.hbs",
-          imageclass: "is-hidden",
-          heading: "station",
-          main: stationName,
-          mainClass: mainClassStationName,
-          min: "Lat " + station.latitude,
-          max: "Lon " + station.longitude,
-        },
-        {
-          title: "",
-          subtitle: weather.description,
-          image: "https://openweathermap.org/img/wn/"+ weather.icon +"@2x.png",
-          imageclass: "",
-          heading: "weather",
-          main: weather.main,
-          mainClass: mainClass,
-          min: "updated " + timeSinceLastReport,
-          max: "",
-        },
-        {
-          title: "",
-          subtitle: "Celsius",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "temperature",
-          main: summary.temperature + "º",
-          mainClass: "",
-          min: "min " + summary.minTemperature + "º",
-          max: "max " + summary.maxTemperature + "º",
-        },
-        {
-          title: "-",
-          subtitle: windDirection,
-          image: "image",
-          imageclass: "is-hidden",
-          heading: "wind",
-          main: summary.windspeed + "m/s",
-          mainClass: "",
-          min: "min " + summary.minWindSpeed + "m/s",
-          max: "max " + summary.maxWindSpeed + "m/s",
-        },
-        {
-          title: "-",
-          subtitle: "hPa",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "pressure",
-          main: summary.pressure,
-          mainClass: "",
-          min: "min " + summary.minPressure,
-          max: "max " + summary.maxPressure,
-        }
-      ]
-
-    } else {
-      cards = [
-        {
-          title: "location",
-          subtitle: "-",
-          image: "https://openweathermap.org/img/wn/10d@2x.png",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "temperature",
-          subtitle: "-",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "wind",
-          subtitle: "-",
-          image: "-",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "pressure",
-          subtitle: "-",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        }
-      ]
-
-    }
-    return cards;
-  },
-
-
   menuHide(page) {
   let menuHide = {};
 
@@ -379,198 +229,58 @@ export const stationAnalytics = {
     return string && string.charAt(0).toUpperCase() + string.substring(1);
 },
 
-
-  async getCards(station) {
-
-    // const loggedInUser = await accountsController.getLoggedInUser(request);
-    // const userName = loggedInUser.firstname;
-    // const weatherStation = await stationStore.getStationById(request.params.id);
-    let report = await this.getLatestReport(station)
-
-    let cards = [];
-
-    // let reportsLength = station.reports.length;
-
-    // console.log("reportsLength: " + reportsLength);
-
-    // if (reportsLength > 0) {
-    const timeSinceLastReport = await this.timeSince(report.timestamp);
-    let summary = await this.getSummary(station);
-    const weather = await weatherController.getWeather(report);
-    const windDirection = stationAnalytics.windDegreesToDirection(summary.winddirection);
-
-    // reduce text size to fit in card if weather is in the thunderstorm group
-    let mainClass = "";
-    if ( Math.floor(weather.id / 100 ) === 2) {
-      mainClass = "is-size-4";
-      // }
-
-      // to fit in card, reduce text size if name is more than 7 characters long
-      let mainClassStationName = "";
-      if ( station.stationname.length > 7) {
-        mainClassStationName = "is-size-4";
-        console.log("long station name");
-      }
-
-
-      // capitalize: https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
-      // const stationName = station.stationname.charAt(0).toUpperCase() + station.stationname.slice(1); // capitalize
-
-      const stationName = this.capitalizeFirstLetter(station.stationname);
-
-      cards = [
-        {
-          title: "",
-          subtitle: summary.numberOfReports + " reports",
-          image: "/icons/logo.hbs",
-          imageclass: "is-hidden",
-          heading: "station",
-          main: stationName,
-          mainClass: mainClassStationName,
-          min: "Lat " + station.latitude,
-          max: "Lon " + station.longitude,
-        },
-        {
-          title: "",
-          subtitle: weather.description,
-          image: "https://openweathermap.org/img/wn/"+ weather.icon +"@2x.png",
-          imageclass: "",
-          heading: "weather",
-          main: weather.main,
-          mainClass: mainClass,
-          min: "updated " + timeSinceLastReport,
-          max: "",
-        },
-        {
-          title: "",
-          subtitle: "Celsius",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "temperature",
-          main: summary.temperature + "º",
-          mainClass: "",
-          min: "min " + summary.minTemperature + "º",
-          max: "max " + summary.maxTemperature + "º",
-        },
-        {
-          title: "-",
-          subtitle: windDirection,
-          image: "image",
-          imageclass: "is-hidden",
-          heading: "wind",
-          main: summary.windspeed + "m/s",
-          mainClass: "",
-          min: "min " + summary.minWindSpeed + "m/s",
-          max: "max " + summary.maxWindSpeed + "m/s",
-        },
-        {
-          title: "-",
-          subtitle: "hPa",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "pressure",
-          main: summary.pressure,
-          mainClass: "",
-          min: "min " + summary.minPressure,
-          max: "max " + summary.maxPressure,
-        }
-      ]
-
-    } else {
-      cards = [
-        {
-          title: "location",
-          subtitle: "-",
-          image: "https://openweathermap.org/img/wn/10d@2x.png",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "temperature",
-          subtitle: "-",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "wind",
-          subtitle: "-",
-          image: "-",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        },
-        {
-          title: "pressure",
-          subtitle: "-",
-          image: "",
-          imageclass: "is-hidden",
-          heading: "-",
-          main: "-",
-          mainClass: "",
-          min: "-",
-          max: "-",
-        }
-      ]
-
-    }
-    return cards;
-  },
-
   async makeCards(station) {
 
-    // const loggedInUser = await accountsController.getLoggedInUser(request);
-    // const userName = loggedInUser.firstname;
-    // const weatherStation = await stationStore.getStationById(request.params.id);
-    let report = await this.getLatestReport(station)
-
     let cards = [];
 
-    // let reportsLength = station.reports.length;
+    let numberOfReports = station.reports.length;
+    const stationName = this.capitalizeFirstLetter(station.stationname);
+    console.log("makeCards - numberOfReports" + numberOfReports);
+    if (numberOfReports > 0){
+      let latestReport = await this.getLatestReport(station);
+      // console.log("makeCards - latestReport: " + latestReport._id);
+      const timeSinceLastReport = await this.timeSince(latestReport.timestamp);
+      // console.log("makeCards - timeSinceLastReport: " + timeSinceLastReport);
+      let summary = await this.getSummary(station);
+      console.log("makeCards - summary: " + summary.maxPressure);
+      let weather = await weatherStore.getWeatherById(latestReport.weathercode);
+      // console.log("makeCards - weather: " + weather.id);
+      if (weather === undefined) {
+        weather = {};
+        weather.description = "no weather code match";
+        weather.icon = "";
+        weather.main = "-";
+        weather.imageclass = "is-hidden"
+        console.log("makeCards - weather: " + weather.description);
+      } else {
+        console.log("makeCards - weather is defined ");
+      }
 
-    // console.log("reportsLength: " + reportsLength);
-
-    // if (reportsLength > 0) {
-    const timeSinceLastReport = station.timeSinceLastReport;
-    let summary = station.summary;
-    const weather = station.latestWeather;
-    const windDirection = station.windDirectionCompass;
-
-    // reduce text size to fit in card if weather is in the thunderstorm group
-    let mainClass = "";
-    if ( Math.floor(station.latestReportWeathercode / 100 ) === 2) {
-      mainClass = "is-size-4";
-      // }
+      const windDirection = this.windDegreesToDirection(latestReport.winddegrees);
+      console.log("makeCards - windDirection: " + windDirection);
 
       // to fit in card, reduce text size if name is more than 7 characters long
       let mainClassStationName = "";
       if ( station.stationname.length > 7) {
         mainClassStationName = "is-size-4";
-        console.log("long station name");
+        console.log("makeCards - long station name");
+      }
+
+      // reduce text size to fit in card if weather is in the thunderstorm group
+      let mainClass = "";
+      if ( Math.floor(latestReport.weathercode / 100 ) === 2) {
+        mainClass = "is-size-4";
       }
 
 
-      // capitalize: https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
-      // const stationName = station.stationname.charAt(0).toUpperCase() + station.stationname.slice(1); // capitalize
-
-      const stationName = this.capitalizeFirstLetter(station.stationname);
+      console.log("makeCards - station.latitude: " + station.latitude);
+      // console.log("makeCards - latitude: " + latitude);
 
       cards = [
         {
           title: "",
-          subtitle: summary.numberOfReports + " reports",
-          image: "/icons/logo.hbs",
+          subtitle: summary.numberOfReports + " reports, updated " + timeSinceLastReport,
+          image: "",
           imageclass: "is-hidden",
           heading: "station",
           main: stationName,
@@ -580,13 +290,13 @@ export const stationAnalytics = {
         },
         {
           title: "",
-          subtitle: weather.description,
+          subtitle: "",
           image: "https://openweathermap.org/img/wn/"+ weather.icon +"@2x.png",
-          imageclass: "",
+          imageclass: weather.imageclass,
           heading: "weather",
           main: weather.main,
           mainClass: mainClass,
-          min: "updated " + timeSinceLastReport,
+          min: weather.description,
           max: "",
         },
         {
@@ -603,7 +313,7 @@ export const stationAnalytics = {
         {
           title: "-",
           subtitle: windDirection,
-          image: "image",
+          image: "",
           imageclass: "is-hidden",
           heading: "wind",
           main: summary.windspeed + "m/s",
@@ -622,7 +332,8 @@ export const stationAnalytics = {
           min: "min " + summary.minPressure,
           max: "max " + summary.maxPressure,
         }
-      ]
+      ];
+      console.log("makeCards - cards[0].main: " + cards[0].main);
 
     } else {
       cards = [
@@ -670,7 +381,7 @@ export const stationAnalytics = {
           min: "-",
           max: "-",
         }
-      ]
+      ];
 
     }
     return cards;
@@ -681,6 +392,7 @@ export const stationAnalytics = {
 
   ////////////////////
   // code to delete //
+
   getMaxTemperatureReport(station) {
     let maxTemperatureReport = null;
     if (station.reports.length > 0) {
