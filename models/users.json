@@ -2,11 +2,11 @@
   "file": "./models/users.json",
   "users": [
     {
-      "email": "x",
-      "password": "x",
+      "email": "pedro",
+      "password": "password",
       "_id": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
       "firstname": "pedro",
-      "lastname": "r"
+      "lastname": "lastname"
     },
     {
       "firstname": "new",

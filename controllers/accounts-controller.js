@@ -124,6 +124,7 @@ export const accountsController = {
       // email: await userStore.getUserById(userId),
       menuHide: menuHide,
     };
+
     response.render("account-view", viewData);
   },
 
@@ -140,6 +141,17 @@ export const accountsController = {
     console.log(`accountsController: updating account ${user._id}`);
     await userStore.updateAccount(userId, updatedAccount);
     // response.redirect("/account/" + user._id);
+
+    if (userId === updatedAccount.email){
+      response.redirect("/account/");
+    } else {
+      // if username changes remove cookie and send to log in
+      response.cookie("station", "");
+      // response.redirect("/login/");
+      response.cookie("station", updatedAccount.email);
+
+    }
+
     response.redirect("/account/");
 
     // response.render("account-view", viewData);

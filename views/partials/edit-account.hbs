@@ -5,7 +5,7 @@
     <div class="field-body">
       <div class="field">
         <label>First Name</label>
-        <input class="input" type="text" placeholder="Enter first name" name="firstname" value="{{user.firstname}}">
+        <input class="input" type="text" required placeholder="Required first name" name="firstname" value="{{user.firstname}}">
       </div>
       <div class="field">
         <label>Last Name</label>
@@ -14,12 +14,12 @@
     </div>
   </div>
   <div class="field">
-    <label>Email</label>
-    <input class="input" type="text" placeholder="Enter email" name="email" value="{{user.email}}">
+    <label>Email / Username</label>
+    <input class="input" type="text" required placeholder="Required email / username" name="email" value="{{user.email}}">
   </div>
   <div class="field">
     <label>Password</label>
-    <input class="input" type="password" placeholder="Enter Password" name="password" value="{{user.password}}">
+    <input class="input" type="password" required placeholder="Required password" name="password" value="{{user.password}}">
   </div>
   <div class="field is-grouped">
     <button class="button is-link">Update Account</button>
