@@ -12,27 +12,32 @@ export const stationController = {
     const loggedInUser = await accountsController.getLoggedInUser(request);
     // console.log("user logged in: " + loggedInUser.firstname);
     let stationId = request.params.id;
-    console.log("(Station Controller) request.params.id: " + stationId);
+    // console.log("(Station Controller) request.params.id: " + stationId);
     const station = await stationStore.getStationById(stationId);
     console.log("(Station Controller) station name: " + station.stationname);
 
     const numberOfReportsInStation = station.reports.length;
     console.log("(Station Controller) number of reports in station: " + numberOfReportsInStation);
 
+    let classReportsTable = "";
+    if (numberOfReportsInStation < 1){
+      classReportsTable = "is-hidden";
+    }
 
     let cards = await stationAnalytics.makeCards(station);
 
     const viewData = {
       page: page,
-      title: "Station",
+      title: station.stationname + " Station Reports",
       station: station,
-      firstname: loggedInUser.firstname,
+      accountName: loggedInUser.firstname,
       menuHide: menuHide,
       cards: cards,
       numberOfReportsInStation: numberOfReportsInStation,
+      classReportsTable: classReportsTable,
     };
-    console.log(`(Station Controller) showing reports for ${station.stationname} station`);
-    console.log(`(Station Controller) number of reports in station: ${numberOfReportsInStation}`);
+    // console.log(`(Station Controller) showing reports for ${station.stationname} station`);
+    // console.log(`(Station Controller) number of reports in station: ${numberOfReportsInStation}`);
     response.render("station-view", viewData);
   },
 
@@ -57,7 +62,7 @@ export const stationController = {
   async deleteReport(request, response) {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
-    console.log(`(Station Controller) Deleting Report ${reportId} from Station ${stationId}`);
+    console.log(`(Station Controller) deleting report ${reportId} from Station ${stationId}`);
     // Original code in template with bug on delete track.
     // await reportStore.deleteReport(request.params.reportId);
     // Michael O'Driscoll provided a fix on Slack to delete the selected report.

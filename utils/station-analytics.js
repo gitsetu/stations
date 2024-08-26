@@ -237,14 +237,14 @@ export const stationAnalytics = {
 
     let numberOfReports = station.reports.length;
     const stationName = this.capitalizeFirstLetter(station.stationname);
-    console.log("makeCards - numberOfReports" + numberOfReports);
+    // console.log("makeCards - numberOfReports" + numberOfReports);
     if (numberOfReports > 0){
       let latestReport = await this.getLatestReport(station);
       // console.log("makeCards - latestReport: " + latestReport._id);
       const timeSinceLastReport = await this.timeSince(latestReport.timestamp);
       // console.log("makeCards - timeSinceLastReport: " + timeSinceLastReport);
       let summary = await this.getSummary(station);
-      console.log("makeCards - summary: " + summary.maxPressure);
+      // console.log("makeCards - summary: " + summary.maxPressure);
       let weather = await weatherStore.getWeatherById(latestReport.weathercode);
       // console.log("makeCards - weather: " + weather.id);
       if (weather === undefined) {
@@ -253,19 +253,19 @@ export const stationAnalytics = {
         weather.icon = "";
         weather.main = "-";
         weather.imageclass = "is-hidden"
-        console.log("makeCards - weather: " + weather.description);
+        // console.log("makeCards - weather: " + weather.description);
       } else {
-        console.log("makeCards - weather is defined ");
+        // console.log("makeCards - weather is defined ");
       }
 
       const windDirection = this.windDegreesToDirection(latestReport.winddegrees);
-      console.log("makeCards - windDirection: " + windDirection);
+      // console.log("makeCards - windDirection: " + windDirection);
 
       // to fit in card, reduce text size if name is more than 7 characters long
       let mainClassStationName = "";
       if ( station.stationname.length > 7) {
         mainClassStationName = "is-size-4";
-        console.log("makeCards - long station name");
+        // console.log("makeCards - long station name");
       }
 
       // reduce text size to fit in card if weather is in the thunderstorm group
@@ -275,8 +275,7 @@ export const stationAnalytics = {
       }
 
 
-      console.log("makeCards - station.latitude: " + station.latitude);
-      // console.log("makeCards - latitude: " + latitude);
+      // console.log("makeCards - station.latitude: " + station.latitude);
 
       cards = [
         {
@@ -287,8 +286,8 @@ export const stationAnalytics = {
           heading: "station",
           main: stationName,
           mainClass: mainClassStationName,
-          min: "Lat " + station.latitude,
-          max: "Lon " + station.longitude,
+          min: "lat " + station.latitude,
+          max: "lon " + station.longitude,
         },
         {
           title: "",
@@ -335,7 +334,7 @@ export const stationAnalytics = {
           max: "max " + summary.maxPressure,
         }
       ];
-      console.log("makeCards - cards[0].main: " + cards[0].main);
+      // console.log("makeCards - cards[0].main: " + cards[0].main);
 
     } else {
       cards = [];

@@ -15,7 +15,7 @@ export const aboutController = {
     const viewData = {
       page: "about",
       title: "About WeatherTop",
-      firstname: loggedInUser.firstname,
+      accountName: loggedInUser.firstname,
       menuHide: menuHide,
       weathers: weathers,
     };

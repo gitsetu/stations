@@ -11,19 +11,19 @@ export const accountsController = {
     const randomWeatherList = await weatherController.randomWeather();
     const randomWeather = randomWeatherList[0];
 
-    let firstname = "Account";
+    let accountName = "Account";
     const loggedInUser = await accountsController.getLoggedInUser(request);
     if (loggedInUser === undefined){
-      let firstname = "Account";
+      let accountName = "Account";
     } else {
-      let firstname = loggedInUser.firstname;
+      let accountName = loggedInUser.firstname;
     }
 
     const viewData = {
       page: "account",
       title: "Login or Signup",
       randomCard: randomWeather,
-      firstname: firstname,
+      accountName: accountName,
     };
     response.render("index", viewData);
   },
@@ -117,7 +117,7 @@ export const accountsController = {
       title: "Edit Account",
       user: await userStore.getUserByEmail(userEmail),
       // passes id, email and password to account-view
-      firstname: loggedInUser.firstname,
+      accountName: loggedInUser.firstname,
       // lastname: user.lastname,
       // email: user.email,
       // userid: user._id,

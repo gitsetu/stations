@@ -55,7 +55,7 @@ export const reportStore = {
   async sortByDate(reportsToSort){
     // sort reports in descending order (most recent first)
     const sortedReports = reportsToSort.sort((a, b) => b.timestamp - a.timestamp);
-    console.log("reports sorted by most recent first");
+    console.log("(Report Store) reports sorted by most recent first");
     return sortedReports;
   },
 
@@ -85,14 +85,14 @@ export const reportStore = {
       await this.deleteReport(stationReports[i]._id);
     }
     await db.write();
-    console.log(`deleting all reports from station ${stationId}`)
+    console.log(`(Report Store) deleting all reports from station ${stationId}`)
   },
 
   async _deleteAllReportsFromStation(stationId) {
     let index = await db.data.reports.stationid;
     index = [];
     await db.write();
-    console.log(`deleting all reports from station ${stationId}`)
+    console.log(`(Report Store) deleting all reports from station ${stationId}`)
   },
 
   async updateReport(reportId, updatedReport) {

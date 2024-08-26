@@ -8,22 +8,23 @@ export const reportController = {
     let page = "updateReport";
     let menuHide = stationAnalytics.menuHide(page);
 
-    let firstname = "Account";
+
     const loggedInUser = await accountsController.getLoggedInUser(request);
+    let accountName = loggedInUser.firstname;
     if (loggedInUser === undefined){
-      let firstname = "Account";
+      let accountName = "Account";
     } else {
-      let firstname = loggedInUser.firstname;
+      let accountName = loggedInUser.firstname;
     }
 
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
-    console.log(`Editing Report ${reportId} from Station ${stationId}`);
+    console.log(`(Report Controller) editing report ${reportId} from station ${stationId}`);
     const viewData = {
       title: "Edit Report",
       station: await stationStore.getStationById(stationId),
       report: await reportStore.getReportById(reportId),
-      firstname: firstname,
+      accountName: accountName,
       menuHide: menuHide,
       page: "updateReport",
     };
@@ -33,6 +34,7 @@ export const reportController = {
   async update(request, response) {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
+
     const updatedReport = {
       // datetime: dayjs().format('YYYY-MM-DD HH:mm:ss.SSS'),
       datetime: request.body.datetime,
@@ -42,7 +44,7 @@ export const reportController = {
       winddegrees: Number(request.body.winddegrees),
       pressure: Number(request.body.pressure),
     };
-    console.log(`Updating Report ${reportId} from Station ${stationId}`);
+    console.log(`(Report Controller) updating report ${reportId} from station ${stationId}`);
     await reportStore.updateReport(reportId, updatedReport);
     response.redirect("/station/" + stationId);
   },

@@ -35,6 +35,13 @@
       "longitude": "-9.098655",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
       "_id": "ae89511b-f19f-4249-b188-e2f3dd679cd2"
+    },
+    {
+      "stationname": "Wexford",
+      "latitude": "34-45",
+      "longitude": "34:67",
+      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
+      "_id": "4c2377b8-b411-4c27-82fb-a840965616ac"
     }
   ]
 }
