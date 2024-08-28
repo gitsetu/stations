@@ -4,9 +4,11 @@ WeatherTop
 Web app to add stations and enter weather reports manually.
 
 ---
+
 Author: Pedro Royo  
 SETU HDip Computer Science  
 August 2024
+
 ---
 
 ## Usage example:
