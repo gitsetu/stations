@@ -15,6 +15,7 @@ export const accountsController = {
     const loggedInUser = await accountsController.getLoggedInUser(request);
     if (loggedInUser === undefined){
       let accountName = "Account";
+      // response.redirect("/");
     } else {
       let accountName = loggedInUser.firstname;
     }
@@ -69,7 +70,6 @@ export const accountsController = {
   },
 
   async authenticate(request, response) {
-    // const stationId = request.params.stationid;
     const user = await userStore.getUserByEmail(request.body.email);
 
     if (user) {
@@ -82,17 +82,6 @@ export const accountsController = {
       } else {
         response.redirect("/login");
       }
-    } else {
-      response.redirect("/login");
-    }
-  },
-
-  async _authenticate(request, response) {
-    const user = await userStore.getUserByEmail(request.body.email);
-    if (user) {
-      response.cookie("station", user.email);
-      console.log(`logging in user ${user.email}`);
-      response.redirect("/dashboard");
     } else {
       response.redirect("/login");
     }
@@ -118,10 +107,6 @@ export const accountsController = {
       user: await userStore.getUserByEmail(userEmail),
       // passes id, email and password to account-view
       accountName: loggedInUser.firstname,
-      // lastname: user.lastname,
-      // email: user.email,
-      // userid: user._id,
-      // email: await userStore.getUserById(userId),
       menuHide: menuHide,
     };
 
@@ -140,23 +125,17 @@ export const accountsController = {
     };
     console.log(`accountsController: updating account ${user._id}`);
     await userStore.updateAccount(userId, updatedAccount);
-    // response.redirect("/account/" + user._id);
 
     if (userId === updatedAccount.email){
       response.redirect("/account/");
     } else {
-      // if username changes remove cookie and send to log in
+      // if username changes remove old cookie and create new cookie
       response.cookie("station", "");
-      // response.redirect("/login/");
       response.cookie("station", updatedAccount.email);
-
     }
 
     response.redirect("/account/");
-
     // response.render("account-view", viewData);
   },
 };
 
-
-// datetime: dayjs().format('YYYY-MM-DD HH:mm:ss.SSS'),

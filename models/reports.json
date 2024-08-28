@@ -267,7 +267,7 @@
     },
     {
       "weathercode": 801,
-      "temperature": 31,
+      "temperature": 30,
       "windspeed": 2,
       "winddegrees": 180,
       "pressure": 1005,
@@ -300,7 +300,7 @@
     },
     {
       "weathercode": 202,
-      "temperature": 12,
+      "temperature": 29,
       "windspeed": 18,
       "winddegrees": 90,
       "pressure": 1001,
