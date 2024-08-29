@@ -2,46 +2,39 @@
   "file": "./models/stations.json",
   "stations": [
     {
-      "stationname": "cork",
-      "latitude": "123",
-      "longitude": "456",
+      "stationname": "London",
+      "latitude": "51.50",
+      "longitude": "-0.12",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "f34f0598-d6a9-41df-9f36-5cd9d1961706"
+      "_id": "663572f3-43ec-4caa-8833-16f2eeefea83"
     },
     {
-      "stationname": "waterford",
-      "latitude": "222",
-      "longitude": "333.334",
+      "stationname": "Dublin",
+      "latitude": "53.34",
+      "longitude": "-6.26",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "120b88a3-8e1f-48dd-9cfc-8a8268116281"
+      "_id": "f41053d1-ebf9-454a-b669-4cb79f579ae4"
     },
     {
-      "stationname": "dublin",
-      "latitude": "334",
-      "longitude": "2.221",
+      "stationname": "Madrid",
+      "latitude": "40.41",
+      "longitude": "-3.70",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "be826b8c-68cf-49ba-8e4a-d6944800d7d9"
-    },
-    {
-      "stationname": "madrid",
-      "latitude": "0.4457890",
-      "longitude": "-23.667332",
-      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "2181f40d-6d88-4b84-b7d7-0c0ff8f176ef"
+      "_id": "f6cdbf2d-22ea-4460-a138-4576ecfe5d7a"
     },
     {
       "stationname": "Paris",
-      "latitude": "344.8990",
-      "longitude": "-9.098655",
+      "latitude": "48.85",
+      "longitude": "2.32",
       "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "ae89511b-f19f-4249-b188-e2f3dd679cd2"
+      "_id": "5c903a6d-2767-4c38-9e80-2e899dac468a"
     },
     {
-      "stationname": "Wexford",
-      "latitude": "34-45",
-      "longitude": "34:67",
-      "userid": "ddf12e79-3b3b-4c97-a247-e388d34ecdad",
-      "_id": "4c2377b8-b411-4c27-82fb-a840965616ac"
+      "stationname": "New York",
+      "latitude": "22.13",
+      "longitude": "28.21",
+      "userid": "092cd2f3-f8d1-4f60-8c41-08e1ad8ee73a",
+      "_id": "420f5f30-9371-4b07-bc8c-a06b3bcb5cc4"
     }
   ]
 }

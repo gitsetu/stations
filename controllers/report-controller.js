@@ -19,7 +19,7 @@ export const reportController = {
 
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
-    console.log(`(Report Controller) editing report ${reportId} from station ${stationId}`);
+    console.log(`(report-controller) editing report ${reportId} from station ${stationId}`);
     const viewData = {
       title: "Edit Report",
       station: await stationStore.getStationById(stationId),
@@ -44,7 +44,7 @@ export const reportController = {
       winddegrees: Number(request.body.winddegrees),
       pressure: Number(request.body.pressure),
     };
-    console.log(`(Report Controller) updating report ${reportId} from station ${stationId}`);
+    console.log(`(report-controller) updating report ${reportId} from station ${stationId}`);
     await reportStore.updateReport(reportId, updatedReport);
     response.redirect("/station/" + stationId);
   },

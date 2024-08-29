@@ -26,8 +26,7 @@ export const dashboardController = {
     const stations = await stationStore.getStationsByUserId(loggedInUser._id);
     const numberOfStations= stations.length;
     const allReports = await reportStore.getAllReports();
-    const userReports = await  reportStore.getReportsByUserId(loggedInUser._id);
-    let numberOfReports = allReports.length;
+    let numberOfUserReports = 0;
 
     for (let i = 0; i < numberOfStations; i++) {
       let station = stations[i];
@@ -35,6 +34,7 @@ export const dashboardController = {
       // get reports for station[i]
       station.reports = await allReports.filter((report) => report.stationid === station._id);
       station.numberOfReports = station.reports.length;
+      numberOfUserReports = numberOfUserReports + station.numberOfReports;
       // if there are reports
       if (station.numberOfReports > 0) {
         // get the latest report added to station
@@ -62,7 +62,7 @@ export const dashboardController = {
 
       // get time since last report
       station.timeSinceLastReport = await stationAnalytics.timeSince(station.latestReportTimestamp);
-      // console.log("(Dashboard Controller) last report updated: " + station.timeSinceLastReport);
+      // console.log("(Dashboard Controller) station updated: " + station.timeSinceLastReport);
 
       // get weather summary
       station.summary = await stationAnalytics.getSummary(station);
@@ -80,12 +80,10 @@ export const dashboardController = {
       numberOfStations: numberOfStations,
       accountName: accountName,
       reports: allReports,
-      numberOfReports: numberOfReports,
-      numberOfUserReports: userReports.length,
+      numberOfReports: numberOfUserReports,
     };
-    console.log("(Dashboard Controller) dashboard rendering");
-    console.log("(Dashboard Controller) number of stations: " + stations.length);
-    console.log("(Dashboard Controller) total number of reports: " + allReports.length);
+    console.log("(dashboard-controller) dashboard rendering");
+    // console.log("(dashboard-controller) number of stations: " + stations.length);
     response.render("dashboard-view", viewData);
   },
 
@@ -97,14 +95,14 @@ export const dashboardController = {
       longitude: request.body.longitude,
       userid: loggedInUser._id,
     };
-    console.log(`(Dashboard Controller) adding station ${newStation.stationname}`);
+    console.log(`(dashboard-controller) adding station ${newStation.stationname}`);
     await stationStore.addStation(newStation);
     response.redirect("/dashboard");
   },
 
   async deleteStation(request, response) {
     const stationId = request.params.id;
-    console.log(`(Dashboard Controller) deleting station ${stationId}`);
+    console.log(`(dashboard-controller) deleting station ${stationId}`);
     await stationStore.deleteStationById(stationId);
     response.redirect("/dashboard");
   },

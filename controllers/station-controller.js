@@ -14,10 +14,10 @@ export const stationController = {
     let stationId = request.params.id;
     // console.log("(Station Controller) request.params.id: " + stationId);
     const station = await stationStore.getStationById(stationId);
-    console.log("(Station Controller) station name: " + station.stationname);
+    console.log("(station-controller) station name: " + station.stationname);
 
     const numberOfReportsInStation = station.reports.length;
-    console.log("(Station Controller) number of reports in station: " + numberOfReportsInStation);
+    // console.log("(station-controller) number of reports in station: " + numberOfReportsInStation);
 
     let classReportsTable = "";
     if (numberOfReportsInStation < 1){
@@ -36,7 +36,6 @@ export const stationController = {
       numberOfReportsInStation: numberOfReportsInStation,
       classReportsTable: classReportsTable,
     };
-    // console.log(`(Station Controller) showing reports for ${station.stationname} station`);
     // console.log(`(Station Controller) number of reports in station: ${numberOfReportsInStation}`);
     response.render("station-view", viewData);
   },
@@ -54,7 +53,7 @@ export const stationController = {
       datetime: Date().toString().substring(0,24), // human-readable date
       timestamp: Date.now(), // epoch date
     };
-    console.log(`(Station Controller) adding report ${newReport._id}`);
+    console.log(`(station-controller) adding report ${newReport.datetime}`);
     await reportStore.addReport(station._id, newReport);
     response.redirect("/station/" + station._id);
   },
@@ -62,7 +61,7 @@ export const stationController = {
   async deleteReport(request, response) {
     const stationId = request.params.stationid;
     const reportId = request.params.reportid;
-    console.log(`(Station Controller) deleting report ${reportId} from Station ${stationId}`);
+    console.log(`(station-controller) deleting report ${reportId} from Station ${stationId}`);
     // Original code in template with bug on delete track.
     // await reportStore.deleteReport(request.params.reportId);
     // Michael O'Driscoll provided a fix on Slack to delete the selected report.

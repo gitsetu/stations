@@ -20,7 +20,7 @@ export const weatherController = {
       // timeSinceLastReport: timeSinceLastReport,
       weather: weatherConditions,
     };
-    console.log(`weather description for ${station.stationname} station`);
+    console.log(`(weather-controller) weather description for ${station.stationname} station`);
     // response.render("station-view", viewData);
     response.render("station-view", viewData);
   },
@@ -30,7 +30,7 @@ export const weatherController = {
       let weatherConditions = await weatherStore.getWeatherById(weatherCode);
 
       // console.log("getting weather conditions " + weatherConditions.main);
-      console.log("(Weather Controller) getting weather info");
+      console.log("(weather-controller) getting weather info");
       return weatherConditions;
   },
 
@@ -62,7 +62,7 @@ export const weatherController = {
       },
     ];
 
-    console.log("getting random weather card: " + randomWeather.main);
+    console.log("(weather-controller) getting random weather card: " + randomWeather.main);
     return randomCard;
 
   },

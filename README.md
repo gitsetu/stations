@@ -33,12 +33,20 @@ _Pressure_ and _Min / Max_ values hidden in dropdown for a visually light summar
 Arrow points to wind direction. Alert appears when there is strong wind.  
 When freezing, temperature changes colour (blue-green), snowflake alert appears.  
 When 30ºC are reached, temperature colour changes to orange. 
+Stations ordered by name.
 
 ### Station Reports 
 Weather data populates 5 cards for a comprehensive station summary.  
 Wind direction dropdown.  
 Form with min/max help to enter correct values.  
 When a station gets deleted, its reports also get deleted.  
+Reports ordered by most recent on top.
 
 ### About
 A template generates cards with all the weather codes.  
+
+![](screenshots/screenshot-release3-dashboard.png)
+![](screenshots/screenshot-release3-station.png)
+![](screenshots/screenshot-release3-report.png)
+![](screenshots/screenshot-release3-account.png)
+![](screenshots/screenshot-release3-about.png)

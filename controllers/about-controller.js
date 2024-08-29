@@ -19,7 +19,7 @@ export const aboutController = {
       menuHide: menuHide,
       weathers: weathers,
     };
-    console.log("about rendering");
+    console.log("(about-controller) about rendering");
     response.render("about-view", viewData);
   },
 };

@@ -38,7 +38,7 @@ export const accountsController = {
 
   logout(request, response) {
     response.cookie("station", "");
-    console.log(`logged out`);
+    console.log(`(accounts-controller) logged out`);
     response.redirect("/");
   },
 
@@ -53,11 +53,11 @@ export const accountsController = {
     const newUser = request.body;
     const userExist = await userStore.getUserByEmail(request.body.email);
     if (userExist) {
-      console.log(`user ${userExist.email} already exist`);
+      console.log(`(accounts-controller) user ${userExist.email} already exist`);
       response.redirect("/");
     } else {
       await userStore.addUser(newUser);
-      console.log(`registering new user ${newUser.email}`);
+      console.log(`(accounts-controller) registering new user ${newUser.email}`);
       response.redirect("/");
     }
   },
@@ -65,7 +65,7 @@ export const accountsController = {
   async _register(request, response) {
     const user = request.body;
     await userStore.addUser(user);
-    console.log(`registering ${user.email}`);
+    console.log(`(accounts-controller) registering ${user.email}`);
     response.redirect("/");
   },
 
@@ -77,7 +77,7 @@ export const accountsController = {
       const savedPassword = user.password;
       if (savedPassword === enteredPassword) {
         response.cookie("station", user.email);
-        console.log(`logging in user ${user.email}`);
+        console.log(`(accounts-controller) logging in user ${user.email}`);
         response.redirect("/dashboard");
       } else {
         response.redirect("/login");
@@ -101,7 +101,7 @@ export const accountsController = {
     let page = "account";
     let menuHide = stationAnalytics.menuHide(page);
 
-    console.log(`editing account ${loggedInUser._id}`);
+    console.log(`(accounts-controller) editing account ${loggedInUser._id}`);
     const viewData = {
       title: "Edit Account",
       user: await userStore.getUserByEmail(userEmail),

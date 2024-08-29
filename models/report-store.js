@@ -19,15 +19,6 @@ export const reportStore = {
     return report;
   },
 
-  async _addReport(stationId, report) {
-    await db.read();
-    report._id = v4();
-    report.stationid = stationId;
-    db.data.reports.push(report);
-    await db.write();
-    return report;
-  },
-
   async getReportsByStationId(id) {
     await db.read();
     const stationReports = db.data.reports.filter((report) => report.stationid === id);
@@ -37,28 +28,12 @@ export const reportStore = {
     return sortedReports;
   },
 
-  async _getReportsByStationId(id) {
-    await db.read();
-    return db.data.reports.filter((report) => report.stationid === id);
-  },
-
-  async getReportsByUserId(id) {
-    await db.read();
-    const stationReports = db.data.reports.filter((report) => report.stationid === id);
-    // sort reports in descending order (most recent first)
-    // const sortedReports = this.sortByDate(stationReports);
-    // console.log("reports sorted by most recent first");
-    return this.sortByDate(stationReports);
-  },
-
-
   async sortByDate(reportsToSort){
     // sort reports in descending order (most recent first)
     const sortedReports = reportsToSort.sort((a, b) => b.timestamp - a.timestamp);
-    console.log("(Report Store) reports sorted by most recent first");
+    console.log("(report-store) reports sorted by most recent first");
     return sortedReports;
   },
-
 
   async getReportById(id) {
     await db.read();
@@ -72,11 +47,6 @@ export const reportStore = {
     await db.write();
   },
 
-  async deleteAllReports() {
-    db.data.reports = [];
-    await db.write();
-  },
-
   // TODO delete all reports from station
   async deleteAllReportsFromStation(stationId) {
     await db.read();
@@ -85,14 +55,7 @@ export const reportStore = {
       await this.deleteReport(stationReports[i]._id);
     }
     await db.write();
-    console.log(`(Report Store) deleting all reports from station ${stationId}`)
-  },
-
-  async _deleteAllReportsFromStation(stationId) {
-    let index = await db.data.reports.stationid;
-    index = [];
-    await db.write();
-    console.log(`(Report Store) deleting all reports from station ${stationId}`)
+    console.log(`(report-store) deleting all reports from station ${stationId}`)
   },
 
   async updateReport(reportId, updatedReport) {
@@ -104,7 +67,6 @@ export const reportStore = {
     report.pressure = updatedReport.pressure;
     report.datetime = updatedReport.datetime;
     await db.write();
-
   },
 
 };

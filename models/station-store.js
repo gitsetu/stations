@@ -20,17 +20,10 @@ export const stationStore = {
   },
 
   async getStationById(id) {
-    console.log("(Station Store) get station with id: " + id);
+    // console.log("(station-store) get station with id: " + id);
     await db.read();
     let list = db.data.stations.find((station) => station._id === id);
     // console.log("(Station Store) list._id: " + list._id);
-    list.reports = await reportStore.getReportsByStationId(list._id);
-    return list;
-  },
-
-  async _getStationById(id) {
-    await db.read();
-    const list = db.data.stations.find((station) => station._id === id);
     list.reports = await reportStore.getReportsByStationId(list._id);
     return list;
   },
@@ -42,15 +35,10 @@ export const stationStore = {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
     // https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
     const sortedStations = userStations.sort((a, b) => a.stationname.localeCompare(b.stationname));
-    console.log("(Station Store) stations sorted by name"); // sorted! :)
+    console.log("(station-store) stations sorted by name"); // sorted! :)
 
     return sortedStations;
   },
-
-  // function orderByName(){
-  // const ordered = objects.sort((a, b) => a.fieldname.localeCompare(b.fieldname));
-  // return ordered
-  // },
 
   async _getStationsByUserId(userid) {
     await db.read();
@@ -65,20 +53,7 @@ export const stationStore = {
     const index = db.data.stations.findIndex((station) => station._id === id);
     db.data.stations.splice(index, 1);
     await db.write();
-    console.log(`(Station Store) deleting station ${id}`)
+    console.log(`(station-store) deleting station ${id}`)
   },
-
-  async _deleteStationById(id) {
-    await db.read();
-    const index = db.data.stations.findIndex((station) => station._id === id);
-    db.data.stations.splice(index, 1);
-    await db.write();
-  },
-
-  async deleteAllStations() {
-    db.data.stations = [];
-    await db.write();
-  },
-
 
 };
