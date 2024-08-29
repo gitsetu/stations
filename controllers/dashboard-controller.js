@@ -7,6 +7,7 @@ import { reportController } from "./report-controller.js";
 import { weatherController } from "./weather-controller.js";
 import { weatherStore } from "../models/weather-store.js";
 import { userStore } from "../models/user-store.js";
+import axios from "axios";
 
 export const dashboardController = {
   async index(request, response) {
