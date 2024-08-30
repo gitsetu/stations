@@ -1,0 +1,41 @@
+<div id="map" class="box"></div>
+<!--<script type="text/javascript" src="/utils/map.js"></script>-->
+
+<!--// map view-->
+<script>
+  // https://tomickigrzegorz.github.io/leaflet-examples/#
+  // https://tomickigrzegorz.github.io/leaflet-examples/#04.many-markers
+  // https://tomickigrzegorz.github.io/leaflet-examples/#05.coordinates-after-clicking-on-the-map
+  // config map
+  let mapConfig = {
+    minZoom: 4,
+    maxZoom: 14,
+  };
+  // magnification at start
+  const mapZoom = 6;
+  // center the map view at Dublin coordinates
+  const mapLat = 53.35;
+  const mapLon = -6.26;
+  // create a map in the 'map' div
+  const map = L.map('map', mapConfig).setView([mapLat, mapLon], mapZoom);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  // obtaining coordinates after clicking on the map
+  map.on("click", function (e) {
+    const markerPlace = document.querySelector(".marker-position");
+    markerPlace.textContent = e.latlng;
+    console.log("click place: " + markerPlace.textContent);
+  });
+</script>
+
+<!--// markers-->
+<script>
+
+</script>
+
+
+{{#each stations}}
+
+{{/each}}

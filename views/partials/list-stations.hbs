@@ -1,6 +1,10 @@
 
 {{#each stations}}
 
+  <script>
+    marker = new L.marker([{{latitude}}, {{longitude}}]).bindPopup("{{stationname}}, {{latestTemperature}}").addTo(map);
+  </script>
+
 <div class="box box-link-hover-shadow">
 
   <div class="columns">

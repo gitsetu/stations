@@ -25,7 +25,7 @@ export const dashboardController = {
     // console.log("hiding menu buttons not used on: " + page);
 
     const stations = await stationStore.getStationsByUserId(loggedInUser._id);
-    const numberOfStations= stations.length;
+    const numberOfStations = stations.length;
     const allReports = await reportStore.getAllReports();
     let numberOfUserReports = 0;
 
@@ -71,7 +71,7 @@ export const dashboardController = {
       station.windarrow = station.summary.winddegrees - 90;
       station.latestTemperature = station.summary.temperature+"º"
 
-    } // for each station
+    } // end for each station
 
     const viewData = {
       page: "dashboard",
