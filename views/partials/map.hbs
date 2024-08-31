@@ -21,21 +21,33 @@
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
+  // ---------------------------------------------------------------------------------------- //
 
   // obtaining coordinates after clicking on the map
-  map.on("click", function (e) {
-    const markerPlace = document.querySelector(".marker-position");
-    markerPlace.textContent = e.latlng;
-    console.log("click place: " + markerPlace.textContent);
+  // https://stackoverflow.com/questions/37516184/getting-map-coordinates-from-leaflet-js
+  // https://stackoverflow.com/questions/52357091/how-to-add-marker-on-click-event-in-leaflet-js
+  // map.on("click", function (event) {
+  //   console.log("Coordinates: " + event.latlng.toString());
+  //   L.marker(event.latlng).addTo(map);
+  // });
+
+  let marker;
+  map.on('click', function (e) {
+    if (marker) { // check
+      map.removeLayer(marker); // remove old layers
+    }
+    marker = new L.Marker(e.latlng).addTo(map); // set New Layer
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
+    marker.latitude = Math.trunc((e.latlng.lat) * 10000) / 10000;
+    marker.longitude = Math.trunc((e.latlng.lng) * 10000) / 10000;
+    console.log("marker lat: "+ marker.latitude + ", " + marker.longitude);
+
+    // https://stackoverflow.com/questions/4683331/how-to-fill-in-form-field-and-submit-using-javascript
+    document.forms['addstation'].elements['latitude'].value = marker.latitude;
+    document.forms['addstation'].elements['longitude'].value = marker.longitude;
+    // document.forms['addstation'].elements['get-place-name'].value = "enabled";
+    return marker;
   });
-</script>
-
-<!--// markers-->
-<script>
 
 </script>
-
-
-{{#each stations}}
-
-{{/each}}
+<p></p>

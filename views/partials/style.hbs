@@ -2,7 +2,7 @@
   /*https://stackoverflow.com/questions/78571398/customizing-bulmacss-colors-with-css*/
   :root {
     /* colours */
-    --bulma-primary: hsl(12, 78%, 61%);
+    --bulma-primary: hsl(12, 78%, 61%)!important;
     /*--bulma-size-medium: 0.5rem;*/
   }
   .button.is-primary{
@@ -12,7 +12,7 @@
     background-color: hsl(12, 78%, 66%);
   }
   .button.is-primary:active{
-    background-color: hsl(12, 78%, 56%);
+    background-color: hsl(12, 78%, 56%)!important;
   }
   .button.is-link{
     background-color: 	hsl(194, 45%, 67%);
@@ -22,6 +22,16 @@
   }
   .button.is-link:active{
     background-color: 	hsl(194, 45%, 62%);
+  }
+
+  .button.is-link:disabled{
+    background-color: 	hsl(194, 45%, 77%);
+    border-color: 	hsl(194, 45%, 77%);
+  }
+
+  .button.is-primary:disabled{
+    background-color: 	hsl(12, 78%, 76%);
+    border-color:   hsl(12, 78%, 76%);
   }
 
   .has-text-brand{
@@ -75,7 +85,7 @@
     /*color: 	hsl(172, 54%, 58%)!important;*/
   }
 
-  #map { height: 480px; }
+  #map { height: 360px; }
 
   .marker-position {
     position: absolute;
@@ -87,4 +97,11 @@
     background-color: #fff;
   }
 
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 </style>

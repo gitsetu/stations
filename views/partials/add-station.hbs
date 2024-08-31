@@ -1,22 +1,47 @@
-<form class="section box" action="/dashboard/addstation" method="POST">
+<form id="addstation" class="section box" action="/dashboard/addstation" method="POST">
   <div class="field is-horizontal">
     <div class="field-body">
     <div class="field">
       <label class="label">Station Name</label>
-      <input class="input" type="text" placeholder="Name of the station" maxlength="20" name="stationname">
+      <input class="input" type="text" id="stationname" placeholder="Dublin" maxlength="20" name="stationname" onfocus="checkForm()">
     </div>
     <div class="field">
       <label class="label">Latitude</label>
-      <input class="input" type="text" placeholder="30.489772" maxlength="10" name="latitude">
+      <input class="input" type="text" id="latitude" placeholder="53.34" maxlength="10" name="latitude" onfocus="checkForm()">
     </div>
     <div class="field">
       <label class="label">Longitude</label>
-      <input class="input" type="text" placeholder="-99.771335" maxlength="10" name="longitude">
+      <input class="input" type="text" id="longitude" placeholder="-6.26" maxlength="10" name="longitude" onfocus="checkForm()">
     </div>
   </div>
   </div>
 <!--  <br>-->
-  <div class="field is-grouped">
-  <button class="button is-link" id="new-station">Add Station</button>
+  <div class="field is-grouped buttons has-text-weight-medium">
+
+    <button type="button" class="button is-link" id="get-place-name" disabled="disabled">Get Place Name</button>
+    <button type="button" class="button is-link" id="get-coordinates" disabled="disabled">Get Coordinates</button>
+    <button type="submit" class="button is-primary" id="new-station" disabled="disabled">Add Station</button>
+    <button type="reset" class="button" id="formReset" disabled="disabled">Clear</button>
   </div>
 </form>
+
+<script>
+
+  // https://stackoverflow.com/questions/39880389/disable-button-until-fields-are-full-pure-js
+  function checkForm()
+  {
+    let formStationName = document.getElementById("stationname").value;
+    let formLatitude = document.getElementById("latitude").value;
+    let formLongitude = document.getElementById("longitude").value;
+    let canSubmitStation = (formStationName.length > 1) && (formLatitude.length > 1) && (formLongitude.length > 1);
+    document.getElementById("new-station").disabled = !canSubmitStation;
+    let canSubmitGetPlace = (formStationName.length < 1) && (formLatitude.length > 1) && (formLongitude.length > 1);
+    document.getElementById("get-place-name").disabled = !canSubmitGetPlace;
+    let canSubmitGetCoordinates = (formStationName.length > 1) && (formLatitude.length < 1) && (formLongitude.length < 1);
+    document.getElementById("get-coordinates").disabled = !canSubmitGetCoordinates;
+    let canSubmitReset = (formStationName.length > 0) || (formLatitude.length > 0) || (formLongitude.length > 0);
+    document.getElementById("formReset").disabled = !canSubmitReset;
+
+  }
+
+</script>
