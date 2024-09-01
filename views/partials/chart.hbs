@@ -1,0 +1,28 @@
+<div class="box has-text-weight-light" id="chart"></div>
+<script>
+  const data = {
+    labels: [
+      {{#each reading.trendLabels}}
+        "{{this}}",
+      {{/each}}
+    ],
+    datasets: [
+      {
+        name: "Temperature", type: "line",
+        values: [
+          {{#each reading.tempTrend}}
+            "{{this}}",
+          {{/each}}
+        ]
+      }
+    ]
+  }
+
+  const chart = new frappe.Chart("#chart", {
+    title: "Temperature Trend",
+    data: data,
+    type: "line",
+    height: 180,
+    colors: ["#aad3df"]
+  });
+</script>

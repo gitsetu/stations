@@ -253,6 +253,72 @@
       "timestamp": 1725202800982,
       "_id": "41b1c12b-a5db-42bc-996a-6563f8a87ab2",
       "stationid": "663572f3-43ec-4caa-8833-16f2eeefea83"
+    },
+    {
+      "weathercode": 801,
+      "temperature": 28.13,
+      "windspeed": 2.68,
+      "pressure": 1010,
+      "winddegrees": 84,
+      "datetime": "Sun Sep 01 2024 16:30:04",
+      "timestamp": 1725204604243,
+      "_id": "1ce18016-3268-4a68-acf3-82c98a752e51",
+      "stationid": "663572f3-43ec-4caa-8833-16f2eeefea83"
+    },
+    {
+      "weathercode": 801,
+      "temperature": 28.3,
+      "windspeed": 2.68,
+      "pressure": 1011,
+      "winddegrees": 84,
+      "datetime": "Sun Sep 01 2024 16:32:59",
+      "timestamp": 1725204779879,
+      "_id": "b3bee258-fa16-4188-940b-32ea79e7bd24",
+      "stationid": "663572f3-43ec-4caa-8833-16f2eeefea83"
+    },
+    {
+      "weathercode": 803,
+      "temperature": 17.82,
+      "windspeed": 3.09,
+      "pressure": 1012,
+      "winddegrees": 70,
+      "datetime": "Sun Sep 01 2024 16:37:10",
+      "timestamp": 1725205030316,
+      "_id": "ee2157db-ae1f-4637-9aaf-8ad1491a4a38",
+      "stationid": "f41053d1-ebf9-454a-b669-4cb79f579ae4"
+    },
+    {
+      "weathercode": 801,
+      "temperature": 24.76,
+      "windspeed": 11.83,
+      "pressure": 1015,
+      "winddegrees": 350,
+      "datetime": "Sun Sep 01 2024 17:14:33",
+      "timestamp": 1725207273444,
+      "_id": "517b6587-9ffb-422d-8b27-e6ed59cbc17c",
+      "stationid": "8f27ec30-27ef-403c-b069-be9b8d7abd89"
+    },
+    {
+      "weathercode": 804,
+      "temperature": 17.03,
+      "windspeed": 3.13,
+      "pressure": 1012,
+      "winddegrees": 85,
+      "datetime": "Sun Sep 01 2024 17:18:10",
+      "timestamp": 1725207490849,
+      "_id": "4842a026-2958-4b95-b4f9-c519c380a38f",
+      "stationid": "48401aed-5e5d-40d8-b4ec-c5d648daded6"
+    },
+    {
+      "weathercode": 803,
+      "temperature": 11.05,
+      "windspeed": 8.75,
+      "pressure": 1000,
+      "winddegrees": 170,
+      "datetime": "Sun Sep 01 2024 18:21:10",
+      "timestamp": 1725211270613,
+      "_id": "56928596-d06f-4513-936f-47460ff89952",
+      "stationid": "7e26aea9-c7e0-4ec3-b6a9-f904b93c9302"
     }
   ]
 }

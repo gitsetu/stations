@@ -5,7 +5,7 @@
     marker = new L.marker([{{latitude}}, {{longitude}}]).bindPopup("{{stationname}}, {{latestTemperature}}").addTo(map);
   </script>
 
-<div class="box box-link-hover-shadow">
+<div class="box box-link-hover-shadow" id="station-list">
 
   <div class="columns">
     <div class="column is-4 is-inline">
@@ -84,7 +84,7 @@
         </div>
 
         <div class="column is-6 is-inline">
-          <a href="/dashboard/addreading/{{_id}}" class="button is-3" title="Update">
+          <a href="/dashboard/addreading/{{_id}}" class="button is-3 is-brand" title="Update">
             Update
           </a>
           <a href="/station/{{_id}}" class="button" title="Show Reports">

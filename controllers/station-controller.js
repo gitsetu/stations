@@ -27,6 +27,8 @@ export const stationController = {
 
     let cards = await stationAnalytics.makeCards(station);
 
+    let forecast = await stationController.readForecast(request, response);
+    // ----------------------------
     const viewData = {
       page: page,
       title: station.stationname + " Station Reports",
@@ -36,6 +38,7 @@ export const stationController = {
       cards: cards,
       numberOfReportsInStation: numberOfReportsInStation,
       classReportsTable: classReportsTable,
+      reading: forecast,
     };
     // console.log(`(Station Controller) number of reports in station: ${numberOfReportsInStation}`);
     response.render("station-view", viewData);
@@ -78,7 +81,9 @@ export const stationController = {
     const stationId = request.params.id;
     const lat = station.latitude;
     const lng = station.longitude;
-    const latLongRequestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=0594495f7704f58a422c370f1c762c06`;
+    const apikey = "0594495f7704f58a422c370f1c762c06";
+    const requestUrl = "https://api.openweathermap.org/data/2.5/weather";
+    const latLongRequestUrl = `${requestUrl}?lat=${lat}&lon=${lng}&units=metric&appid=${apikey}`;
     const result = await axios.get(latLongRequestUrl);
     // console.log(latLongRequestUrl)
     if (result.status == 200) {
@@ -96,5 +101,40 @@ export const stationController = {
     response.redirect("/station/" + stationId);
   },
 
+  async readForecast(request, response) {
+    console.log("forecast reading");
+    const station = await stationStore.getStationById(request.params.id);
+    let report = {};
+    const stationId = request.params.id;
+    const lat = station.latitude;
+    const lng = station.longitude;
+    const apikey = "0594495f7704f58a422c370f1c762c06";
+    const requestUrl = "http://api.openweathermap.org/data/2.5/forecast";
+    const latLongRequestUrl = `${requestUrl}?lat=${lat}&lon=${lng}&units=metric&appid=${apikey}`;
+    const result = await axios.get(latLongRequestUrl);
+    // console.log(latLongRequestUrl)
+    if (result.status == 200) {
+      // console.log(JSON.stringify(result.data, null, 2));
+      report.tempTrend = [];
+      report.trendLabels = [];
+      const trends = result.data.list;
+      for (let i=0; i<10; i++) {
+        report.tempTrend.push(trends[i].main.temp);
+        report.trendLabels.push(trends[i].dt_txt);
+      }
+      // console.log(report);
 
-};
+      // https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
+      // const viewData = {
+      //   title: "Weather Report",
+      //   reading: report,
+      // };
+      // response.render("station-view", viewData);
+
+      return report;
+    }
+  },
+
+
+
+}

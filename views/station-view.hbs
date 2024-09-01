@@ -4,11 +4,14 @@
   <div class="title is-capitalized {{> class-brand}}">
     {{title}}
   </div>
-  <div class="subtitle is-6 has-text-weight-light">
+
+
+  {{> chart}}
+  {{> summary-station}}
+  {{> add-report}}
+  {{> list-reports}}
+
+  <div class="heading is-6 has-text-weight-light">
     Station ID: {{station._id}}
   </div>
-
-  {{> summary-station}}
-  {{> list-reports}}
-  {{> add-report}}
 </section>
