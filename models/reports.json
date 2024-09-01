@@ -319,6 +319,17 @@
       "timestamp": 1725211270613,
       "_id": "56928596-d06f-4513-936f-47460ff89952",
       "stationid": "7e26aea9-c7e0-4ec3-b6a9-f904b93c9302"
+    },
+    {
+      "weathercode": 803,
+      "temperature": 16.98,
+      "windspeed": 3.09,
+      "pressure": 1012,
+      "winddegrees": 80,
+      "datetime": "Sun Sep 01 2024 20:53:19",
+      "timestamp": 1725220399287,
+      "_id": "b231f931-ac4c-41b5-95fe-fbc97950d611",
+      "stationid": "f41053d1-ebf9-454a-b669-4cb79f579ae4"
     }
   ]
 }
