@@ -9,7 +9,12 @@ import { weatherStore } from "../models/weather-store.js";
 import { userStore } from "../models/user-store.js";
 import axios from "axios";
 
+// global variables
+let getPlaceNameClicked = false;
+let nameOfLocation = "";
+
 export const dashboardController = {
+
   async index(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
 
@@ -72,7 +77,60 @@ export const dashboardController = {
       station.latestTemperature = station.summary.temperature+"º"
 
     } // end for each station
+// --------------------------------------------------------------------------------
 
+    // if clickMarker exists
+    // https://stackoverflow.com/questions/5113374/javascript-check-if-variable-exists-is-defined-initialized
+    if (typeof clickMarker !== 'undefined') {
+      console.log(`(dashboard-controller) click detected`);
+      // the variable is defined
+      console.log(`(dashboard-controller) clickMarker: ${clickMarker.name}`);
+
+      // listen for click to get location name
+      // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onclick_addeventlistener
+      // document.getElementById("get-place-name").addEventListener("click", nameOfPlace);
+      // -------
+
+      // let locationName = {};
+      // locationName = await stationAnalytics.getLocationName(clickMarker);
+      //
+      // console.log(`locationName: ${locationName.name}, ${locationName.country}`);
+      // document.getElementById("stationname").value = locationName.name;
+    }
+
+    if (getPlaceNameClicked) {
+
+      nameOfLocation = stationAnalytics.getNameOfLocation(clickMarker);
+    }
+
+    // listen for click to get location name
+    // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onclick_addeventlistener
+    // document.getElementById("get-place-name").addEventListener("click", placeName);
+
+    // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onclick_addeventlistener
+    // document.getElementById("get-place-name").addEventListener("click", getPlaceName);
+
+    async function nameOfPlace() {
+      console.log('clickMarker getPlaceName: ' + clickMarker.latitude + ", " + clickMarker.longitude);
+
+      console.log('formStationName: ' + formStationName);
+
+      let locationName = {};
+      locationName = await stationAnalytics.getNameOfLocation(clickMarker);
+
+      console.log(`locationName: ${locationName.name}, ${locationName.country}`);
+      document.getElementById("stationname").value = "clicked";
+
+      // return result;
+    }
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------------
     const viewData = {
       page: "dashboard",
       menuHide: menuHide,

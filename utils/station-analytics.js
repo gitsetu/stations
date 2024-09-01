@@ -1,6 +1,7 @@
 import { weatherStore } from "../models/weather-store.js";
 import { weatherController } from "../controllers/weather-controller.js";
 import { reportStore } from "../models/report-store.js";
+import axios from "axios";
 
 export const stationAnalytics = {
   async getLatestReport(station) {
@@ -365,6 +366,97 @@ export const stationAnalytics = {
     L.marker([station.latitude, station.longitude]).addTo(map)
       .bindPopup(station.stationname +'<br>'+ station.latitude + ', ' + station.longitude)
       .openPopup();
-  }
+  },
+
+
+  async getNameOfLocation(marker) {
+    let formLatitude = marker.latitude;
+    let formLongitude = marker.longitude;
+    const placeNameRequestUrl = `http://api.openweathermap.org/data/2.5/forecast`
+    const apikey = "0594495f7704f58a422c370f1c762c06";
+    let requestUrl = placeNameRequestUrl + "?lat=" + formLatitude + "&lon=" + formLongitude + "&appid=" + apikey + "&units=metric";
+    console.log("requestUrl" +requestUrl);
+    let location;
+    const result = await axios.get(requestUrl);
+
+    // const result = await axios.get("http://api.openweathermap.org/data/2.5/forecast?lat=52.33&lon=-6.46&appid=0594495f7704f58a422c370f1c762c06&units=metric");
+    // console.log("rendering get location name" + locationRequestUrl + formLatitude + formLongitude + apikey);
+    if (result.status == 200) {
+      const placeName = result.data;
+      location.name = placeName.city.name;
+      location.country = placeName.city.country;
+
+      // document.getElementById("stationname").value = report.name;
+      console.log("rendering get location name " + location.name);
+    }
+    console.log(location);
+    return location;
+  },
+
+  // https://stackoverflow.com/questions/39880389/disable-button-until-fields-are-full-pure-js
+  //-----
+  async checkForm(){
+    let formStationName = document.getElementById("stationname").value;
+    let formLatitude = document.getElementById("latitude").value;
+    let formLongitude = document.getElementById("longitude").value;
+    let canSubmitStation = (formStationName.length > 1) && (formLatitude.length > 1) && (formLongitude.length > 1);
+    document.getElementById("new-station").disabled = !canSubmitStation;
+    // let canSubmitGetPlace = (formStationName.length < 1) && (formLatitude.length > 1) && (formLongitude.length > 1);
+    // document.getElementById("get-place-name").disabled = !canSubmitGetPlace;
+    let canSubmitGetCoordinates = (formStationName.length > 1) && (formLatitude.length < 1) && (formLongitude.length < 1);
+    document.getElementById("get-coordinates").disabled = !canSubmitGetCoordinates;
+    let canSubmitReset = (formStationName.length > 0) || (formLatitude.length > 0) || (formLongitude.length > 0);
+    document.getElementById("formReset").disabled = !canSubmitReset;
+    // ---------------------------------------------------------------------
+  },
+
+  async _getReadingWeatherNow(station) {
+    const lat = station.latitude;
+    let lon = station.longitude;
+    const requestUrlWeatherNow = `http://api.openweathermap.org/data/2.5/weather`
+    const apikey = "0594495f7704f58a422c370f1c762c06";
+    let requestUrl = requestUrlWeatherNow + "?lat=" + lat + "&lon=" + lon + "&appid=" + apikey + "&units=metric";
+    console.log("requestUrl: " +requestUrl);
+    let report;
+    const result = await axios.get(requestUrl);
+
+    // const result = await axios.get("http://api.openweathermap.org/data/2.5/forecast?lat=52.33&lon=-6.46&appid=0594495f7704f58a422c370f1c762c06&units=metric");
+    // console.log("rendering get location name" + locationRequestUrl + formLatitude + formLongitude + apikey);
+    if (result.status == 200) {
+      const weather = result.data;
+      // report.weathercode = weather.id;
+      report = weatherController.getWeather(weather.id);
+
+      await reportStore.addReport(station.stationid, report);
+      // document.getElementById("stationname").value = report.name;
+      console.log("rendering get location name " + report.weathercode);
+    }
+    console.log(report);
+    return report;
+  },
+
+  async addReading(request, response) {
+    console.log("rendering new report");
+    let report = {};
+    const lat = request.body.lat;
+    const lng = request.body.lng;
+    const latLongRequestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=YOUR_API_KEY_HERE`;
+    const result = await axios.get(latLongRequestUrl);
+    console.log(latLongRequestUrl)
+    if (result.status == 200) {
+      const currentWeather = result.data;
+      report.code = currentWeather.weather[0].id;
+      report.temperature = currentWeather.main.temp;
+      report.windSpeed = currentWeather.wind.speed;
+      report.pressure = currentWeather.main.pressure;
+      report.windDirection = currentWeather.wind.deg;
+    }
+    console.log(report);
+    const viewData = {
+      title: "Weather Report",
+      reading: report,
+    };
+    response.render("dashboard-view", viewData);
+  },
 
 };

@@ -3,7 +3,6 @@
 
 <!--// map view-->
 <script>
-  // https://tomickigrzegorz.github.io/leaflet-examples/#
   // https://tomickigrzegorz.github.io/leaflet-examples/#04.many-markers
   // https://tomickigrzegorz.github.io/leaflet-examples/#05.coordinates-after-clicking-on-the-map
   // config map
@@ -31,22 +30,26 @@
   //   L.marker(event.latlng).addTo(map);
   // });
 
-  let marker;
+
+  let clickMarker = {};
   map.on('click', function (e) {
-    if (marker) { // check
-      map.removeLayer(marker); // remove old layers
+    // --
+    if (clickMarker) { // check
+      map.removeLayer(clickMarker); // remove old layers
     }
-    marker = new L.Marker(e.latlng).addTo(map); // set New Layer
+    // mapClicked = true;
+
+    clickMarker = new L.Marker(e.latlng).addTo(map); // set New Layer
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
-    marker.latitude = Math.trunc((e.latlng.lat) * 10000) / 10000;
-    marker.longitude = Math.trunc((e.latlng.lng) * 10000) / 10000;
-    console.log("marker lat: "+ marker.latitude + ", " + marker.longitude);
+    clickMarker.latitude = Math.trunc((e.latlng.lat) * 10000) / 10000;
+    clickMarker.longitude = Math.trunc((e.latlng.lng) * 10000) / 10000;
+    console.log("marker at: "+ clickMarker.latitude + ", " + clickMarker.longitude);
 
     // https://stackoverflow.com/questions/4683331/how-to-fill-in-form-field-and-submit-using-javascript
-    document.forms['addstation'].elements['latitude'].value = marker.latitude;
-    document.forms['addstation'].elements['longitude'].value = marker.longitude;
+    document.forms['addstation'].elements['latitude'].value = clickMarker.latitude;
+    document.forms['addstation'].elements['longitude'].value = clickMarker.longitude;
     // document.forms['addstation'].elements['get-place-name'].value = "enabled";
-    return marker;
+    return clickMarker;
   });
 
 </script>

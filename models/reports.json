@@ -209,6 +209,50 @@
       "timestamp": 1724908744811,
       "_id": "2177294d-2abc-41fd-985f-0b1623deb627",
       "stationid": "420f5f30-9371-4b07-bc8c-a06b3bcb5cc4"
+    },
+    {
+      "_id": "d8a1ce11-4799-400f-bba4-83768576f9cb"
+    },
+    {
+      "code": 800,
+      "temperature": 25.66,
+      "windSpeed": 9.77,
+      "pressure": 1016,
+      "windDirection": 340,
+      "_id": "4e8cb4f2-6c5d-4ca3-9f66-c7caa2bfa98b"
+    },
+    {
+      "weathercode": 800,
+      "temperature": 25.57,
+      "windspeed": 9.77,
+      "pressure": 1016,
+      "winddegrees": 340,
+      "datetime": "Sun Sep 01 2024 15:17:48",
+      "timestamp": 1725200268344,
+      "_id": "531bebcf-091d-4fb4-bd03-852d5b3832ae",
+      "stationid": "8f27ec30-27ef-403c-b069-be9b8d7abd89"
+    },
+    {
+      "weathercode": 800,
+      "temperature": 25.11,
+      "windspeed": 9.77,
+      "pressure": 1016,
+      "winddegrees": 340,
+      "datetime": "Sun Sep 01 2024 15:21:02",
+      "timestamp": 1725200462899,
+      "_id": "412594b0-7c5b-4c55-bc9f-80d4ba0d4474",
+      "stationid": "8f27ec30-27ef-403c-b069-be9b8d7abd89"
+    },
+    {
+      "weathercode": 801,
+      "temperature": 28.35,
+      "windspeed": 1.79,
+      "pressure": 1011,
+      "winddegrees": 16,
+      "datetime": "Sun Sep 01 2024 16:00:00",
+      "timestamp": 1725202800982,
+      "_id": "41b1c12b-a5db-42bc-996a-6563f8a87ab2",
+      "stationid": "663572f3-43ec-4caa-8833-16f2eeefea83"
     }
   ]
 }

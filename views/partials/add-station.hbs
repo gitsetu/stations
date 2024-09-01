@@ -1,47 +1,89 @@
+
 <form id="addstation" class="section box" action="/dashboard/addstation" method="POST">
+  <h6 class="subtitle">Get coordinates by clicking on the map, or enter them manually.</h6>
   <div class="field is-horizontal">
     <div class="field-body">
     <div class="field">
       <label class="label">Station Name</label>
-      <input class="input" type="text" id="stationname" placeholder="Dublin" maxlength="20" name="stationname" onfocus="checkForm()">
+      <input class="input" type="text" id="stationname" placeholder="Dublin" maxlength="20" name="stationname" required>
     </div>
     <div class="field">
       <label class="label">Latitude</label>
-      <input class="input" type="text" id="latitude" placeholder="53.34" maxlength="10" name="latitude" onfocus="checkForm()">
+      <input class="input" type="text" id="latitude" placeholder="53.34" maxlength="10" name="latitude" required>
     </div>
     <div class="field">
       <label class="label">Longitude</label>
-      <input class="input" type="text" id="longitude" placeholder="-6.26" maxlength="10" name="longitude" onfocus="checkForm()">
+      <input class="input" type="text" id="longitude" placeholder="-6.26" maxlength="10" name="longitude" required>
     </div>
   </div>
   </div>
 <!--  <br>-->
   <div class="field is-grouped buttons has-text-weight-medium">
 
-    <button type="button" class="button is-link" id="get-place-name" disabled="disabled">Get Place Name</button>
-    <button type="button" class="button is-link" id="get-coordinates" disabled="disabled">Get Coordinates</button>
-    <button type="submit" class="button is-primary" id="new-station" disabled="disabled">Add Station</button>
-    <button type="reset" class="button" id="formReset" disabled="disabled">Clear</button>
+    <button type="button" class="button is-link" id="button-get-place-name" disabled="disabled">Get Place Name</button>
+    <button type="button" class="button is-link" id="button-get-coordinates" disabled="disabled">Get Coordinates</button>
+    <button type="submit" class="button is-primary" id="button-add-station" disabled="disabled">Add Station</button>
+    <button type="reset" class="button" id="button-form-reset">Clear</button>
   </div>
 </form>
 
 <script>
+  // import { dashboardController } from "../../controllers/dashboard-controller.js";
 
-  // https://stackoverflow.com/questions/39880389/disable-button-until-fields-are-full-pure-js
-  function checkForm()
+  // import(dashboardController)
+
+
+  // listen for click to get location name
+  // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onclick_addeventlistener
+  document.getElementById("button-get-place-name").addEventListener("click", placeName);
+
+  async function placeName() {
+    console.log('clickMarker getPlaceName: ' + clickMarker.latitude + ", " + clickMarker.longitude);
+    // document.getElementById("stationname").value = "get place name clicked";
+    // return result;
+    // let locationResult = await getName.getNameOfLocation(clickMarker);
+    getPlaceNameClicked = true;
+
+    // document.getElementById("stationname").value = nameOfLocation;
+    document.getElementById("stationname").value = "nameOfLocation";
+  }
+  // ---------------------------------------
+
+
+
+
+  // check for fields filled
+  // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onclick_addeventlistener
+  document.getElementById("stationname").addEventListener("keyup", checkForm);
+  document.getElementById("latitude").addEventListener("click", checkForm);
+  document.getElementById("longitude").addEventListener("click", checkForm);
+  document.getElementById("button-form-reset").addEventListener("click", clearForm);
+
+
+  function clearForm()
   {
-    let formStationName = document.getElementById("stationname").value;
-    let formLatitude = document.getElementById("latitude").value;
-    let formLongitude = document.getElementById("longitude").value;
-    let canSubmitStation = (formStationName.length > 1) && (formLatitude.length > 1) && (formLongitude.length > 1);
-    document.getElementById("new-station").disabled = !canSubmitStation;
-    let canSubmitGetPlace = (formStationName.length < 1) && (formLatitude.length > 1) && (formLongitude.length > 1);
-    document.getElementById("get-place-name").disabled = !canSubmitGetPlace;
-    let canSubmitGetCoordinates = (formStationName.length > 1) && (formLatitude.length < 1) && (formLongitude.length < 1);
-    document.getElementById("get-coordinates").disabled = !canSubmitGetCoordinates;
-    let canSubmitReset = (formStationName.length > 0) || (formLatitude.length > 0) || (formLongitude.length > 0);
-    document.getElementById("formReset").disabled = !canSubmitReset;
-
+    document.getElementById("button-add-station").disabled = true;
+    document.getElementById("button-get-place-name").disabled = true;
+    document.getElementById("button-get-coordinates").disabled = true;
+    // ---------------------------------------------------------------------
   }
 
+
+  function checkForm()
+  {
+    document.getElementById("button-add-station").disabled = true;
+    document.getElementById("button-get-place-name").disabled = true;
+    formStationName = document.getElementById("stationname").value;
+    let formLatitude = document.getElementById("latitude").value;
+    let formLongitude = document.getElementById("longitude").value;
+    let canSubmitStation = (formStationName.length > 0) && (formLatitude) && (formLongitude);
+    document.getElementById("button-add-station").disabled = !canSubmitStation;
+    let canSubmitGetPlace = (!formStationName) && (formLatitude) && (formLongitude);
+    document.getElementById("button-get-place-name").disabled = !canSubmitGetPlace;
+    let canSubmitGetCoordinates = (formStationName) && (!formLatitude) && (!formLongitude);
+    document.getElementById("button-get-coordinates").disabled = !canSubmitGetCoordinates;
+    // let canSubmitReset = (formStationName.length > 0) || (formLatitude.length > 0) || (formLongitude.length > 0);
+    // document.getElementById("button-form-reset").disabled = false;
+    // ---------------------------------------------------------------------
+  }
 </script>

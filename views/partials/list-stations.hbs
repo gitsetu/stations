@@ -68,9 +68,9 @@
 
       <div class="columns">
 
-        <div class="-field column is-8 -is-inline">
+        <div class="-field column is-6">
           <!--    <label>Wind Direction</label>-->
-          <div class="select is-fullwidth is-brand {{classHidden}}">
+          <div class="select -is-fullwidth is-brand {{classHidden}}">
             <select class="input {{> class-brand}}" name="showMoreDetails">
               <option>{{latestWeather.description}}</option>
               <option value="0">Wind: {{summary.windDirection}}, {{summary.windspeed}}m/s,
@@ -78,11 +78,15 @@
               <option value="0">Pressure: {{summary.pressure}}hPa,
                 Max: {{summary.maxPressure}}hPa, Min: {{summary.minPressure}}hPa</option>
             </select>
+
           </div>
 
         </div>
 
-        <div class="column is-4 is-inline">
+        <div class="column is-6 is-inline">
+          <a href="/dashboard/addreading/{{_id}}" class="button is-3" title="Update">
+            Update
+          </a>
           <a href="/station/{{_id}}" class="button" title="Show Reports">
             {{>icons/open}}
           </a>
